@@ -1,23 +1,23 @@
-# 0xCaptain888
+# GitHub profile README source
 
-I build the control plane for autonomous AI agent actions.
+The canonical profile README lives in the [`0xCaptain888`](https://github.com/0xCaptain888/0xCaptain888) profile repository.
+
+Its message is intentionally narrow:
+
+> I build the execution layer that keeps autonomous AI agents inside policy.
+
+The profile should point visitors to one core project — [`agent-control-plane`](https://github.com/0xCaptain888/agent-control-plane) — and use the reference applications as proof of reuse:
 
 ```text
-Intent → Policy → Risk → Execution → Verification → Recovery
+Intent → Policy → Risk → Execute → Verify → Recover → Receipt
 ```
 
-## Core project
+When updating the profile, keep the order stable:
 
-**[Agent Control Plane](https://github.com/0xCaptain888/agent-control-plane)** gives agents bounded capabilities to trade, pay, call tools, manage assets, and execute workflows without acting beyond policy.
+1. one-sentence thesis;
+2. core project and capability table;
+3. judge-first demos;
+4. architecture, safety, and verification links;
+5. a short, collapsed list of selected experiments.
 
-## Reference applications
-
-- `agentpay` — wallet, budget, payment, and MCP execution
-- `agentbank` — policy-controlled treasury automation
-- `agentcourt` — verifiable execution, evidence, and dispute handling
-- `kitehive` — agent task markets and settlement
-- `praeco` — outcome-based API payments
-
-## Philosophy
-
-Agents can act, but never beyond policy.
+Avoid presenting the full repository list as equal products. The public story is one reusable control plane with multiple vertical proofs.
