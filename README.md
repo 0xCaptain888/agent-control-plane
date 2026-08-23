@@ -2,13 +2,22 @@
 
 ### The policy-controlled execution layer for autonomous AI agents.
 
+**Built for hackathons: make an Agent useful without making it unconstrained.**
+
 Agents can propose actions. The control plane decides whether they are still allowed to act — within explicit permissions, budgets, risk limits, and verification rules.
 
 <p>
   <a href="https://github.com/0xCaptain888/agent-control-plane/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/0xCaptain888/agent-control-plane/ci.yml?branch=main&style=flat-square&label=CI" alt="CI"></a>
   <a href="https://github.com/0xCaptain888/agent-control-plane"><img src="https://img.shields.io/badge/Node-22-3c873a?style=flat-square&logo=node.js&logoColor=white" alt="Node 22"></a>
   <a href="https://github.com/0xCaptain888/agent-control-plane"><img src="https://img.shields.io/badge/TypeScript-5.4-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"></a>
-  <a href="https://github.com/0xCaptain888/agent-control-plane/blob/main/SECURITY.md"><img src="https://img.shields.io/badge/audit-0%20vulnerabilities-0f766e?style=flat-square" alt="0 vulnerabilities"></a>
+  <a href="https://github.com/0xCaptain888/agent-control-plane/blob/main/SECURITY.md"><img src="https://img.shields.io/badge/security-testnet--first-f59e0b?style=flat-square" alt="Testnet first"></a>
+</p>
+
+<p>
+  <a href="https://0xcaptain888.github.io/agent-control-plane/">Live Marketplace</a> ·
+  <a href="docs/demo-script.md">3-minute demo</a> ·
+  <a href="docs/submission-kit.md">Submission kit</a> ·
+  <a href="docs/bnb-hackathon.md">BNB evidence</a>
 </p>
 
 ![Agent Control Plane — policy-controlled execution for autonomous AI agents](assets/social-preview.png)
@@ -62,6 +71,20 @@ Each reference app demonstrates a distinct winning moment and reuses the same co
 | [OKX Trade](examples/okx-trade) | exchange adapter with explicit policy and freeze paths |
 | [Treasury Guard](examples/treasury-guard) | allocation limits, risk thresholds, and circuit breakers |
 | [Solana Devnet](examples/solana-devnet) | resilient RPC, external signing, confirmation, and audit failure handling |
+
+## The judge path
+
+```text
+1. Hire SafeSwap Agent with a 50 USDT budget.
+2. Show VERIFIED: result passes, payment releases, receipt is created.
+3. Raise the budget above policy: BLOCKED before the adapter is called.
+4. Return an out-of-policy fill: FROZEN with evidence and recovery state.
+5. Open the live ERC-8004 / ERC-8183 evidence in the Marketplace.
+```
+
+The important distinction is not “an Agent called a tool.” It is that the same
+control plane proves what the Agent was allowed to do, what actually happened,
+and why funds were released or frozen.
 
 ## Run it in five minutes
 
@@ -120,6 +143,17 @@ apps/       human-facing policy and receipt dashboards
 docs/       architecture, safety rules, migration notes, and judging guide
 ```
 
+## What is real vs. simulated
+
+| Surface | Status |
+| --- | --- |
+| ERC-8004 identity | Real BNB Testnet registration, Agent ID `1898` |
+| ERC-8183 task | Real BNB Testnet Job `603`, funded, submitted, and completed |
+| Marketplace | Public GitHub Pages deployment |
+| Judge lifecycle | Deterministic, offline-safe reference scenarios |
+| Mainnet execution | Disabled by design |
+| Production database / auth | Roadmap, not claimed as deployed |
+
 ## Safety boundary
 
 - Demo defaults are simulated or testnet-only.
@@ -133,7 +167,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 The current reference implementation is validated with:
 
 ```text
-11 tests passing · lint passing · typecheck passing · npm audit: 0 vulnerabilities
+41 tests passing · lint passing · typecheck passing · security preflight passing
 ```
 
 More detail:

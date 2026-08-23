@@ -73,11 +73,13 @@ To verify a real transaction after a wallet or external signer has broadcast it:
 
 ```bash
 BNB_TX_HASH=0x... npm run demo:bnb:evidence
+```
 
 To bind a verified chain receipt into the Marketplace Control Plane:
 
 ```bash
 BNB_TX_HASH=0x... npm run demo:bnb:receipt
+```
 ```
 
 The receipt adapter fetches the transaction from BNB Testnet RPC, rejects missing or failed receipts, and only then releases the held payment. It never trusts a caller-provided hash without an RPC receipt.
