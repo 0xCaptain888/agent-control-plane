@@ -29,6 +29,7 @@ disabled on the API key.
 - Ethereum Sepolia: `EVM_RPC_URL_ETHEREUM`
 - Arbitrum Sepolia: `EVM_RPC_URL_ARBITRUM`
 - Solana Devnet: `SOLANA_RPC_URL`
+- Solana Mainnet (optional, never use for default hackathon demos): `SOLANA_MAINNET_RPC_URL`
 
 For a live demo with higher rate limits, replace these values with an Alchemy,
 Helius, or QuickNode endpoint. Never commit provider tokens or wallet private
