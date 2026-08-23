@@ -1,0 +1,9 @@
+{
+  "name": "@captain/example-safe-trade",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "demo": "node src/demo.mjs"
+  }
+}
