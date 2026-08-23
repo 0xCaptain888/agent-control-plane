@@ -49,7 +49,21 @@ export class AgentControlPlane {
       };
     }
 
-    const execution = await this.deps.adapter.execute(action);
+    let execution: ExecutionResult;
+    try {
+      execution = await this.deps.adapter.execute(action);
+    } catch (error) {
+      const errorName = error instanceof Error ? error.name : "ExecutionError";
+      const verification = { passed: false, reasons: [`execution_failed:${errorName}`] };
+      const recovery = { action: "frozen" as const, reasons: verification.reasons };
+      return {
+        receipt: this.receipt(action, policy, risk, undefined, verification, recovery),
+        policy,
+        risk,
+        verification,
+        recovery
+      };
+    }
     const verification = await this.deps.verifier.verify(action, execution);
     let recovery: RecoveryResult | undefined;
     if (!verification.passed && execution.externalId && this.deps.recovery) {
