@@ -12,6 +12,12 @@ This is a non-destructive migration plan. Existing repositories should be archiv
 | `praeco` | `examples/api-procurement` | outcome-based API payment |
 | `cadence` | `examples/outcome-settlement` | attribution and settlement |
 
+## First extracted interfaces
+
+- `agentpay`'s AgentVault concepts map to `packages/action-schema`, `packages/policy-engine`, `packages/execution-core`, and `adapters/x402`.
+- `oneshot`'s server-side deterministic rules map to `packages/risk-engine`.
+- `agentcourt`'s proof and dispute concepts map to `packages/verification`, `packages/recovery`, and `packages/receipts`.
+
 ## Archive policy
 
 Do not delete a repository until its useful code, documentation, and historical links are preserved. Use GitHub Archive first; delete only empty, duplicate, or genuinely disposable repositories.
