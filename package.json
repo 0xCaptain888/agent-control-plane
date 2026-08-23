@@ -1,0 +1,21 @@
+{
+  "name": "@captain/agent-control-plane",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Policy-controlled, verifiable execution infrastructure for autonomous AI agents.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test",
+    "lint": "echo 'Add repository lint configuration'"
+  },
+  "workspaces": [
+    "packages/*",
+    "adapters/*",
+    "examples/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}
