@@ -10,6 +10,42 @@ discover → compare → hire → policy → execute → verify → settle → r
 
 Payment is held until the task result is verified. A budget, permission, asset, or slippage violation is either blocked before the adapter is called or freezes settlement after execution.
 
+## BNB project introduction
+
+AgentGuard is a BNB Testnet marketplace and execution control plane for autonomous
+Agents. A user can discover a capability, set a boundary, hire the Agent, verify
+the result, and inspect the resulting receipt. The demo is intentionally narrow:
+SafeSwap proves the complete lifecycle while the other marketplace profiles show
+how the same boundary can extend to health-factor monitoring, yield research, and
+API procurement.
+
+## Innovation points
+
+1. **Policy is the execution boundary, not a prompt.** Budget, permissions,
+   allowed targets, slippage, and approval thresholds are evaluated in code before
+   an adapter can act.
+2. **Verification is coupled to settlement.** A successful-looking execution does
+   not release payment until the observed result and evidence satisfy the task.
+3. **Failure is a first-class product outcome.** The judge sees `BLOCKED` before
+   execution and `FROZEN` after a failed verification, rather than a hidden error
+   or an accidental payout.
+4. **One control plane, many BNB capabilities.** ERC-8004 identity, ERC-8183
+   task evidence, chain receipts, and future x402/escrow adapters plug into the
+   same lifecycle instead of creating separate demos.
+
+## Commercial value
+
+- **For users:** bounded delegation reduces the risk of an Agent overspending,
+  calling the wrong tool, or paying for an invalid result.
+- **For Agent marketplaces:** a shared policy and receipt layer makes Agents
+  easier to compare, trust, and monetize without rebuilding settlement logic for
+  every category.
+- **For BNB ecosystem partners:** the architecture creates a reusable path from
+  Agent identity to task execution and verifiable settlement, with a low-cost
+  Testnet proof that can later be connected to production providers.
+- **For developers:** adapters isolate chain or vendor transport, so a hackathon
+  integration can be shipped quickly without forking the authorization model.
+
 ## Current vertical slice
 
 The first complete vertical slice is `SafeSwap Agent`:
@@ -73,11 +109,13 @@ To verify a real transaction after a wallet or external signer has broadcast it:
 
 ```bash
 BNB_TX_HASH=0x... npm run demo:bnb:evidence
+```
 
 To bind a verified chain receipt into the Marketplace Control Plane:
 
 ```bash
 BNB_TX_HASH=0x... npm run demo:bnb:receipt
+```
 ```
 
 The receipt adapter fetches the transaction from BNB Testnet RPC, rejects missing or failed receipts, and only then releases the held payment. It never trusts a caller-provided hash without an RPC receipt.

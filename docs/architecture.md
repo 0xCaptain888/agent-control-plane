@@ -1,5 +1,29 @@
 # Architecture
 
+## One-page judge architecture
+
+```mermaid
+flowchart LR
+    U[User / Agent intent] --> N[Intent normalizer]
+    N --> P{Policy gate\nbudget · permissions · targets}
+    P -->|deny| B[BLOCKED\nno adapter call]
+    P --> R[Risk gate\nslippage · exposure · drift]
+    R -->|deny| B
+    R --> X[Execution adapter\nBNB · OKX · x402 · API]
+    X --> V{Verification\nexpected outcome + evidence}
+    V -->|pass| S[VERIFIED\nsettle / release payment]
+    V -->|fail| F[FROZEN\nhold funds + recover]
+    B --> Q[Auditable receipt]
+    S --> Q
+    F --> Q
+    Q --> M[Marketplace\nidentity · task · tx hash]
+```
+
+The judge can follow one action from proposal to receipt: policy failures stop
+before execution, verification failures freeze settlement after execution, and
+only verified outcomes release payment. The same control plane is reused by
+each adapter; only the external execution transport changes.
+
 The control plane is deliberately domain-neutral. Every high-risk agent action follows the same lifecycle:
 
 1. **Intent** — normalize the model's proposal into an `AgentAction`.
