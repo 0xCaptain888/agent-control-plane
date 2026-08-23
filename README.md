@@ -48,3 +48,15 @@ The first reference implementation is live: `packages/control-plane` composes po
 
 All adapters and reference apps in this repository are now concrete interfaces or
 dependency-free demos; there are no placeholder components left.
+
+## Verification commands
+
+```bash
+npm ci
+npm run lint
+npm run typecheck
+npm test
+```
+
+The Receipt Store builds SHA-256 Merkle proofs, and the Dashboard API exposes the
+current receipt set plus `/api/receipts/:receiptId/proof` for verification.
