@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: agentguard_dev
+      POSTGRES_USER: agentguard
+      POSTGRES_PASSWORD: agentguard_local_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - agentguard-postgres:/var/lib/postgresql/data
+      - ./packages/persistence/migrations:/docker-entrypoint-initdb.d/001-persistence
+      - ./packages/tenancy/migrations:/docker-entrypoint-initdb.d/002-tenancy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentguard -d agentguard_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - agentguard-redis:/data
+    command: ["redis-server", "--appendonly", "yes"]
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      NODE_ENV: development
+      AUTH_MODE: development
+      API_HOST: 0.0.0.0
+      API_PORT: 4180
+      DATABASE_URL: postgresql://agentguard:agentguard_local_only@postgres:5432/agentguard_dev
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "4180:4180"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+volumes:
+  agentguard-postgres:
+  agentguard-redis:
