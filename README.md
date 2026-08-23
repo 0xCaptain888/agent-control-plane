@@ -89,6 +89,21 @@ npm run demo:judge
 
 It shows `VERIFIED`, `BLOCKED`, and `FROZEN` outcomes with auditable receipts in one command. See the [Judge Demo](docs/demo.md).
 
+Run the BNB AgentGuard Marketplace vertical slice:
+
+```bash
+npm run demo:bnb
+```
+
+Open the judge-facing Marketplace UI:
+
+```bash
+cd apps/marketplace
+npm start
+```
+
+See the [BNB hackathon build guide](docs/bnb-hackathon.md) for the marketplace flow, testnet boundary, and submission checklist.
+
 The optional signing probe sends only a tiny self-transfer on Devnet:
 
 ```bash
