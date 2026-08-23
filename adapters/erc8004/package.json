@@ -1,0 +1,6 @@
+{
+  "name": "@captain/adapter-erc8004",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module"
+}
