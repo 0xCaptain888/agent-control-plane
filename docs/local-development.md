@@ -5,16 +5,16 @@ accounts and testnet chains. Keep credentials outside the repository.
 
 ## OKX Demo Trading
 
-The local OKX Trade Kit profile is `okx-demo` in `~/.okx/config.toml`. It must
+The local OKX Trade Kit profile is `okx-demo-current` in `~/.okx/config.toml`. It must
 contain `api_key`, `secret_key`, `passphrase`, and `demo = true`. The repository
 does not copy those values into source control or logs.
 
 Useful commands:
 
 ```bash
-okx --profile okx-demo --demo --help
-okx-trade-mcp --profile okx-demo --demo --read-only --modules market,account,spot
-okx diagnose --mcp --profile okx-demo --demo
+okx --profile okx-demo-current --demo --help
+okx-trade-mcp --profile okx-demo-current --demo --read-only --modules market,account,spot
+okx diagnose --mcp --profile okx-demo-current --demo
 ```
 
 The MCP server should start in read-only Demo mode while building a submission.
