@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Control Plane Dashboard</title>
+  <style>
+    body{font:15px system-ui;background:#0b1020;color:#e7ecff;max-width:1100px;margin:40px auto;padding:0 20px} h1{margin-bottom:6px} p{color:#9aa8d6}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:#151d35;border:1px solid #29365c;border-radius:12px;padding:18px}.ok{color:#74e0a0}.warn{color:#ffd166}.bad{color:#ff7b8a}.mono{font-family:ui-monospace,monospace;font-size:12px;white-space:pre-wrap}
+  </style>
+</head>
+<body>
+  <h1>Agent Control Plane</h1>
+  <p>Intent → Policy → Risk → Execute → Verify → Recover → Receipt</p>
+  <div id="summary" class="grid"></div>
+  <h2>Recent actions</h2>
+  <div id="actions" class="grid"></div>
+  <script>
+    const actions = [
+      {id:'okx:demo-001', target:'okx', status:'verified', risk:'0.08', payment:'released', proof:'evidence:9c2…'},
+      {id:'agent:demo-002', target:'agent-commerce', status:'recovered', risk:'0.91', payment:'frozen', proof:'evidence:4aa…'},
+      {id:'treasury:demo-003', target:'treasury-vault', status:'rejected', risk:'0.98', payment:'frozen', proof:'not executed'}
+    ];
+    const count = (fn) => actions.filter(fn).length;
+    document.querySelector('#summary').innerHTML = [
+      ['Total actions', actions.length, ''], ['Verified', count(a=>a.status==='verified'), 'ok'],
+      ['Recovered / frozen', count(a=>a.status==='recovered'), 'warn'], ['Rejected before execution', count(a=>a.status==='rejected'), 'bad']
+    ].map(([label,value,cls])=>`<div class="card"><div>${label}</div><h2 class="${cls}">${value}</h2></div>`).join('');
+    document.querySelector('#actions').innerHTML = actions.map(a=>`<div class="card"><strong>${a.target}</strong><div class="mono">${a.id}</div><p class="${a.status==='verified'?'ok':a.status==='recovered'?'warn':'bad'}">${a.status}</p><div>risk: ${a.risk}</div><div>payment: ${a.payment}</div><div class="mono">${a.proof}</div></div>`).join('');
+  </script>
+</body>
+</html>

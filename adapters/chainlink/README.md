@@ -1,3 +1,7 @@
 # Chainlink adapter
 
-Planned adapter for workflow and oracle-backed execution where the control plane delegates a verified action to a Chainlink runtime.
+# Chainlink adapter
+
+Implemented reference adapter for workflow and oracle-backed execution. Inject a
+`ChainlinkClient` for Functions, Automation, or an external job runner while the
+control plane owns policy, risk, verification, and recovery.

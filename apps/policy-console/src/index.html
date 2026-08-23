@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Policy Console</title>
+  <style>body{font:15px system-ui;background:#111;color:#eee;max-width:900px;margin:40px auto;padding:0 20px}textarea{width:100%;height:330px;background:#1b1b1b;color:#d7f9d7;border:1px solid #555;border-radius:8px;padding:14px;font:13px ui-monospace}button{margin-top:12px;padding:10px 16px;border:0;border-radius:6px;background:#71e1a2;color:#10251a;font-weight:700}#result{margin-top:15px;white-space:pre-wrap}</style>
+</head>
+<body>
+  <h1>Policy Console</h1>
+  <p>Edit a versioned policy before publishing it to an application.</p>
+  <textarea id="policy">{
+  "id": "okx-judge-policy",
+  "version": "1.0.0",
+  "allowedKinds": ["place_order"],
+  "allowedTargets": ["okx"],
+  "maxPerAction": {"USDT": "100"},
+  "dailyLimit": {"USDT": "500"},
+  "requireApprovalAbove": {"USDT": "75"}
+}</textarea>
+  <button id="validate">Validate policy</button>
+  <div id="result"></div>
+  <script>
+    document.querySelector('#validate').onclick = () => { try { const p=JSON.parse(document.querySelector('#policy').value); if(!p.id||!p.version) throw new Error('id and version are required'); document.querySelector('#result').textContent='Valid policy '+p.id+'@'+p.version; document.querySelector('#result').style.color='#71e1a2'; } catch(e) { document.querySelector('#result').textContent='Invalid policy: '+e.message; document.querySelector('#result').style.color='#ff7b8a'; } };
+  </script>
+</body>
+</html>
