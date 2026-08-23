@@ -20,4 +20,4 @@ export class SolanaExecutionAdapter implements ExecutionAdapter {
 }
 
 export type { SolanaRpcClientConfig, SolanaRpcAttempt } from "./rpc.js";
-export { SolanaRpcClient, SolanaRpcUnavailableError } from "./rpc.js";
+export { SolanaRpcClient, SolanaRpcUnavailableError, solanaNodeFetch } from "./rpc.js";
