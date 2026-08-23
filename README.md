@@ -37,6 +37,7 @@ Intent → Policy → Risk → Execute → Verify → Recover → Receipt
 - `examples/api-procurement` — an agent buying and verifying an API result.
 - `examples/okx-trade` — a judge-ready OKX exchange flow showing release and freeze outcomes.
 - `examples/treasury-guard` — allocation limits, risk thresholds, and circuit-breaker recovery.
+- `examples/solana-devnet` — a read-only Devnet probe with RPC retry, fallback, and frozen-on-failure behavior.
 
 ## Design boundary
 
@@ -56,6 +57,10 @@ npm ci
 npm run lint
 npm run typecheck
 npm test
+
+# Optional real Devnet read-only probe
+set -a; source .env; set +a
+npm run demo:solana
 ```
 
 The Receipt Store builds SHA-256 Merkle proofs, and the Dashboard API exposes the
