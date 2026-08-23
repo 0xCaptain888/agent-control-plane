@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --test examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs",
-    "lint": "echo 'Add repository lint configuration'"
+    "test": "node --test examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs && tsx --test packages/receipts/test/*.test.ts adapters/okx/test/*.test.ts",
+    "lint": "node scripts/repo-check.mjs"
   },
   "workspaces": [
     "packages/*",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
+    "tsx": "^4.19.4",
     "typescript": "^5.4.5"
   }
 }
