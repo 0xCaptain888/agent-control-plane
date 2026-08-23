@@ -1,0 +1,6 @@
+{
+  "name": "@captain/example-solana-devnet",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module"
+}
