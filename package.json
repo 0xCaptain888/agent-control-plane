@@ -17,9 +17,6 @@
     "demo:bnb:erc8183-check": "tsx examples/bnb-agent-marketplace/src/erc8183-check.ts",
     "demo:bnb:create-task": "tsx examples/bnb-agent-marketplace/src/create-erc8183-task.ts",
     "demo:bnb:task": "tsx examples/bnb-agent-marketplace/src/erc8183-task-check.ts",
-    "demo:bnb:complete-task": "tsx examples/bnb-agent-marketplace/src/complete-erc8183-task.ts",
-    "demo:bnb:claim-u": "tsx examples/bnb-agent-marketplace/src/claim-u-token.ts",
-    "demo:bnb:settle-task": "tsx examples/bnb-agent-marketplace/src/settle-erc8183-task.ts",
     "measure:bnb": "tsx examples/bnb-agent-marketplace/src/measure.ts",
     "demo:solana": "tsx examples/solana-devnet/demo.ts",
     "demo:solana:transfer": "tsx examples/solana-devnet/transfer.ts",
@@ -39,9 +36,9 @@
     "uuid": "11.1.1"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
-    "tsx": "^4.23.12",
-    "typescript": "^5.9.3"
+    "@types/node": "^20.12.12",
+    "tsx": "^4.19.4",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.4"
