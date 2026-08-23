@@ -22,6 +22,25 @@ export type ActionConstraints = {
   requireApprovalAbove?: ActionBudget;
 };
 
+export type Delegation = {
+  grantId: string;
+  principal: string;
+  agent: string;
+  expiresAt?: string;
+  allowedKinds?: ActionKind[];
+  allowedTools?: string[];
+  maxPerAction?: ActionBudget;
+  dailyLimit?: ActionBudget;
+  sessionKey?: string;
+};
+
+export type VerificationRequirements = {
+  requiredFields?: string[];
+  expectedSource?: string;
+  maxAgeSeconds?: number;
+  attestation?: "none" | "signature" | "tee";
+};
+
 export type AgentAction = {
   id: string;
   actor: string;
@@ -31,6 +50,8 @@ export type AgentAction = {
   purpose?: string;
   budget?: ActionBudget;
   constraints?: ActionConstraints;
+  delegation?: Delegation;
+  verification?: VerificationRequirements;
   expectedResult?: Record<string, unknown>;
   createdAt: string;
 };

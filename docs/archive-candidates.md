@@ -1,6 +1,8 @@
 # Repository cleanup candidates
 
-This is a review list, not an automatic deletion or archive action.
+This list records the repository consolidation decision. Historical repositories are
+archived, not deleted, so their code, commits, stars, issues, and deployment evidence
+remain available.
 
 ## KEEP — reference applications and capability evidence
 
@@ -25,7 +27,7 @@ This is a review list, not an automatic deletion or archive action.
 - `fear-hunter-skill` — strategy Skill reference.
 - `sentinel-trading-agent` — trading reference candidate.
 
-## ARCHIVE CANDIDATES — historical experiments with weak connection to the core
+## ARCHIVED — historical experiments with weak connection to the core
 
 - `openclawd-ai-platform`
 - `AgentHub`
@@ -40,6 +42,9 @@ This is a review list, not an automatic deletion or archive action.
 - `helios`
 - `ai-jiedan-site`
 
+Verified on **2026-08-23** through GitHub MCP search (`user:0xCaptain888 archived:true`):
+all 12 repositories above report `archived: true`.
+
 ## Rule
 
-Archive before delete. Do not delete a repository until its useful code, deployment evidence, links, and README history are preserved in the core repository or an external archive.
+Archive before delete. Do not delete a repository until its useful code, deployment evidence, links, and README history are preserved in the core repository or an external archive. The current cleanup intentionally stops at Archive.
