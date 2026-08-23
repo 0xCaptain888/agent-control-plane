@@ -58,7 +58,7 @@ export class OkxRestClient implements OkxClient {
   private timeOffsetMs = 0;
 
   constructor(private readonly config: OkxRestClientConfig) {
-    this.baseUrl = (config.baseUrl ?? "https://us.okx.com").replace(/\/$/, "");
+    this.baseUrl = (config.baseUrl ?? "https://www.okx.com").replace(/\/$/, "");
     this.fetchImpl = config.fetchImpl ?? fetch;
     this.now = config.now ?? (() => new Date());
   }
