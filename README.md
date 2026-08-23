@@ -5,10 +5,10 @@
 Agents can propose actions. The control plane decides whether they are still allowed to act — within explicit permissions, budgets, risk limits, and verification rules.
 
 <p>
-  <a href="https://github.com/0xCaptain888/agent-control-plane/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/0xCaptain888/agent-control-plane/ci.yml?branch=codex/security-upgrade&style=flat-square&label=CI" alt="CI"></a>
+  <a href="https://github.com/0xCaptain888/agent-control-plane/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/0xCaptain888/agent-control-plane/ci.yml?branch=main&style=flat-square&label=CI" alt="CI"></a>
   <a href="https://github.com/0xCaptain888/agent-control-plane"><img src="https://img.shields.io/badge/Node-22-3c873a?style=flat-square&logo=node.js&logoColor=white" alt="Node 22"></a>
   <a href="https://github.com/0xCaptain888/agent-control-plane"><img src="https://img.shields.io/badge/TypeScript-5.4-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"></a>
-  <a href="https://github.com/0xCaptain888/agent-control-plane/blob/codex/security-upgrade/SECURITY.md"><img src="https://img.shields.io/badge/audit-0%20vulnerabilities-0f766e?style=flat-square" alt="0 vulnerabilities"></a>
+  <a href="https://github.com/0xCaptain888/agent-control-plane/blob/main/SECURITY.md"><img src="https://img.shields.io/badge/audit-0%20vulnerabilities-0f766e?style=flat-square" alt="0 vulnerabilities"></a>
 </p>
 
 > **Core invariant:** an agent may act, but never beyond policy — and no payment or execution is accepted until the outcome is verified.
