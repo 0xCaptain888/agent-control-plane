@@ -11,6 +11,8 @@ Agents can propose actions. The control plane decides whether they are still all
   <a href="https://github.com/0xCaptain888/agent-control-plane/blob/main/SECURITY.md"><img src="https://img.shields.io/badge/audit-0%20vulnerabilities-0f766e?style=flat-square" alt="0 vulnerabilities"></a>
 </p>
 
+![Agent Control Plane — policy-controlled execution for autonomous AI agents](assets/social-preview.png)
+
 > **Core invariant:** an agent may act, but never beyond policy — and no payment or execution is accepted until the outcome is verified.
 
 ## Why this exists
