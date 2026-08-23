@@ -49,4 +49,4 @@ Attach:
 - Receipt proof task: [BNB Testnet transaction](https://testnet.bscscan.com/tx/0x9ad83e817a44e0c7a512836119835670bcced9ef8f412a9f3f1de82412a9d565).
 - Receipt evidence hash: `ba21fbfa92bbaec9e6a7d7fb9342fae4b18de898d60496036e413eec56313b50`.
 - Control Plane result: `VERIFIED`, payment state `released`, adapter `bnb-testnet-receipt-adapter`.
-- ERC-8183 Job `603`: created on-chain and read back as `OPEN`; funding is blocked by a zero payment-token balance rather than being simulated.
+- ERC-8183 Job `603`: created, registered, funded with 1 U, and submitted on-chain; current state is `SUBMITTED` while the 900-second optimistic-policy window runs. Settlement is guarded by `npm run demo:bnb:settle-task`.

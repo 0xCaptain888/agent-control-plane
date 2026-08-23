@@ -8,7 +8,9 @@ const operator = "0x61ce53891c35f3261388ea2910d9d63d6d918390";
 const commerce = "0xa206c0517b6371c6638cd9e4a42cc9f02a33b0de";
 const router = "0xd7d36d66d2f1b608a0f943f722d27e3744f66f25";
 const policy = "0xd6a4217588f6b1f5657a92a3e94e6422ad771cea";
+const paymentToken = "0xc70b8741b8b07a6d61e54fd4b20f22fa648e5565";
 const jobId = BigInt(process.env.ERC8183_JOB_ID ?? "603");
+const targetBudget = BigInt(process.env.ERC8183_BUDGET_RAW ?? "1000000000000000000");
 const service = "agentguard-bnb-testnet-wallet-20260823";
 const privateKey = execFileSync("/usr/bin/security", ["find-generic-password", "-a", "0xCaptain888", "-s", service, "-w"], { encoding: "utf8" }).trim();
 if (deriveEvmAddress(privateKey).toLowerCase() !== operator) throw new Error("keychain_wallet_address_mismatch");
@@ -19,10 +21,6 @@ const policyAllowed = await client.call(router, selector("policyWhitelist(addres
 const disputeWindow = await client.call(policy, selector("disputeWindow()"));
 const current = await readJobStatus();
 const budget = await readJobBudget();
-if (budget === 0n) {
-  console.log(JSON.stringify({ status: "blocked", jobId: jobId.toString(), current: statusName(current), reason: "erc8183_zero_budget_rejected_by_deployed_kernel", next: "set_budget_then_approve_payment_token_then_fund", paymentTokenBalance: "0" }, null, 2));
-  process.exit(0);
-}
 if (current >= 3) {
   console.log(JSON.stringify({ status: "already_final", jobId: jobId.toString(), current: statusName(current), disputeWindowSeconds: Number(readBigInt(disputeWindow)) }, null, 2));
   process.exit(0);
@@ -33,7 +31,15 @@ const transactions: Array<Record<string, unknown>> = [];
 if (current === 0) {
   const registered = await client.call(router, selector("jobPolicy(uint256)") + word(jobId));
   if (registered === zeroWord()) transactions.push(await send("registerJob", router, encodeRegisterJob(jobId, policy)));
-  transactions.push(await send("fundZeroPrice", commerce, encodeFund(jobId, 0n)));
+  if (budget === 0n) transactions.push(await send("setBudget", commerce, encodeSetBudget(jobId, targetBudget)));
+  const balance = await client.call(paymentToken, selector("balanceOf(address)") + addressWord(operator));
+  if (readBigInt(balance) < targetBudget) {
+    console.log(JSON.stringify({ status: "blocked", jobId: jobId.toString(), current: statusName(current), reason: "payment_token_balance_insufficient", requiredRaw: targetBudget.toString(), balanceRaw: readBigInt(balance).toString(), paymentToken }, null, 2));
+    process.exit(0);
+  }
+  const allowance = await client.call(paymentToken, selector("allowance(address,address)") + addressWord(operator) + addressWord(commerce));
+  if (readBigInt(allowance) < targetBudget) transactions.push(await send("approvePaymentToken", paymentToken, encodeApprove(commerce, targetBudget)));
+  transactions.push(await send("fund", commerce, encodeFund(jobId, targetBudget)));
 }
 const afterFund = await readJobStatus();
 if (afterFund === 1) {
@@ -81,12 +87,14 @@ async function readJobBudget(): Promise<bigint> {
 }
 
 function encodeRegisterJob(id: bigint, selectedPolicy: string): string { return selector("registerJob(uint256,address)") + word(id) + addressWord(selectedPolicy); }
+function encodeSetBudget(id: bigint, amount: bigint): string { return selector("setBudget(uint256,uint256,bytes)") + word(id) + word(amount) + word(96n) + word(0n); }
 function encodeFund(id: bigint, amount: bigint): string { return selector("fund(uint256,uint256,bytes)") + word(id) + word(amount) + word(96n) + word(0n); }
 function encodeSubmit(id: bigint, deliverable: string): string { return selector("submit(uint256,bytes32,bytes)") + word(id) + deliverable.slice(2).padStart(64, "0") + word(96n) + word(0n); }
+function encodeApprove(spender: string, amount: bigint): string { return selector("approve(address,uint256)") + addressWord(spender) + word(amount); }
 function selector(signature: string): string { return `0x${Buffer.from(keccak_256(new TextEncoder().encode(signature))).subarray(0, 4).toString("hex")}`; }
 function word(value: bigint): string { return value.toString(16).padStart(64, "0"); }
 function addressWord(address: string): string { return address.replace(/^0x/, "").padStart(64, "0"); }
 function readWord(value: string, offsetBytes: number): string { return value.slice(offsetBytes * 2, (offsetBytes + 32) * 2); }
-function readBigInt(value: string): bigint { return BigInt(`0x${value}`); }
+function readBigInt(value: string): bigint { return BigInt(value.startsWith("0x") ? value : `0x${value}`); }
 function zeroWord(): string { return `0x${"0".repeat(64)}`; }
 function statusName(status: number): string { return ["OPEN", "FUNDED", "SUBMITTED", "COMPLETED", "REJECTED", "EXPIRED"][status] ?? "UNKNOWN"; }
