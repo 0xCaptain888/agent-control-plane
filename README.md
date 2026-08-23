@@ -35,6 +35,7 @@ Intent → Policy → Risk → Execute → Verify → Recover → Receipt
 - `examples/agent-commerce` — outcome-based Agent-to-Agent payment.
 - `examples/treasury-guard` — policy-controlled treasury actions.
 - `examples/api-procurement` — an agent buying and verifying an API result.
+- `examples/okx-trade` — a judge-ready OKX exchange flow showing release and freeze outcomes.
 
 ## Design boundary
 
@@ -42,4 +43,4 @@ This repository is the action control plane. It is not a general-purpose LLM, ma
 
 ## Status
 
-The first reference implementation is live: `packages/control-plane` composes policy, risk, execution, verification, recovery, and receipts; `examples/safe-trade` demonstrates an approved action and a frozen over-budget action.
+The first reference implementation is live: `packages/control-plane` composes policy, risk, execution, verification, recovery, and receipts; `examples/okx-trade` demonstrates an approved trade, a pre-adapter policy block, and a post-execution verification freeze.
