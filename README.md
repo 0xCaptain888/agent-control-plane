@@ -32,7 +32,7 @@ Intent → Policy → Risk → Execute → Verify → Recover → Receipt
 ## First reference applications
 
 - `examples/safe-trade` — a bounded autonomous trading flow.
-- `examples/agent-commerce` — outcome-based Agent-to-Agent payment.
+- `examples/agent-commerce` — outcome-based Agent-to-Agent payment with quote, escrow, verification, and recovery.
 - `examples/treasury-guard` — policy-controlled treasury actions.
 - `examples/api-procurement` — an agent buying and verifying an API result.
 - `examples/okx-trade` — a judge-ready OKX exchange flow showing release and freeze outcomes.
