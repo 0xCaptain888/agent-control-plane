@@ -8,6 +8,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs && tsx --test packages/receipts/test/*.test.ts packages/control-plane/test/*.test.ts adapters/okx/test/*.test.ts adapters/solana/test/*.test.ts",
     "demo:solana": "tsx examples/solana-devnet/demo.ts",
+    "demo:solana:transfer": "tsx examples/solana-devnet/transfer.ts",
     "lint": "node scripts/repo-check.mjs"
   },
   "workspaces": [
@@ -19,9 +20,15 @@
   "engines": {
     "node": ">=20"
   },
+  "overrides": {
+    "rpc-websockets": "9.0.2"
+  },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "tsx": "^4.19.4",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.8"
   }
 }

@@ -8,3 +8,11 @@ wallet, private key, signing, or transaction submission is involved.
 set -a; source .env; set +a
 npx tsx examples/solana-devnet/demo.ts
 ```
+
+The optional signing probe transfers 1000 lamports back to the same Devnet
+wallet. It is intentionally tiny and never runs against Mainnet:
+
+```bash
+set -a; source .env; set +a
+npm run demo:solana:transfer
+```

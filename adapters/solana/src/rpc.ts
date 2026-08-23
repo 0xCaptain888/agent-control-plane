@@ -44,7 +44,7 @@ export class SolanaRpcClient implements SolanaClient {
   private readonly retries: number;
 
   constructor(private readonly config: SolanaRpcClientConfig) {
-    this.fetchImpl = config.fetchImpl ?? nodeFetch;
+    this.fetchImpl = config.fetchImpl ?? solanaNodeFetch;
     this.timeoutMs = config.timeoutMs ?? 8_000;
     this.retries = config.retries ?? 2;
     this.endpoints = [{ label: "primary", url: config.url }];
@@ -120,7 +120,7 @@ export class SolanaRpcClient implements SolanaClient {
 }
 
 /** Node's native HTTPS transport avoids Undici multi-address socket timeouts. */
-const nodeFetch: typeof fetch = (input, init = {}) => {
+export const solanaNodeFetch: typeof fetch = (input, init = {}) => {
   const target = new URL(typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url);
   const transport = target.protocol === "http:" ? http : https;
   const headers = Object.fromEntries(new Headers(init.headers).entries());
