@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible problem in the control plane or a reference application.
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please keep credentials, API keys, wallet secrets, and private RPC URLs out of issues.
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime
+      description: Node.js version and operating system.
+      placeholder: Node 22.23.2 on macOS 15
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: Command or demo
+      description: Which command, package, adapter, or example is affected?
+      placeholder: npm run demo:judge
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest safe reproduction and the observed output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true

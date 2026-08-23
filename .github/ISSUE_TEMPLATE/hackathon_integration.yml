@@ -1,0 +1,30 @@
+name: Hackathon integration
+description: Share a hackathon track or integration built on Agent Control Plane.
+title: "[hackathon] "
+labels: [hackathon, show-and-tell]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Show one successful execution, one blocked or recovered execution, and one verifiable receipt.
+  - type: input
+    id: event
+    attributes:
+      label: Event or track
+      placeholder: OKX / Solana / payments / agent economy
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository or demo URL
+      description: Link to a public repository, demo, or recording.
+    validations:
+      required: true
+  - type: textarea
+    id: judge_moment
+    attributes:
+      label: Judge moment
+      description: What does the judge see in under three minutes?
+    validations:
+      required: true
