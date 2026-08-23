@@ -25,6 +25,7 @@
     "demo:bnb:settle-task": "tsx examples/bnb-agent-marketplace/src/settle-erc8183-task.ts",
     "mainnet:preflight": "tsx scripts/mainnet-preflight.ts",
     "security:preflight": "node scripts/security-preflight.mjs",
+    "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge",
     "measure:bnb": "tsx examples/bnb-agent-marketplace/src/measure.ts",
     "demo:solana": "tsx examples/solana-devnet/demo.ts",
     "demo:solana:transfer": "tsx examples/solana-devnet/transfer.ts",
