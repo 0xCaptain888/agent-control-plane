@@ -52,6 +52,8 @@ dependency-free demos; there are no placeholder components left.
 
 ## Verification commands
 
+Use Node.js 22 (or any Node.js version >=20.18.0) for local development:
+
 ```bash
 npm ci
 npm run lint
