@@ -81,6 +81,14 @@ set -a; source .env; set +a
 npm run demo:solana
 ```
 
+Run the offline judge flow first:
+
+```bash
+npm run demo:judge
+```
+
+It shows `VERIFIED`, `BLOCKED`, and `FROZEN` outcomes with auditable receipts in one command. See the [Judge Demo](docs/demo.md).
+
 The optional signing probe sends only a tiny self-transfer on Devnet:
 
 ```bash
@@ -116,6 +124,7 @@ The current reference implementation is validated with:
 More detail:
 
 - [Architecture](docs/architecture.md)
+- [Judge Demo](docs/demo.md)
 - [Hackathon judge guide](docs/hackathon-guide.md)
 - [Adapter contract](adapters/README.md)
 - [Contribution guide](CONTRIBUTING.md)

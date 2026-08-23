@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --test examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs && tsx --test packages/receipts/test/*.test.ts packages/control-plane/test/*.test.ts adapters/okx/test/*.test.ts adapters/solana/test/*.test.ts",
+    "test": "node --test examples/judge-demo.test.mjs examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs && tsx --test packages/receipts/test/*.test.ts packages/control-plane/test/*.test.ts adapters/okx/test/*.test.ts adapters/solana/test/*.test.ts",
+    "demo:judge": "node scripts/judge-demo.mjs",
     "demo:solana": "tsx examples/solana-devnet/demo.ts",
     "demo:solana:transfer": "tsx examples/solana-devnet/transfer.ts",
     "lint": "node scripts/repo-check.mjs"
