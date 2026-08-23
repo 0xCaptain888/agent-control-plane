@@ -40,6 +40,7 @@ npm run demo:bnb:receipt
 npm run demo:bnb:register-identity
 npm run demo:bnb:task
 npm run demo:bnb:complete-task
+npm run demo:bnb:settle-task
 npm run measure:bnb
 npm run lint
 npm run typecheck
@@ -118,9 +119,18 @@ The first real ERC-8183 task has now been created as Job `603`:
 - provider: `0x61ce53891c35f3261388ea2910d9d63d6d918390`;
 - evaluator/hook: `0xd7d36d66d2f1b608a0f943f722d27e3744f66f25`;
 - current status: `OPEN`;
-- budget: `0` payment-token units.
+- initial budget: `0`, later set and funded to `1 U`.
 
-Use `npm run demo:bnb:task` to read the task back from the deployed Commerce contract. `npm run demo:bnb:complete-task` performs a fail-closed lifecycle preflight and only sends lifecycle writes when the on-chain budget and payment-token conditions are satisfied. The deployed kernel currently rejects a zero budget, and the operator balance is zero. The official test U-token faucet is the [U Faucet](https://united-coin-u.github.io/u-faucet/).
+The task has since been funded with 1 U and submitted. Current state is `SUBMITTED`; the policy dispute window is 900 seconds. Use `npm run demo:bnb:settle-task` after the eligible timestamp to perform the permissionless Router settlement.
+
+Useful live transactions:
+
+- [U Faucet claim](https://testnet.bscscan.com/tx/0xa7a20d94d4be56a680ca133f1612f1613dc74313b85cc0c7e0c0e4f2e9b6a026);
+- [Router policy registration](https://testnet.bscscan.com/tx/0x602799699f08499136d05e156825e33a62c9e0266079ce44122b4734234ad94b);
+- [Set 1 U budget](https://testnet.bscscan.com/tx/0xb3a7ee37a1f585cf98826625a6196eba643bb63b5adcd214451c403568d1117f);
+- [Approve payment token](https://testnet.bscscan.com/tx/0xb45964b461009a17c19e1c02bfff24dbde1158a2e305b70906053c436947cbf3);
+- [Fund Job 603](https://testnet.bscscan.com/tx/0x61c06ed9a2213fbe639fe5bd0373e1781fe7d80fefa1f7b534daca2268a83083);
+- [Submit Job 603](https://testnet.bscscan.com/tx/0x9a7fdeace3d5fb7a587479230d199f46408f3708881dc53671e986cd882e2b42).
 
 ## Judge path
 
