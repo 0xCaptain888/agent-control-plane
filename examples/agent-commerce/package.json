@@ -1,0 +1,6 @@
+{
+  "name": "@captain/example-agent-commerce",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module"
+}
