@@ -17,6 +17,7 @@
     "demo:bnb:erc8183-check": "tsx examples/bnb-agent-marketplace/src/erc8183-check.ts",
     "demo:bnb:create-task": "tsx examples/bnb-agent-marketplace/src/create-erc8183-task.ts",
     "demo:bnb:task": "tsx examples/bnb-agent-marketplace/src/erc8183-task-check.ts",
+    "demo:bnb:complete-task": "tsx examples/bnb-agent-marketplace/src/complete-erc8183-task.ts",
     "measure:bnb": "tsx examples/bnb-agent-marketplace/src/measure.ts",
     "demo:solana": "tsx examples/solana-devnet/demo.ts",
     "demo:solana:transfer": "tsx examples/solana-devnet/transfer.ts",
