@@ -38,6 +38,8 @@ npm run demo:bnb:rpc
 npm run demo:bnb:evidence
 npm run demo:bnb:receipt
 npm run demo:bnb:register-identity
+npm run demo:bnb:task
+npm run demo:bnb:complete-task
 npm run measure:bnb
 npm run lint
 npm run typecheck
@@ -118,7 +120,7 @@ The first real ERC-8183 task has now been created as Job `603`:
 - current status: `OPEN`;
 - budget: `0` payment-token units.
 
-Use `npm run demo:bnb:task` to read the task back from the deployed Commerce contract. Funding is intentionally blocked until the operator receives the configured payment token; the current on-chain balance is zero.
+Use `npm run demo:bnb:task` to read the task back from the deployed Commerce contract. `npm run demo:bnb:complete-task` performs a fail-closed lifecycle preflight and only sends lifecycle writes when the on-chain budget and payment-token conditions are satisfied. The deployed kernel currently rejects a zero budget, and the operator balance is zero. The official test U-token faucet is the [U Faucet](https://united-coin-u.github.io/u-faucet/).
 
 ## Judge path
 
