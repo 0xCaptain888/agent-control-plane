@@ -60,3 +60,10 @@ npm test
 
 The Receipt Store builds SHA-256 Merkle proofs, and the Dashboard API exposes the
 current receipt set plus `/api/receipts/:receiptId/proof` for verification.
+
+## Local integrations
+
+The recommended hackathon setup uses the OKX `okx-demo` profile, read-only MCP
+tools, and public testnet RPCs. See [`docs/local-development.md`](docs/local-development.md)
+for the exact commands and safety rules. Runtime credentials stay in the local
+OKX profile or an ignored `.env`; they are never committed to this repository.
