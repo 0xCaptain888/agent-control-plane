@@ -130,7 +130,10 @@ Useful live transactions:
 - [Set 1 U budget](https://testnet.bscscan.com/tx/0xb3a7ee37a1f585cf98826625a6196eba643bb63b5adcd214451c403568d1117f);
 - [Approve payment token](https://testnet.bscscan.com/tx/0xb45964b461009a17c19e1c02bfff24dbde1158a2e305b70906053c436947cbf3);
 - [Fund Job 603](https://testnet.bscscan.com/tx/0x61c06ed9a2213fbe639fe5bd0373e1781fe7d80fefa1f7b534daca2268a83083);
-- [Submit Job 603](https://testnet.bscscan.com/tx/0x9a7fdeace3d5fb7a587479230d199f46408f3708881dc53671e986cd882e2b42).
+- [Submit Job 603](https://testnet.bscscan.com/tx/0x9a7fdeace3d5fb7a587479230d199f46408f3708881dc53671e986cd882e2b42);
+- [Settle Job 603](https://testnet.bscscan.com/tx/0x465153182e802dcc741f0b5809cfa692c775cc167dc10a618b7d5877297a353c).
+
+Final on-chain state: `COMPLETED`.
 
 ## Judge path
 
