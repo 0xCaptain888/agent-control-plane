@@ -11,3 +11,7 @@ The control plane is deliberately domain-neutral. Every high-risk agent action f
 7. **Receipt** — persist a tamper-evident decision and execution record.
 
 The core must not import a vendor SDK directly. Vendor-specific code belongs in `adapters/`.
+
+For exchange tracks, `adapters/okx` translates the neutral action into an OKX order,
+returns the external `orderId`, and attaches an evidence hash. It does not duplicate
+budget, permission, or risk logic.
