@@ -1,3 +1,5 @@
+import type { ExecutionProof, PaymentState } from "../../execution-core/src/index.js";
+
 export type ReceiptStatus = "approved" | "rejected" | "executed" | "verified" | "recovered";
 
 export type ActionReceipt = {
@@ -9,6 +11,13 @@ export type ActionReceipt = {
   riskScore?: number;
   status: ReceiptStatus;
   decisionReasons: string[];
+  payment?: {
+    state: PaymentState;
+    amount?: string;
+    currency?: string;
+    escrowId?: string;
+  };
+  proof?: ExecutionProof;
   execution?: {
     adapter: string;
     externalId?: string;
