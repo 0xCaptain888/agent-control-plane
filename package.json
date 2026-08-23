@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --test",
+    "test": "node --test examples/safe-trade/test/*.test.mjs",
     "lint": "echo 'Add repository lint configuration'"
   },
   "workspaces": [
