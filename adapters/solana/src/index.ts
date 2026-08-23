@@ -18,3 +18,6 @@ export class SolanaExecutionAdapter implements ExecutionAdapter {
   }
   async status(externalId: string): Promise<unknown> { return this.client.status(externalId); }
 }
+
+export type { SolanaRpcClientConfig, SolanaRpcAttempt } from "./rpc.js";
+export { SolanaRpcClient, SolanaRpcUnavailableError } from "./rpc.js";
