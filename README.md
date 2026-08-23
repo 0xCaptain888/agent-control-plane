@@ -42,4 +42,4 @@ This repository is the action control plane. It is not a general-purpose LLM, ma
 
 ## Status
 
-Scaffold created on 2026-08-23. The first implementation target is the action schema, policy engine, receipt model, and one end-to-end adapter-backed example.
+The first reference implementation is live: `packages/control-plane` composes policy, risk, execution, verification, recovery, and receipts; `examples/safe-trade` demonstrates an approved action and a frozen over-budget action.
