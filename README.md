@@ -47,4 +47,4 @@ This repository is the action control plane. It is not a general-purpose LLM, ma
 The first reference implementation is live: `packages/control-plane` composes policy, risk, execution, verification, recovery, and receipts; the examples cover exchange, Agent-to-Agent commerce, API procurement, and treasury guard tracks.
 
 All adapters and reference apps in this repository are now concrete interfaces or
-dependency-free demos; there are no placeholder “planned” components left.
+dependency-free demos; there are no placeholder components left.
