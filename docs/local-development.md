@@ -36,6 +36,10 @@ Helius, or QuickNode endpoint. Never commit provider tokens or wallet private
 keys. No wallet private key is required by the control-plane demos; adapters
 should receive a signer from the host application.
 
+For local Devnet signing experiments, use the separate keypair at
+`SOLANA_DEVNET_KEYPAIR_PATH`. Keep its private key off GitHub and use only
+Devnet funds. The corresponding public key is safe to share for balance checks.
+
 ## Verification checklist
 
 ```bash
