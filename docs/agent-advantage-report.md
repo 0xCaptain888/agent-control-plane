@@ -71,3 +71,22 @@ Attach:
 - Receipt evidence hash: `ba21fbfa92bbaec9e6a7d7fb9342fae4b18de898d60496036e413eec56313b50`.
 - Control Plane result: `VERIFIED`, payment state `released`, adapter `bnb-testnet-receipt-adapter`.
 - ERC-8183 Job `603`: created, registered, funded with 1 U, submitted, and settled on-chain; final state is `COMPLETED`. Settlement transaction: `0x465153182e802dcc741f0b5809cfa692c775cc167dc10a618b7d5877297a353c`.
+
+## Four-category domain activity proofs
+
+The three non-grid profiles now run through the same policy → execute → verify
+→ settle path using deterministic domain inputs. This makes the category story
+reproducible for judges while keeping the evidence label honest: these are
+control-plane harness receipts, not fabricated BNB transaction hashes.
+
+| Agent | Activity | Result | Receipt | Evidence hash |
+| --- | --- | --- | --- | --- |
+| RebalanceGuard | Allocation drift 8%, turnover 12% | `VERIFIED`, payment released | `activity-rebalance-guard-approved:receipt` | `d982b907e8ef8bba09fc5d70af19f2326e626fbbe0a06c864323b01a58c16eca` |
+| YieldScout | APY delta 1.5%, exposure 18% | `VERIFIED`, payment released | `activity-yield-scout-approved:receipt` | `bc8c6074dd2c5ddcaa62c063d0da4282584e8cbe1a63c41dab893b4d796bcb53` |
+| HealthGuard | Health factor 1.28, repay 10 USDT | `VERIFIED`, payment released | `activity-health-guard-approved:receipt` | `a5776329d56098d6d6d006672c5bbda711bf859fe6ee23a898d9f9b8c453a2a6` |
+
+Reproduce them with:
+
+```bash
+npm run demo:bnb:domain-activities
+```

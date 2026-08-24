@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { AgentRegistry, rankAgents, runBnbMarketplaceDemo, runSafeSwapHire, sampleAgents } from "../src/index.js";
+import { AgentRegistry, rankAgents, runAllDomainActivities, runBnbMarketplaceDemo, runDomainActivity, runSafeSwapHire, sampleAgents } from "../src/index.js";
 
 test("registry exposes four BNB Agent Studio marketplace categories", () => {
   const registry = new AgentRegistry(sampleAgents());
@@ -42,4 +42,22 @@ test("BNB judge demo contains all three judge-visible outcomes", async () => {
   assert.deepEqual(demo.results.map((item) => item.result.receipt.status), ["verified", "recovered", "recovered"]);
   assert.equal(demo.results[0]?.result.execution?.payment?.state, "released");
   assert.equal(demo.results[2]?.result.execution?.payment?.state, "frozen");
+});
+
+test("the three non-grid categories produce domain activity receipts", async () => {
+  const rows = await runAllDomainActivities();
+  assert.deepEqual(rows.map((row) => row.agent.id), ["rebalance-guard", "yield-scout", "health-guard"]);
+  assert.deepEqual(rows.map((row) => row.activity.status), ["verified", "verified", "verified"]);
+  assert.ok(rows.every((row) => row.activity.source === "control-plane-harness"));
+  assert.ok(rows.every((row) => row.activity.evidenceHash.length === 64));
+});
+
+test("domain policy blocks oversized work and freezes invalid verification", async () => {
+  const agent = sampleAgents().find((item) => item.id === "yield-scout")!;
+  const blocked = await runDomainActivity(agent, { activityId: "yield-blocked", scenario: "blocked" });
+  assert.equal(blocked.activity.status, "blocked");
+  assert.equal(blocked.result.execution, undefined);
+  const frozen = await runDomainActivity(agent, { activityId: "yield-frozen", scenario: "verification-failure" });
+  assert.equal(frozen.activity.status, "frozen");
+  assert.equal(frozen.result.execution?.payment?.state, "frozen");
 });

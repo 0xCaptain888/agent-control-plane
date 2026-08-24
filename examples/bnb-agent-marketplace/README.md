@@ -18,4 +18,16 @@ Run it from the repository root:
 npm run demo:bnb
 ```
 
-The current adapter is deterministic and offline-safe. The BNB testnet adapter will replace it without changing the marketplace or control-plane contracts.
+The current adapter is deterministic and offline-safe. The BNB testnet adapter
+will replace it without changing the marketplace or control-plane contracts.
+
+Replay the domain-specific activity proofs for RebalanceGuard, YieldScout, and
+HealthGuard with:
+
+```bash
+npm run demo:bnb:domain-activities
+```
+
+Those receipts are deterministic harness evidence, not fabricated transaction
+hashes. SafeSwap remains the only profile with a complete independently
+checkable BNB Testnet task flow today.

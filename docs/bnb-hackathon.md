@@ -61,7 +61,7 @@ The directory now mirrors the four BNB Agent Studio first-class categories:
 - Yield Optimisation — `YieldScout Agent`;
 - Health Factor Monitoring — `HealthGuard Agent`.
 
-All four profiles now have ERC-8004 BNB Testnet identities under the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. SafeSwap (`agentId=1898`) has the complete task execution proof; RebalanceGuard (`1902`), YieldScout (`1903`), and HealthGuard (`1904`) have registration proofs and remain explicitly marked `identity-only` until their domain-specific task activity is recorded.
+All four profiles now have ERC-8004 BNB Testnet identities under the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. SafeSwap (`agentId=1898`) has the complete task execution proof; RebalanceGuard (`1902`), YieldScout (`1903`), and HealthGuard (`1904`) now also have deterministic domain-specific activity receipts. Those three receipts are explicitly labeled control-plane harness evidence until an independently checkable BNB Testnet task transaction is recorded.
 
 Registration proofs:
 

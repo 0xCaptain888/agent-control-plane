@@ -24,6 +24,23 @@ export function createBnbTestnetConfig(rpcUrl = process.env.BNB_RPC_URL ?? "http
   return { network: "bnb-testnet", chainId: 97, rpcUrl, explorerUrl: "https://testnet.bscscan.com", nativeCurrency: "BNB" };
 }
 
+export function createBnbMainnetConfig(rpcUrl = process.env.BNB_MAINNET_RPC_URL ?? ""): BnbNetworkConfig {
+  if (!rpcUrl) throw new Error("BNB_MAINNET_RPC_URL is required for mainnet preflight");
+  return { network: "bnb-mainnet", chainId: 56, rpcUrl, explorerUrl: "https://bscscan.com", nativeCurrency: "BNB" };
+}
+
+export function validateBnbMainnetConfig(config: BnbNetworkConfig): void {
+  if (config.network !== "bnb-mainnet" || config.chainId !== 56) throw new Error("invalid_bnb_mainnet_config");
+  if (!/^https:\/\//.test(config.rpcUrl)) throw new Error("mainnet_rpc_must_use_https");
+  if (/prebsc|testnet|localhost|127\.0\.0\.1/i.test(config.rpcUrl)) throw new Error("mainnet_rpc_points_to_non_mainnet");
+  if (config.explorerUrl !== "https://bscscan.com") throw new Error("invalid_bnb_mainnet_explorer");
+}
+
+export function assertMainnetExecutionEnabled(env: NodeJS.ProcessEnv = process.env): void {
+  if (env.ALLOW_MAINNET_EXECUTION !== "true") throw new Error("mainnet_execution_disabled_until_explicit_enablement");
+  if (!env.MAINNET_CHANGE_TICKET?.trim()) throw new Error("mainnet_change_ticket_required");
+}
+
 export function assertSupportedNetwork(config: BnbNetworkConfig): void {
   if (config.network !== "bnb-testnet" || config.chainId !== 97) throw new Error("mainnet_execution_disabled_for_demo");
 }
