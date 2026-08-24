@@ -10,7 +10,7 @@ Open the Marketplace homepage. Point out the four categories and the `BNB Testne
 
 ## 0:20–0:50 — Discover and compare
 
-Filter to `Trading`. Open `SafeSwap Agent` and call out:
+Filter to `Grid Trading`. Open `SafeSwap Agent` and call out:
 
 - BNB Testnet identity;
 - capabilities;

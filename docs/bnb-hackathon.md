@@ -54,14 +54,14 @@ The first complete vertical slice is `SafeSwap Agent`:
 - `BLOCKED`: a task above the USDT policy cap never reaches the execution adapter;
 - `FROZEN`: execution returns a fill outside the allowed slippage and the held payment is frozen.
 
-The directory also includes reference profiles for four BNB Agent Studio categories:
+The directory now mirrors the four BNB Agent Studio first-class categories:
 
-- Trading — `SafeSwap Agent`;
-- Health Factor — `HealthGuard Agent`;
-- Yield — `YieldScout Agent`;
-- Commerce — `APIProcure Agent`.
+- Rebalancing — `RebalanceGuard Agent`;
+- Grid Trading — `SafeSwap Agent`;
+- Yield Optimisation — `YieldScout Agent`;
+- Health Factor Monitoring — `HealthGuard Agent`.
 
-`SafeSwap Agent` now uses a live ERC-8004 BNB Testnet identity (`agentId=1898`) and the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. The other three profiles remain explicitly marked as demo identities until they are registered separately.
+`SafeSwap Agent` uses a live ERC-8004 BNB Testnet identity (`agentId=1898`) and the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. The other three profiles are explicitly marked as reference profiles until their separate BSC identities and activity proofs are registered; they are not presented as live agents.
 
 ## Run locally
 
