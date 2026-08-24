@@ -38,6 +38,7 @@ and a failed outcome freezes funds instead of silently paying.
 - [Three-minute script](demo-script.md)
 - [Architecture](architecture.md)
 - [Agent Advantage Report](agent-advantage-report.md)
+- [BNB main-track readiness](main-track-readiness.md)
 
 For BNB submissions, point judges to the real BNB Testnet Agent ID `1898`,
 operator address, Job `603`, and the final settlement transaction listed in the

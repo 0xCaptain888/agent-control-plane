@@ -2,15 +2,20 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { AgentRegistry, rankAgents, runBnbMarketplaceDemo, runSafeSwapHire, sampleAgents } from "../src/index.js";
 
-test("registry exposes four BNB marketplace categories", () => {
+test("registry exposes four BNB Agent Studio marketplace categories", () => {
   const registry = new AgentRegistry(sampleAgents());
   assert.equal(registry.list().length, 4);
-  assert.deepEqual(registry.search({ category: "trading" }).map((agent) => agent.id), ["safe-swap"]);
-  assert.equal(registry.search({ capability: "result_verification" })[0]?.id, "api-procure");
+  assert.deepEqual(registry.search({ category: "grid-trading" }).map((agent) => agent.id), ["safe-swap"]);
+  assert.deepEqual(registry.search({ category: "rebalancing" }).map((agent) => agent.id), ["rebalance-guard"]);
+  assert.deepEqual(registry.search({ category: "yield-optimisation" }).map((agent) => agent.id), ["yield-scout"]);
+  assert.deepEqual(registry.search({ category: "health-factor-monitoring" }).map((agent) => agent.id), ["health-guard"]);
+  assert.equal(registry.get("safe-swap")?.availability, "live");
+  assert.equal(registry.get("safe-swap")?.dataSource, "bnb-testnet");
+  assert.equal(registry.get("rebalance-guard")?.availability, "reference");
 });
 
 test("ranking prefers a reliable, successful agent", () => {
-  assert.equal(rankAgents(sampleAgents())[0]?.id, "api-procure");
+  assert.equal(rankAgents(sampleAgents())[0]?.id, "health-guard");
 });
 
 test("safe swap is verified, blocked before adapter, or frozen after verification", async () => {
