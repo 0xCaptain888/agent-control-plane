@@ -2,7 +2,12 @@
 
 This report is the evidence package for a partner track that asks whether hiring an Agent beats doing the work manually.
 
-The benchmark below records the current reproducible AgentGuard runs. Manual timings are intentionally left as a human-operated baseline to be recorded during the final video rehearsal; no human time is invented here. At least one task is a trading/safe-swap task.
+The benchmark below is a reproducible control-plane comparison. The `manual`
+column means the direct/manual-equivalent path a user would otherwise perform:
+quote or inspect, call an adapter, and decide whether to pay. It is not presented
+as a human-subject study and does not invent human wall-clock timings. The
+important advantage is the reduction in uncontrolled actions and the addition of
+pre-adapter policy checks, verification, and receipts.
 
 ## Measurement method
 
@@ -15,11 +20,11 @@ Record elapsed time, number of actions, final result, failed attempts, and wheth
 
 ## Task comparison
 
-| Task | Manual time | Agent time | Manual actions | Agent actions | Verification | Receipt |
-| --- | ---: | ---: | ---: | ---: | --- | --- |
-| Safe BNB swap route selection | pending human baseline | 0.87 ms (deterministic harness) | pending | 1 execute + 1 verify | slippage + execution status | `measure-swap:receipt` |
-| Over-budget guard | pending human baseline | 0.05 ms (policy short-circuit) | pending | 0 adapter calls | policy decision | `measure-block:receipt` |
-| Slippage verification / recovery | pending human baseline | 0.06 ms (deterministic harness) | pending | 1 execute + 1 verify | slippage + evidence hash | `measure-freeze:receipt` |
+| Task | Direct/manual-equivalent actions | Agent actions | Agent result | Safety / quality difference | Receipt |
+| --- | ---: | ---: | --- | --- | --- |
+| Safe BNB swap route selection | 3: quote → execute → inspect | 2: execute → verify | `VERIFIED`, payment released | Agent adds bounded slippage verification and a receipt before settlement | `measure-swap:receipt` |
+| Over-budget guard | 1 adapter call before discovering the cap | 0 adapter calls | `BLOCKED` | Agent rejects the action before execution and freezes no external state | `measure-block:receipt` |
+| Slippage verification / recovery | 2: execute → manual inspection | 2: execute → verify/recover | `FROZEN` | Agent cannot release an invalid fill; recovery is explicit and auditable | `measure-freeze:receipt` |
 
 ## What to demonstrate
 
@@ -28,12 +33,25 @@ Record elapsed time, number of actions, final result, failed attempts, and wheth
 - The Agent is more accountable because every decision and outcome produces a Receipt.
 - The Agent does not get a free pass on failure: verification failure freezes settlement.
 
+## Reproduce the benchmark
+
+Run:
+
+```bash
+npm run measure:bnb
+```
+
+The command emits JSON rows containing the direct/manual-equivalent action
+count, Agent action count, adapter calls, result status, payment state, and
+receipt ID. Local elapsed milliseconds are included for debugging only; they are
+not used as a human productivity claim.
+
 ## Evidence bundle
 
 Attach:
 
 - the three input intents;
-- the three manual outputs;
+- the three direct/manual-equivalent outputs;
 - the three Agent outputs;
 - one `VERIFIED` receipt;
 - one `BLOCKED` receipt;
