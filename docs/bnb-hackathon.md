@@ -190,6 +190,12 @@ Useful live transactions:
 
 Final on-chain state: `COMPLETED`.
 
+The latest SafeSwap activation is Job `614`, created by
+`0x0ec1dde4ea5d90f9f7687ccb709fdc907c7c6320` with a 1 U budget and settled
+after the policy window. [Settlement transaction](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
+returned a successful receipt (`status=0x1`) with evidence hash
+`5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b`.
+
 ## Judge path
 
 1. Open the marketplace and filter the four categories.

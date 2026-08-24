@@ -71,6 +71,7 @@ Attach:
 - Receipt evidence hash: `ba21fbfa92bbaec9e6a7d7fb9342fae4b18de898d60496036e413eec56313b50`.
 - Control Plane result: `VERIFIED`, payment state `released`, adapter `bnb-testnet-receipt-adapter`.
 - ERC-8183 Job `603`: created, registered, funded with 1 U, submitted, and settled on-chain; final state is `COMPLETED`. Settlement transaction: `0x465153182e802dcc741f0b5809cfa692c775cc167dc10a618b7d5877297a353c`.
+- ERC-8183 Job `614` (SafeSwap): created, registered, funded with 1 U, submitted, and settled on-chain; final state is `COMPLETED`. [Settlement transaction](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93); Receipt evidence hash: `5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b`.
 
 ## Four-category domain activity proofs
 
