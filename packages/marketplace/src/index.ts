@@ -11,6 +11,17 @@ import { BnbTestnetExecutionAdapter } from "../../../adapters/bnb/src/execution-
 /** The four first-class BNB Agent Studio marketplace categories. */
 export type AgentCategory = "rebalancing" | "grid-trading" | "yield-optimisation" | "health-factor-monitoring";
 export type EvidenceRef = { label: string; uri: string; kind: "receipt" | "transaction" | "report" | "endpoint" };
+export type DomainActivityProof = {
+  activityId: string;
+  category: AgentCategory;
+  objective: string;
+  status: "verified" | "blocked" | "frozen";
+  receiptId: string;
+  evidenceHash: string;
+  evidenceUri: string;
+  source: "control-plane-harness" | "bnb-testnet";
+  recordedAt: string;
+};
 export type AgentProfile = {
   id: string;
   name: string;
@@ -102,6 +113,68 @@ export function createHireAction(intent: HireIntent, agent: AgentProfile): Agent
   };
 }
 
+/**
+ * Runs a deterministic, domain-specific activity through the same control plane
+ * used by the live SafeSwap flow. This gives judges a reproducible proof for
+ * the other three BNB categories without pretending that a simulated activity
+ * is a chain transaction.
+ */
+export async function runDomainActivity(
+  agent: AgentProfile,
+  options: { activityId?: string; scenario?: "approved" | "blocked" | "verification-failure" } = {}
+): Promise<{ activity: DomainActivityProof; result: ControlPlaneResult }> {
+  if (agent.id === "safe-swap") throw new Error("safe_swap_uses_live_task_flow");
+  const scenario = options.scenario ?? "approved";
+  const activityId = options.activityId ?? `activity-${agent.id}-${scenario}`;
+  const domain = domainActivityDefinition(agent, scenario);
+  const action: AgentAction = {
+    id: activityId,
+    actor: agent.operatorAddress,
+    kind: "custom",
+    target: `bnb-agent:${agent.id}`,
+    params: { activityId, category: agent.category, objective: domain.objective, ...domain.params },
+    budget: { amount: domain.budgetUSDT, currency: "USDT" },
+    constraints: { allowedTargets: [`bnb-agent:${agent.id}`], allowedAssets: agent.supportedAssets },
+    verification: { attestation: "signature", requiredFields: domain.requiredFields },
+    purpose: domain.objective,
+    createdAt: "2026-08-24T00:00:01.000Z"
+  };
+  const result = await new AgentControlPlane({
+    policy: { id: "bnb-domain-activity-policy", version: "1.0.0", allowedKinds: ["custom"], allowedTargets: [`bnb-agent:${agent.id}`], maxPerAction: { USDT: domain.policyMaxUSDT } },
+    riskRules: [{ evaluate: async () => ({ passed: true, score: domain.riskScore, reasons: [] }) }],
+    adapter: new DomainActivityAdapter(agent, domain),
+    verifier: new DomainActivityVerifier(domain),
+    recovery: { recover: async (_externalId, reasons) => ({ action: "frozen", reasons }) },
+    hash: (value) => sha256(JSON.stringify(value)),
+    now: () => "2026-08-24T00:00:02.000Z"
+  }).execute({ action });
+  const evidenceHash = result.execution?.proof?.evidenceHash ?? sha256(JSON.stringify(result.receipt));
+  return {
+    result,
+    activity: {
+      activityId,
+      category: agent.category,
+      objective: domain.objective,
+      status: result.receipt.status === "verified" ? "verified" : result.execution?.payment?.state === "frozen" ? "frozen" : "blocked",
+      receiptId: result.receipt.receiptId,
+      evidenceHash,
+      evidenceUri: `receipt://bnb/${agent.id}/${activityId}`,
+      source: "control-plane-harness",
+      recordedAt: "2026-08-24T00:00:02.000Z"
+    }
+  };
+}
+
+export async function runAllDomainActivities(): Promise<Array<{ agent: AgentProfile; activity: DomainActivityProof; result: ControlPlaneResult }>> {
+  const agents = sampleAgents().filter((agent) => agent.id !== "safe-swap");
+  const rows = [];
+  for (const agent of agents) {
+    const proof = await runDomainActivity(agent);
+    rows.push({ agent, ...proof });
+  }
+  return rows;
+}
+
 export async function runSafeSwapHire(intent: HireIntent, agent: AgentProfile = sampleAgents()[0], executionAdapter?: ExecutionAdapter): Promise<ControlPlaneResult> {
   const action = createHireAction(intent, agent);
   const policy: Policy = { id: "bnb-marketplace-policy", version: "1.0.0", allowedKinds: ["custom"], allowedTargets: [`bnb-agent:${agent.id}`], maxPerAction: { USDT: "100" } };
@@ -146,9 +219,9 @@ export async function runBnbMarketplaceReceiptHire(
 export function sampleAgents(): AgentProfile[] {
   return [
     { id: "safe-swap", name: "SafeSwap Agent", category: "grid-trading", description: "Runs bounded BNB grid entries with quote comparison and hard slippage verification.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1898", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/safe-swap", capabilities: ["grid_entry", "quote_comparison", "slippage_verification"], supportedAssets: ["BNB", "USDT"], pricingModel: "per-task", priceUSDT: "0.50", successRate: 0.96, averageLatencyMs: 18000, reputationScore: 0.94, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x1bf2e5dc3162e91c47af6b091db12a7359e4d83f487d227d4aa1ab80274cd8bf", kind: "transaction" }, { label: "Verified BNB Testnet receipt", uri: "https://testnet.bscscan.com/tx/0x9ad83e817a44e0c7a512836119835670bcced9ef8f412a9f3f1de82412a9d565", kind: "receipt" }], availability: "live", dataSource: "bnb-testnet", lastActivity: "ERC-8183 Job 603 settled", policyBoundary: "50 USDT max · 50 bps slippage · BNB/USDT only" },
-    { id: "rebalance-guard", name: "RebalanceGuard Agent", category: "rebalancing", description: "Proposes risk-bounded BNB portfolio rebalancing with exposure and turnover limits.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1902", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/rebalance-guard", capabilities: ["allocation_drift", "turnover_limit", "rebalance_proposal"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.35", successRate: 0.93, averageLatencyMs: 14000, reputationScore: 0.91, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x51adb89544bec3a5baee7886dc8fa6ca5758c0ef1c3535dd6f416c3ecafef287", kind: "transaction" }, { label: "Reference benchmark", uri: "report://bnb/rebalancing/001", kind: "report" }], availability: "identity-only", dataSource: "bnb-testnet", lastActivity: "ERC-8004 registration confirmed", policyBoundary: "10% max drift · 15% max turnover · approval before execution" },
-    { id: "yield-scout", name: "YieldScout Agent", category: "yield-optimisation", description: "Compares BNB Chain yield opportunities and proposes risk-bounded allocation changes.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1903", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/yield-scout", capabilities: ["yield_comparison", "apy_delta_analysis", "allocation_guard"], supportedAssets: ["BNB", "USDT"], pricingModel: "per-task", priceUSDT: "0.40", successRate: 0.89, averageLatencyMs: 26000, reputationScore: 0.88, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x8ff096f7abdcacf573d229449659fbb4b21fbe90e66dd1ffb0c55ca2c68e2696", kind: "transaction" }, { label: "Reference benchmark", uri: "report://bnb/yield-optimisation/001", kind: "report" }], availability: "identity-only", dataSource: "bnb-testnet", lastActivity: "ERC-8004 registration confirmed", policyBoundary: "APY delta required · exposure cap · human approval before rebalance" },
-    { id: "health-guard", name: "HealthGuard Agent", category: "health-factor-monitoring", description: "Monitors lending health factors and proposes bounded protection actions before liquidation risk increases.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1904", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/health-guard", capabilities: ["health_factor_monitoring", "liquidation_alerts", "bounded_repay"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.25", successRate: 0.93, averageLatencyMs: 9000, reputationScore: 0.91, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0xa0d7f194736e19ea8bbde496d28a030222125a9911a03a0cd1e36b0822697673", kind: "transaction" }, { label: "Reference benchmark", uri: "report://bnb/health-factor/001", kind: "report" }], availability: "identity-only", dataSource: "bnb-testnet", lastActivity: "ERC-8004 registration confirmed", policyBoundary: "alert below 1.35 · repay cap · no unsanctioned collateral movement" }
+    { id: "rebalance-guard", name: "RebalanceGuard Agent", category: "rebalancing", description: "Proposes risk-bounded BNB portfolio rebalancing with exposure and turnover limits.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1902", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/rebalance-guard", capabilities: ["allocation_drift", "turnover_limit", "rebalance_proposal"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.35", successRate: 0.93, averageLatencyMs: 14000, reputationScore: 0.91, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x51adb89544bec3a5baee7886dc8fa6ca5758c0ef1c3535dd6f416c3ecafef287", kind: "transaction" }, { label: "Domain activity receipt", uri: "receipt://bnb/rebalance-guard/activity-rebalance-guard-approved", kind: "receipt" }], availability: "identity-only", dataSource: "reference-harness", lastActivity: "Domain activity receipt verified 2026-08-24", policyBoundary: "10% max drift · 15% max turnover · approval before execution" },
+    { id: "yield-scout", name: "YieldScout Agent", category: "yield-optimisation", description: "Compares BNB Chain yield opportunities and proposes risk-bounded allocation changes.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1903", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/yield-scout", capabilities: ["yield_comparison", "apy_delta_analysis", "allocation_guard"], supportedAssets: ["BNB", "USDT"], pricingModel: "per-task", priceUSDT: "0.40", successRate: 0.89, averageLatencyMs: 26000, reputationScore: 0.88, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x8ff096f7abdcacf573d229449659fbb4b21fbe90e66dd1ffb0c55ca2c68e2696", kind: "transaction" }, { label: "Domain activity receipt", uri: "receipt://bnb/yield-scout/activity-yield-scout-approved", kind: "receipt" }], availability: "identity-only", dataSource: "reference-harness", lastActivity: "Domain activity receipt verified 2026-08-24", policyBoundary: "APY delta required · exposure cap · human approval before rebalance" },
+    { id: "health-guard", name: "HealthGuard Agent", category: "health-factor-monitoring", description: "Monitors lending health factors and proposes bounded protection actions before liquidation risk increases.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1904", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/health-guard", capabilities: ["health_factor_monitoring", "liquidation_alerts", "bounded_repay"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.25", successRate: 0.93, averageLatencyMs: 9000, reputationScore: 0.91, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0xa0d7f194736e19ea8bbde496d28a030222125a9911a03a0cd1e36b0822697673", kind: "transaction" }, { label: "Domain activity receipt", uri: "receipt://bnb/health-guard/activity-health-guard-approved", kind: "receipt" }], availability: "identity-only", dataSource: "reference-harness", lastActivity: "Domain activity receipt verified 2026-08-24", policyBoundary: "alert below 1.35 · repay cap · no unsanctioned collateral movement" }
   ];
 }
 
@@ -182,6 +255,81 @@ class SafeSwapVerifier implements ResultVerifier {
     if (result.taskId !== action.params.taskId) reasons.push("task_id_mismatch");
     if (!result.filledQuantity || result.filledQuantity <= 0) reasons.push("empty_fill");
     if (Number(result.actualSlippageBps ?? Number.POSITIVE_INFINITY) > Number(action.constraints?.maxSlippageBps ?? 0)) reasons.push("fill_outside_expected_slippage");
+    return { passed: reasons.length === 0, reasons, resultHash: execution.proof?.evidenceHash };
+  }
+}
+
+type DomainDefinition = {
+  objective: string;
+  budgetUSDT: string;
+  policyMaxUSDT: string;
+  riskScore: number;
+  requiredFields: string[];
+  params: Record<string, unknown>;
+  verify: (result: Record<string, unknown>) => string[];
+};
+
+function domainActivityDefinition(agent: AgentProfile, scenario: "approved" | "blocked" | "verification-failure"): DomainDefinition {
+  if (agent.id === "rebalance-guard") return {
+    objective: "Reduce allocation drift while staying inside turnover and approval boundaries",
+    budgetUSDT: scenario === "blocked" ? "150" : "0.35",
+    policyMaxUSDT: "100",
+    riskScore: 0.18,
+    requiredFields: ["beforeAllocation", "afterAllocation", "driftBps", "turnoverBps"],
+    params: { beforeAllocation: { BNB: 0.7, USDT: 0.3 }, afterAllocation: { BNB: 0.62, USDT: 0.38 }, driftBps: 800, turnoverBps: scenario === "verification-failure" ? 1900 : 1200, approval: true },
+    verify: (result) => [
+      ...(Number(result.driftBps) > 1000 ? ["allocation_drift_exceeded"] : []),
+      ...(Number(result.turnoverBps) > 1500 ? ["turnover_limit_exceeded"] : []),
+      ...(result.approval !== true ? ["approval_missing"] : [])
+    ]
+  };
+  if (agent.id === "yield-scout") return {
+    objective: "Compare BNB yield venues and recommend an allocation only when APY delta clears the guard",
+    budgetUSDT: scenario === "blocked" ? "150" : "0.40",
+    policyMaxUSDT: "100",
+    riskScore: 0.22,
+    requiredFields: ["sourceVenue", "targetVenue", "sourceAPY", "targetAPY", "exposurePct"],
+    params: { sourceVenue: "venus", targetVenue: "aave", sourceAPY: 4.1, targetAPY: scenario === "verification-failure" ? 4.3 : 5.6, exposurePct: 18, approval: true },
+    verify: (result) => [
+      ...((Number(result.targetAPY) - Number(result.sourceAPY)) < 1 ? ["apy_delta_below_guard"] : []),
+      ...(Number(result.exposurePct) > 20 ? ["exposure_cap_exceeded"] : []),
+      ...(result.approval !== true ? ["approval_missing"] : [])
+    ]
+  };
+  return {
+    objective: "Monitor lending health and propose a bounded protection action before liquidation risk",
+    budgetUSDT: scenario === "blocked" ? "150" : "0.25",
+    policyMaxUSDT: "100",
+    riskScore: 0.12,
+    requiredFields: ["healthFactor", "threshold", "repayAmountUSDT", "collateralMovement"],
+    params: { healthFactor: scenario === "verification-failure" ? 1.42 : 1.28, threshold: 1.35, repayAmountUSDT: 10, collateralMovement: false },
+    verify: (result) => [
+      ...(Number(result.healthFactor) >= Number(result.threshold) ? ["health_factor_alert_not_triggered"] : []),
+      ...(Number(result.repayAmountUSDT) > 10 ? ["repay_cap_exceeded"] : []),
+      ...(result.collateralMovement !== false ? ["unsanctioned_collateral_movement"] : [])
+    ]
+  };
+}
+
+class DomainActivityAdapter implements ExecutionAdapter {
+  readonly name = "bnb-domain-activity-harness";
+  constructor(private readonly agent: AgentProfile, private readonly definition: DomainDefinition) {}
+  async simulate(action: AgentAction): Promise<ExecutionResult> { return this.buildResult(action, "simulation"); }
+  async execute(action: AgentAction): Promise<ExecutionResult> { return this.buildResult(action, `bnb-testnet:domain-activity:${action.id}`); }
+  async status(externalId: string): Promise<unknown> { return { externalId, status: "completed" }; }
+  async release(externalId: string): Promise<unknown> { return { externalId, state: "released" }; }
+  async freeze(externalId: string): Promise<unknown> { return { externalId, state: "frozen" }; }
+  private buildResult(action: AgentAction, externalId: string): ExecutionResult {
+    const result = { ...action.params, agentId: this.agent.id, completedAt: "2026-08-24T00:00:02.000Z" };
+    return { adapter: this.name, externalId, result, payment: { state: "held", amount: action.budget?.amount, currency: action.budget?.currency, escrowId: `escrow:${action.id}` }, proof: { evidenceHash: sha256(JSON.stringify({ actionId: action.id, result })), evidenceUri: `receipt://bnb/${this.agent.id}/${action.id}`, signer: this.agent.operatorAddress } };
+  }
+}
+
+class DomainActivityVerifier implements ResultVerifier {
+  constructor(private readonly definition: DomainDefinition) {}
+  async verify(_action: AgentAction, execution: ExecutionResult) {
+    const result = execution.result as Record<string, unknown>;
+    const reasons = this.definition.verify(result);
     return { passed: reasons.length === 0, reasons, resultHash: execution.proof?.evidenceHash };
   }
 }
