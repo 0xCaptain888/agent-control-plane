@@ -61,7 +61,13 @@ The directory now mirrors the four BNB Agent Studio first-class categories:
 - Yield Optimisation — `YieldScout Agent`;
 - Health Factor Monitoring — `HealthGuard Agent`.
 
-All four profiles now have ERC-8004 BNB Testnet identities under the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. SafeSwap (`agentId=1898`) has the complete task execution proof; RebalanceGuard (`1902`), YieldScout (`1903`), and HealthGuard (`1904`) now also have deterministic domain-specific activity receipts. Those three receipts are explicitly labeled control-plane harness evidence until an independently checkable BNB Testnet task transaction is recorded.
+All four profiles now have ERC-8004 BNB Testnet identities under the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. SafeSwap (`agentId=1898`) has the complete task execution proof; RebalanceGuard (`1902`), YieldScout (`1903`), and HealthGuard (`1904`) now also have completed ERC-8183 BNB Testnet tasks: Jobs `611`, `612`, and `613` respectively. Each profile is backed by a public settlement transaction and a verified Receipt evidence hash.
+
+Domain task settlement proofs:
+
+- RebalanceGuard Job `611`: [settlement](https://testnet.bscscan.com/tx/0x53f6cc0e3c72e0c11852b87ca003ee68e672a3de46fb0fa698bf5557e13bd54c), evidence hash `308944720f560c52a3295d96f97b7f658b2ec60af1da56c5e252f8d6e122368f`.
+- YieldScout Job `612`: [settlement](https://testnet.bscscan.com/tx/0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88), evidence hash `bdc3464afedc9a49a03c6edb0b6c6ae6b1fc1ed98c52eaad97d27dc829b06a0f`.
+- HealthGuard Job `613`: [settlement](https://testnet.bscscan.com/tx/0x467d0efdfbf4fb13bb657728f91b5124e48526194023fcd63774866163aad764), evidence hash `09792e7431d4b6339e04993894d484775822f4320d445929953e29ecee3632d8`.
 
 Registration proofs:
 
