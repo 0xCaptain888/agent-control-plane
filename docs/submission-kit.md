@@ -33,6 +33,8 @@ and a failed outcome freezes funds instead of silently paying.
 ## Evidence links
 
 - [Live Marketplace](https://0xcaptain888.github.io/agent-control-plane/)
+- [GitHub repository](https://github.com/0xCaptain888/agent-control-plane)
+- [Latest SafeSwap settlement — ERC-8183 Job 614](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
 - [BNB hackathon guide](bnb-hackathon.md)
 - [Judge demo](demo.md)
 - [Three-minute script](demo-script.md)
@@ -40,10 +42,21 @@ and a failed outcome freezes funds instead of silently paying.
 - [Agent Advantage Report](agent-advantage-report.md)
 - [BNB main-track readiness](main-track-readiness.md)
 
-For BNB submissions, point judges to the real BNB Testnet Agent ID `1898`,
-operator address, Job `603`, and the final settlement transaction listed in the
-BNB guide. Never describe the deterministic judge scenarios as mainnet or as
-real trades.
+For BNB submissions, point judges to the four real BNB Testnet ERC-8004
+identities — Agent IDs `1898`, `1902`, `1903`, and `1904` — and the public
+ERC-8183 task evidence. The latest SafeSwap task is Job `614`:
+
+```text
+Status: COMPLETED
+Budget: 1 U
+Operator: 0x61ce53891c35f3261388ea2910d9d63d6d918390
+Task client/provider: 0x0ec1dde4ea5d90f9f7687ccb709fdc907c7c6320
+Settlement: 0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93
+Evidence hash: 5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b
+```
+
+The `VERIFIED`, `BLOCKED`, and `FROZEN` judge scenarios are deterministic
+control-plane demonstrations. They are not claims of real mainnet trades.
 
 ## What to emphasize
 
@@ -52,12 +65,14 @@ real trades.
 - A visible recovery path, not just a happy path.
 - Reusable adapters rather than a single hard-coded Agent.
 - Public, independently checkable evidence.
+- BNB-native identity, task, settlement, and receipt evidence.
+- The difference between a real Testnet settlement and a simulated business adapter.
 
 ## What not to claim
 
 - Do not claim mainnet execution.
 - Do not claim a third-party security audit.
-- Do not claim the demo identities are all real ERC-8004 registrations.
+- Do not call BNB Testnet evidence mainnet evidence.
 - Do not call simulated fills real trades.
 - Do not put private keys or API secrets in the submission.
 
@@ -67,7 +82,9 @@ real trades.
 - [ ] Live Marketplace URL works.
 - [ ] Demo video is under three minutes.
 - [ ] `VERIFIED`, `BLOCKED`, and `FROZEN` are all shown.
-- [ ] At least one public testnet transaction is linked.
+- [ ] All four BNB Agent IDs are linked or visible in the Marketplace.
+- [ ] Job `614` is shown as `COMPLETED` with its public settlement transaction.
+- [ ] Settlement transaction and Receipt evidence hash are included in the form.
 - [ ] Judge can run `npm ci && npm run demo:judge`.
 - [ ] Final local gate passes with `npm run submission:check`.
 - [ ] Network boundary and simulated/real boundary are explicit.
