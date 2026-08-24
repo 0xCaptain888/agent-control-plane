@@ -12,7 +12,8 @@ const privateKey = execFileSync("/usr/bin/security", ["find-generic-password", "
 if (deriveEvmAddress(privateKey).toLowerCase() !== operator) throw new Error("keychain_wallet_address_mismatch");
 
 const expiry = BigInt(Math.floor(Date.now() / 1000) + 3600);
-const description = "AgentGuard proof task: verify policy-controlled execution and attach a BNB receipt.";
+const profile = process.env.AGENT_PROFILE ?? "agentguard";
+const description = process.env.ERC8183_DESCRIPTION?.trim() || `AgentGuard ${profile} proof task: verify policy-controlled execution and attach a BNB receipt.`;
 const data = encodeCreateJob(operator, router, expiry, description, router);
 const client = new BnbRpcClient();
 const [nonceHex, gasPriceHex] = await Promise.all([

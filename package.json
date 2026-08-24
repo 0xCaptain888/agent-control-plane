@@ -24,6 +24,7 @@
     "demo:bnb:domain-activities": "tsx examples/bnb-agent-marketplace/src/domain-activities.ts",
     "demo:bnb:claim-u": "tsx examples/bnb-agent-marketplace/src/claim-u-token.ts",
     "demo:bnb:settle-task": "tsx examples/bnb-agent-marketplace/src/settle-erc8183-task.ts",
+    "demo:bnb:find-settlement": "tsx examples/bnb-agent-marketplace/src/find-settlement-tx.ts",
     "mainnet:preflight": "tsx scripts/mainnet-preflight.ts",
     "security:preflight": "node scripts/security-preflight.mjs",
     "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge",
