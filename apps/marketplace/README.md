@@ -3,9 +3,9 @@
 This is the judge-facing surface for the BNB hackathon build. It shows the four
 first-class categories — Rebalancing, Grid Trading, Yield Optimisation, and
 Health Factor Monitoring — plus the controlled hire lifecycle and receipts for
-verified, blocked, and frozen outcomes. SafeSwap is the live BNB Testnet profile;
-the other three are explicitly labeled reference profiles until their separate
-identities and activity proofs are registered.
+verified, blocked, and frozen outcomes. SafeSwap has the complete live task
+flow; the other three now have registered BNB Testnet identities and are marked
+identity-only until their domain-specific task activity is recorded.
 
 Run from the repository root:
 
