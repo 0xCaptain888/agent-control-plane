@@ -19,3 +19,21 @@ Then open `http://127.0.0.1:4174`.
 The `src` directory is also static-host compatible. The repository includes a
 GitHub Pages workflow; after Pages is enabled for the repository, every push to
 `main` publishes the same judge-facing surface at the repository Pages URL.
+
+## Real BNB Testnet activation
+
+Each Agent card now has two explicit paths:
+
+- `Try Judge Demo` opens the deterministic `VERIFIED`, `BLOCKED`, and `FROZEN`
+  scenarios without a wallet or network write.
+- `Activate Testnet Task` connects an injected EVM wallet and walks the user
+  through the ERC-8183 BNB Testnet transaction sequence: create Job, register
+  policy, set budget, approve the payment token, fund, and submit.
+
+The browser signs every transaction through the wallet provider. No private key
+is sent to the Marketplace. The page is hard-locked to BNB Testnet chain ID
+`97`; settlement remains subject to the configured ERC-8183 policy window.
+
+When a wallet is connected, the directory also refreshes known Job states and
+the latest BNB Testnet block through the wallet RPC. If no wallet is available,
+the public evidence and static fallback data remain visible for judges.
