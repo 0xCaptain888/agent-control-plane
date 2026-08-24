@@ -62,6 +62,9 @@ Attach:
 ## Live BNB Testnet evidence
 
 - ERC-8004 AgentGuard identity: `agentId=1898`.
+- RebalanceGuard ERC-8004 identity: `agentId=1902`; [registration proof](https://testnet.bscscan.com/tx/0x51adb89544bec3a5baee7886dc8fa6ca5758c0ef1c3535dd6f416c3ecafef287).
+- YieldScout ERC-8004 identity: `agentId=1903`; [registration proof](https://testnet.bscscan.com/tx/0x8ff096f7abdcacf573d229449659fbb4b21fbe90e66dd1ffb0c55ca2c68e2696).
+- HealthGuard ERC-8004 identity: `agentId=1904`; [registration proof](https://testnet.bscscan.com/tx/0xa0d7f194736e19ea8bbde496d28a030222125a9911a03a0cd1e36b0822697673).
 - Operator: `0x61ce53891c35f3261388ea2910d9d63d6d918390`.
 - Identity registration: [BNB Testnet transaction](https://testnet.bscscan.com/tx/0x1bf2e5dc3162e91c47af6b091db12a7359e4d83f487d227d4aa1ab80274cd8bf).
 - Receipt proof task: [BNB Testnet transaction](https://testnet.bscscan.com/tx/0x9ad83e817a44e0c7a512836119835670bcced9ef8f412a9f3f1de82412a9d565).
