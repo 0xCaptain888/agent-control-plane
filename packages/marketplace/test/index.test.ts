@@ -11,7 +11,9 @@ test("registry exposes four BNB Agent Studio marketplace categories", () => {
   assert.deepEqual(registry.search({ category: "health-factor-monitoring" }).map((agent) => agent.id), ["health-guard"]);
   assert.equal(registry.get("safe-swap")?.availability, "live");
   assert.equal(registry.get("safe-swap")?.dataSource, "bnb-testnet");
-  assert.equal(registry.get("rebalance-guard")?.availability, "reference");
+  assert.equal(registry.get("rebalance-guard")?.availability, "identity-only");
+  assert.equal(registry.get("yield-scout")?.identityId, "erc8004:bnb-testnet:1903");
+  assert.equal(registry.get("health-guard")?.identityId, "erc8004:bnb-testnet:1904");
 });
 
 test("ranking prefers a reliable, successful agent", () => {

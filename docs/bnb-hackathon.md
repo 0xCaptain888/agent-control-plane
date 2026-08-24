@@ -61,7 +61,13 @@ The directory now mirrors the four BNB Agent Studio first-class categories:
 - Yield Optimisation — `YieldScout Agent`;
 - Health Factor Monitoring — `HealthGuard Agent`.
 
-`SafeSwap Agent` uses a live ERC-8004 BNB Testnet identity (`agentId=1898`) and the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. The other three profiles are explicitly marked as reference profiles until their separate BSC identities and activity proofs are registered; they are not presented as live agents.
+All four profiles now have ERC-8004 BNB Testnet identities under the funded testnet operator `0x61ce53891c35f3261388ea2910d9d63d6d918390`. SafeSwap (`agentId=1898`) has the complete task execution proof; RebalanceGuard (`1902`), YieldScout (`1903`), and HealthGuard (`1904`) have registration proofs and remain explicitly marked `identity-only` until their domain-specific task activity is recorded.
+
+Registration proofs:
+
+- RebalanceGuard: [Agent ID 1902](https://testnet.bscscan.com/tx/0x51adb89544bec3a5baee7886dc8fa6ca5758c0ef1c3535dd6f416c3ecafef287)
+- YieldScout: [Agent ID 1903](https://testnet.bscscan.com/tx/0x8ff096f7abdcacf573d229449659fbb4b21fbe90e66dd1ffb0c55ca2c68e2696)
+- HealthGuard: [Agent ID 1904](https://testnet.bscscan.com/tx/0xa0d7f194736e19ea8bbde496d28a030222125a9911a03a0cd1e36b0822697673)
 
 ## Run locally
 
@@ -120,11 +126,16 @@ BNB_TX_HASH=0x... npm run demo:bnb:receipt
 
 The receipt adapter fetches the transaction from BNB Testnet RPC, rejects missing or failed receipts, and only then releases the held payment. It never trusts a caller-provided hash without an RPC receipt.
 
-The one-time identity registration flow is:
+The identity registration flow supports the four Marketplace profiles. The
+default registers the AgentGuard identity; set `AGENT_PROFILE` for one of the
+category-specific profiles:
 
 ```bash
 DRY_RUN=1 npm run demo:bnb:register-identity
 npm run demo:bnb:register-identity
+AGENT_PROFILE=rebalance-guard npm run demo:bnb:register-identity
+AGENT_PROFILE=yield-scout npm run demo:bnb:register-identity
+AGENT_PROFILE=health-guard npm run demo:bnb:register-identity
 ```
 
 The script is locked to BNB Testnet, checks the deployed official ERC-8004 registry, reads the signer from macOS Keychain, and prints only the public operator address, agent ID, transaction hash, and proof.
