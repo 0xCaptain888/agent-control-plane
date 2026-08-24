@@ -30,7 +30,8 @@
     "measure:bnb": "tsx examples/bnb-agent-marketplace/src/measure.ts",
     "demo:solana": "tsx examples/solana-devnet/demo.ts",
     "demo:solana:transfer": "tsx examples/solana-devnet/transfer.ts",
-    "lint": "node scripts/repo-check.mjs"
+    "lint": "node scripts/repo-check.mjs",
+    "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge"
   },
   "workspaces": [
     "packages/*",
