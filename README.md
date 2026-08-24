@@ -86,6 +86,10 @@ The important distinction is not “an Agent called a tool.” It is that the sa
 control plane proves what the Agent was allowed to do, what actually happened,
 and why funds were released or frozen.
 
+For the judge-facing path, the public Marketplace also exposes four BNB Agent
+categories — SafeSwap, RebalanceGuard, YieldScout, and HealthGuard — with
+independent policy boundaries and activation presets.
+
 ## Run it in five minutes
 
 Use Node.js **22** (the repository pins `22.23.2` in [.nvmrc](.nvmrc)).
@@ -147,12 +151,25 @@ docs/       architecture, safety rules, migration notes, and judging guide
 
 | Surface | Status |
 | --- | --- |
-| ERC-8004 identity | Real BNB Testnet registration, Agent ID `1898` |
-| ERC-8183 task | Real BNB Testnet Job `603`, funded, submitted, and completed |
+| ERC-8004 identities | Real BNB Testnet registrations, Agent IDs `1898`, `1902`, `1903`, and `1904` |
+| ERC-8183 task | Real BNB Testnet Job `614`, funded, submitted, settled, and `COMPLETED` |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |
 | Production database / auth | Roadmap, not claimed as deployed |
+
+## Latest BNB Testnet proof
+
+SafeSwap completed a real ERC-8183 task on BNB Testnet. The settlement receipt
+was independently verified by the BNB receipt adapter.
+
+- Job: `614`
+- Status: `COMPLETED`
+- Budget: `1 U`
+- Settlement: [View on BscScan](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
+- Settlement transaction hash: `0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93`
+- Receipt evidence hash: `5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b`
+- Public Marketplace: [Open the live demo](https://0xcaptain888.github.io/agent-control-plane/)
 
 ## Safety boundary
 
@@ -167,7 +184,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 The current reference implementation is validated with:
 
 ```text
-41 tests passing · lint passing · typecheck passing · security preflight passing
+43 tests passing · lint passing · typecheck passing · security preflight passing
 ```
 
 More detail:
