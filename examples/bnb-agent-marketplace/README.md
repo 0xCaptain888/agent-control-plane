@@ -28,6 +28,6 @@ HealthGuard with:
 npm run demo:bnb:domain-activities
 ```
 
-Those receipts are deterministic harness evidence, not fabricated transaction
-hashes. SafeSwap remains the only profile with a complete independently
-checkable BNB Testnet task flow today.
+The harness receipts remain useful for repeatable judge demos. RebalanceGuard,
+YieldScout, and HealthGuard now also have independently checkable BNB Testnet
+ERC-8183 task settlements recorded in the Marketplace evidence.
