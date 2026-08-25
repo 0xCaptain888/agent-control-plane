@@ -8,7 +8,7 @@ third-party audit, and external traction are not claimed.
 | --- | --- | --- | --- |
 | Agentic AI | A buyer Agent selects and hires a seller Agent | Treasury Agent trace: intent → discover → compare → policy → decision | Model provider is pluggable; demo planner is deterministic |
 | Arbitrum integration | Escrow and evidence are independently verifiable | Verified PolicyEscrowV2, native ETH and USDC Sepolia tasks | Testnet only |
-| Technical depth | Fail-closed execution and recovery | 53 tests, invariant checks, verified Solidity source | No formal third-party audit |
+| Technical depth | Fail-closed execution and recovery | 56 tests, invariant checks, verified Solidity source | No formal third-party audit |
 | Marketplace UX | Discover, compare, hire | Four profiles, capability tags, price, success, latency, identity, boundary, activation | External user testing still needed |
 | User value | Safer Agent-to-Agent commerce | Payment held until evidence; invalid work is blocked or frozen | Benchmark is a reproducible harness, not a human study |
 | Presentation | Judge can verify the result quickly | Public Marketplace, runbook, three outcomes, public transaction links | Keep video under three minutes |

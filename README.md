@@ -274,7 +274,7 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 The current reference implementation is validated with:
 
 ```text
-53 tests passing (9 Node + 44 TypeScript) · lint passing · typecheck passing · security preflight passing
+56 tests passing (9 Node + 47 TypeScript) · lint passing · typecheck passing · security preflight passing
 ```
 
 More detail:
