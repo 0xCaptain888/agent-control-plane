@@ -6,23 +6,21 @@ change only the vertical proof that matches the track.
 
 ## One-line pitch
 
-> AgentGuard is the policy-controlled execution layer that lets autonomous AI
-> Agents act within explicit budgets and permissions, verifies the outcome, and
-> releases or freezes payment with a tamper-evident receipt.
+> AgentGuard VerifyPay lets one AI Agent hire another Agent or API on Arbitrum, enforce budgets and risk rules, and release payment only after the result is verified.
 
 ## 30-second explanation
 
-Most Agent demos stop after a model calls a tool. AgentGuard controls the whole
-execution boundary: intent, policy, risk, adapter execution, verification,
-recovery, and receipt. A judge can see all three outcomes in one flow — a valid
-action is verified and settled, an invalid action is blocked before execution,
-and a failed outcome freezes funds instead of silently paying.
+Most Agent demos stop after a model calls a tool. AgentGuard VerifyPay controls
+the commerce boundary between Agents: quote, policy, escrow, execution,
+verification, recovery, and receipt. A buyer Agent hires a seller Agent; a valid
+result is settled, an invalid quote is blocked before seller execution, and a
+bad result freezes funds instead of silently paying.
 
 ## Three-minute demo order
 
 ```text
 0:00  Problem: Agents can act, but users cannot bound or verify them.
-0:20  Marketplace: show the Arbitrum Sepolia PolicyEscrow and Agent evidence.
+0:20  Marketplace: show Research Agent hiring Data Agent through VerifyPay.
 0:50  VERIFIED: funded Arbitrum task, matching evidence, payment released.
 1:25  BLOCKED: oversized budget never reaches the adapter.
 1:55  FROZEN: bad fill fails verification and holds payment.
@@ -35,8 +33,9 @@ and a failed outcome freezes funds instead of silently paying.
 - [Live Marketplace](https://0xcaptain888.github.io/agent-control-plane/)
 - [GitHub repository](https://github.com/0xCaptain888/agent-control-plane)
 - [Latest SafeSwap settlement — ERC-8183 Job 614](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
-- [Arbitrum PolicyEscrow contract](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB)
-- [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac)
+- [Arbitrum PolicyEscrowV2 contract](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
+- [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
+- [Arbitrum real frozen proof](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
 - [Arbitrum Agentic AI guide](arbitrum-hackathon.md)
 - [BNB hackathon guide](bnb-hackathon.md)
 - [Judge demo](demo.md)
@@ -70,6 +69,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - Public, independently checkable evidence.
 - BNB-native identity, task, settlement, and receipt evidence.
 - Arbitrum Sepolia contract, task, settlement, and evidence hash for the Agentic AI track.
+- Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
 - The difference between a real Testnet settlement and a simulated business adapter.
 
 ## What not to claim
@@ -89,6 +89,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] All four BNB Agent IDs are linked or visible in the Marketplace.
 - [ ] Job `614` is shown as `COMPLETED` with its public settlement transaction.
 - [ ] Arbitrum Sepolia contract address and verified settlement are included for the Agentic AI submission.
+- [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
+- [ ] The video opens the real Arbitrum `VERIFIED` and `FROZEN` transactions.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.
 - [ ] Settlement transaction and Receipt evidence hash are included in the form.
 - [ ] Judge can run `npm ci && npm run demo:judge`.

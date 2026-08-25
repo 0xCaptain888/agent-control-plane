@@ -76,16 +76,36 @@ Attach:
 ## Live Arbitrum Sepolia evidence
 
 The Arbitrum Agentic AI vertical slice uses a separately deployed native ETH
-PolicyEscrow contract. This is real testnet evidence, not a simulated hash.
+PolicyEscrowV2 contract. This is real testnet evidence, not a simulated hash.
 
 - Network: Arbitrum Sepolia (`421614`).
-- Contract: [PolicyEscrow](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB).
-- Deployment: [transaction](https://sepolia.arbiscan.io/tx/0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3).
-- Task `1`: funded, submitted, verified, and settled.
-- Verified settlement: [transaction](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac).
+- Contract: [PolicyEscrowV2](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999).
+- Deployment: [transaction](https://sepolia.arbiscan.io/tx/0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba).
+- Task `1`: funded, submitted, verified, and settled with a deadline.
+- Verified settlement: [transaction](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce).
 - Policy hash: `0x1111111111111111111111111111111111111111111111111111111111111111`.
 - Evidence hash: `0x2222222222222222222222222222222222222222222222222222222222222222`.
+- Decision reason hash: `0x3333333333333333333333333333333333333333333333333333333333333333`.
 - Final result: `VERIFIED`; native testnet ETH released only after matching evidence.
+
+## Agent-to-Agent VerifyPay evidence
+
+The deterministic Agent runner models a buyer Research Agent hiring a seller
+Data Agent. It emits three judge-visible receipts without inventing a chain
+transaction for the pre-execution block:
+
+| Scenario | Buyer | Seller | Result | Payment |
+| --- | --- | --- | --- | --- |
+| Valid research report | `research-agent-a` | `data-agent-b` | `VERIFIED` | released |
+| Quote above policy budget | `research-agent-a` | `data-agent-b` | `BLOCKED` | not started |
+| Missing field / low quality | `research-agent-a` | `data-agent-b` | `FROZEN` | frozen |
+
+Reproduce it with:
+
+```bash
+npm run demo:verify-pay
+npm run demo:arbitrum:judge
+```
 
 ## Four-category domain activity proofs
 

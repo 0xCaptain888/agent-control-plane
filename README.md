@@ -1,10 +1,12 @@
 # Agent Control Plane
 
-### The policy-controlled execution layer for autonomous AI agents.
+### AgentGuard VerifyPay — policy-controlled commerce for autonomous AI agents.
 
 **Built for hackathons: make an Agent useful without making it unconstrained.**
 
-Agents can propose actions. The control plane decides whether they are still allowed to act — within explicit permissions, budgets, risk limits, and verification rules.
+One Agent can hire another Agent or API. AgentGuard decides whether the quote and
+execution are still allowed — within explicit permissions, budgets, risk limits,
+deadlines, and verification rules.
 
 <p>
   <a href="https://github.com/0xCaptain888/agent-control-plane/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/0xCaptain888/agent-control-plane/ci.yml?branch=main&style=flat-square&label=CI" alt="CI"></a>
@@ -87,8 +89,9 @@ The important distinction is not “an Agent called a tool.” It is that the sa
 control plane proves what the Agent was allowed to do, what actually happened,
 and why funds were released or frozen.
 
-For the judge-facing path, the public Marketplace also exposes four BNB Agent
-categories — SafeSwap, RebalanceGuard, YieldScout, and HealthGuard — with
+For the judge-facing path, the public Marketplace leads with the Arbitrum
+VerifyPay flow — Research Agent hires Data Agent — and also exposes four BNB
+Agent categories — SafeSwap, RebalanceGuard, YieldScout, and HealthGuard — with
 independent policy boundaries and activation presets.
 
 ## Run it in five minutes
@@ -121,7 +124,14 @@ Run the Arbitrum Sepolia PolicyEscrow proof:
 
 ```bash
 npm run demo:arbitrum:task
+npm run demo:arbitrum:judge
+npm run demo:verify-pay
 ```
+
+PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
+`ARBITRUM_TEST_TOKEN_ADDRESS` locally before running
+`npm run demo:arbitrum:token-task`; the command fails closed when no token is
+configured.
 
 The deployment and task evidence are recorded in
 [`deployments/arbitrum-sepolia-policy-escrow.json`](deployments/arbitrum-sepolia-policy-escrow.json).
@@ -167,7 +177,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | --- | --- |
 | ERC-8004 identities | Real BNB Testnet registrations, Agent IDs `1898`, `1902`, `1903`, and `1904` |
 | ERC-8183 task | Real BNB Testnet Job `614`, funded, submitted, settled, and `COMPLETED` |
-| Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrow` deployment and `VERIFIED` task |
+| Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment and `VERIFIED` task |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |
@@ -188,17 +198,19 @@ was independently verified by the BNB receipt adapter.
 
 ## Latest Arbitrum Sepolia proof
 
-The AgentGuard PolicyEscrow contract is deployed on Arbitrum Sepolia and has
-completed a real funded task with evidence-backed verification and native ETH
-settlement.
+The AgentGuard PolicyEscrowV2 contract is deployed on Arbitrum Sepolia and has
+completed a real funded VerifyPay task with a deadline, policy decision hash,
+evidence-backed verification, and native ETH settlement.
 
 - Network: Arbitrum Sepolia (`421614`)
-- Contract: [`0xD35B56D0C7212aC4630cF52ECeb36884451598CB`](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB)
-- Deployment transaction: [`0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3`](https://sepolia.arbiscan.io/tx/0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3)
+- Contract: [`0xe2e444a7b742829f9d45b1165b352dbbf9f9d999`](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
+- Deployment transaction: [`0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba`](https://sepolia.arbiscan.io/tx/0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba)
 - Task: `1`
 - Policy hash: `0x1111111111111111111111111111111111111111111111111111111111111111`
 - Evidence hash: `0x2222222222222222222222222222222222222222222222222222222222222222`
-- Verified settlement: [`0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac`](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac)
+- Verified settlement: [`0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce`](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
+- Decision reason hash: `0x3333333333333333333333333333333333333333333333333333333333333333`
+- Real frozen proof: [`0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9`](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
 
 ## Safety boundary
 
@@ -221,5 +233,6 @@ More detail:
 - [Architecture](docs/architecture.md)
 - [Judge Demo](docs/demo.md)
 - [Hackathon judge guide](docs/hackathon-guide.md)
+- [Arbitrum security notes](docs/arbitrum-security-notes.md)
 - [Adapter contract](adapters/README.md)
 - [Contribution guide](CONTRIBUTING.md)

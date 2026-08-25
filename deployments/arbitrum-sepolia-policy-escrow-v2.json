@@ -1,0 +1,37 @@
+{
+  "network": "arbitrum-sepolia",
+  "chainId": 421614,
+  "contract": "PolicyEscrowV2",
+  "address": "0xe2E444a7B742829f9d45B1165b352DbBf9F9d999",
+  "deployer": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+  "deploymentTxHash": "0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba",
+  "blockNumber": 301689320,
+  "explorerUrl": "https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999",
+  "taskProof": {
+    "taskId": "1",
+    "status": "VERIFIED",
+    "budgetWei": "1000000000000000",
+    "policyHash": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "evidenceHash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "decisionReason": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "deadline": "1787622542",
+    "createTxHash": "0xe163ddc871ce5e7d787f676788c3017e198a8843be989ba6da293d62621d26f3",
+    "submitTxHash": "0x9d1916b60f93e7bf1df831df02e5d353ce7d7f67a06c2991e1ee59a46426b323",
+    "verifyTxHash": "0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce",
+    "verifyExplorerUrl": "https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce"
+  },
+  "frozenProof": {
+    "taskId": "2",
+    "statusBeforeRefund": "FROZEN",
+    "statusAfterRefund": "REFUNDED",
+    "budgetWei": "500000000000000",
+    "policyHash": "0x7777777777777777777777777777777777777777777777777777777777777777",
+    "evidenceHash": "0x8888888888888888888888888888888888888888888888888888888888888888",
+    "reasonHash": "0x9999999999999999999999999999999999999999999999999999999999999999",
+    "createTxHash": "0xe2dd556e2c2268221bd91b8cd81258f4e041ce78e1119eebf07ce5b09c882e9e",
+    "submitTxHash": "0xacf07ab0337069c1a2c166d6dedc7dbe4dd1d68dc9784852b1538d279a62d0ab",
+    "freezeTxHash": "0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9",
+    "refundTxHash": "0xae2745030f02b1cd9e90f9663ce2dbce0ff249fa9a5b008280ee42b2f69ee796",
+    "freezeExplorerUrl": "https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9"
+  }
+}

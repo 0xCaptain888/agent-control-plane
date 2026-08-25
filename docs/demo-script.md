@@ -4,29 +4,29 @@ Target duration: 3 minutes.
 
 ## 0:00–0:20 — State the problem
 
-> Agents can call tools, but users still cannot reliably discover, compare, hire, or pay them. AgentGuard adds the missing execution boundary.
+> Agents can call tools, but they still cannot safely hire and pay one another. AgentGuard VerifyPay adds the missing execution and settlement boundary.
 
 Open the Marketplace homepage. Point out the Arbitrum Sepolia proof card and the
 testnet safety boundary. Mention that BNB Testnet remains a second live adapter.
 
-## 0:20–0:50 — Discover and compare
+## 0:20–0:50 — Buyer Agent hires Seller Agent
 
-Open the Arbitrum proof card and call out:
+Open the VerifyPay card and call out:
 
-- PolicyEscrow contract address;
-- Task `1` in `VERIFIED` state;
-- matching evidence hash;
-- public Arbiscan settlement transaction.
+- buyer: `research-agent-a`;
+- seller: `data-agent-b`;
+- capability: `market-research`;
+- quote and evidence are both policy-checked.
 
-Then scroll to the Agent directory and explain that the same control plane ranks
-capabilities from evidence-backed reliability, not an opaque popularity number.
+Then open the Arbitrum proof card and point to the PolicyEscrowV2 contract,
+Task `1`, matching evidence hash, and public Arbiscan settlement transaction.
 
 ## 0:50–1:25 — Hire safely
 
 Run the real Arbitrum proof command and narrate the intent:
 
 ```text
-Create a bounded Agent task
+Research Agent hires Data Agent
 Arbitrum Sepolia budget: 0.001 ETH
 Evidence: required before release
 Payment: held until verification

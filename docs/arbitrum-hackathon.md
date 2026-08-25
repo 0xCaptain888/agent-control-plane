@@ -1,28 +1,29 @@
 # Arbitrum Agentic AI submission
 
-AgentGuard is a policy-gated execution and settlement layer for autonomous
-Agents. The Arbitrum Sepolia vertical slice proves that an Agent can create a
-funded task, submit an evidence hash, and receive payment only after the task
-is verified. A failed verification remains frozen instead of releasing funds;
-the off-chain policy engine blocks over-budget work before an adapter call.
+AgentGuard VerifyPay is a policy-gated execution and settlement layer for
+Agent-to-Agent commerce. A buyer Agent hires a seller Agent, checks its quote,
+locks payment, validates the result, and releases funds only after evidence
+passes. A failed verification remains frozen instead of releasing funds; an
+over-budget quote is blocked before seller execution.
 
 ## Arbitrum proof
 
 | Item | Value |
 | --- | --- |
 | Network | Arbitrum Sepolia (`421614`) |
-| Contract | `0xD35B56D0C7212aC4630cF52ECeb36884451598CB` |
-| Deployment | `0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3` |
+| Contract | `0xe2E444a7B742829f9d45B1165b352DbBf9F9d999` |
+| Deployment | `0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba` |
 | Task | `1` |
 | Status | `VERIFIED` |
-| Settlement | `0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac` |
+| Settlement | `0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce` |
 | Evidence hash | `0x2222222222222222222222222222222222222222222222222222222222222222` |
 
 Explorer links:
 
-- [PolicyEscrow contract](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB)
-- [Deployment transaction](https://sepolia.arbiscan.io/tx/0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3)
-- [Verified settlement transaction](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac)
+- [PolicyEscrowV2 contract](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
+- [Deployment transaction](https://sepolia.arbiscan.io/tx/0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba)
+- [Verified settlement transaction](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
+- [Real FROZEN transaction](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9) — Task `2`, refunded immediately after the freeze proof
 
 ## Reproduce locally
 
@@ -33,7 +34,20 @@ committed to the repository.
 ```bash
 npm ci
 npm run demo:arbitrum:task
+npm run demo:arbitrum:judge
+npm run demo:verify-pay
 ```
+
+The V2 contract also supports ERC-20 settlement. To run it with Arbitrum
+Sepolia USDC or another test ERC-20, set the token address locally (never in
+source control) and use:
+
+```bash
+ARBITRUM_TEST_TOKEN_ADDRESS=0x... npm run demo:arbitrum:token-task
+```
+
+Without a token address the command exits with `not_configured`; it never
+pretends that a token settlement happened.
 
 To deploy a new testnet instance:
 
@@ -47,17 +61,20 @@ deployment metadata to `deployments/arbitrum-sepolia-policy-escrow.json`.
 ## Judge path
 
 1. Open the public Marketplace and point out the AgentGuard policy lifecycle.
-2. Show the Arbitrum Sepolia PolicyEscrow address and verified settlement.
-3. Run the deterministic demo to show `VERIFIED`, `BLOCKED`, and `FROZEN`.
-4. Explain that `BLOCKED` happens before execution, while `FROZEN` holds the
-   task budget after a verification failure.
-5. Compare the Arbitrum proof with the existing BNB Testnet ERC-8004/ERC-8183
+2. Show the buyer Agent hiring the seller Agent through VerifyPay.
+3. Show the Arbitrum Sepolia PolicyEscrowV2 address and verified settlement.
+4. Run the deterministic demo to show `VERIFIED`, `BLOCKED`, and `FROZEN`.
+5. Open the real FROZEN transaction and show the linked refund transaction in
+   `deployments/arbitrum-sepolia-policy-escrow-v2.json`.
+6. Explain that `BLOCKED` happens before seller execution, while `FROZEN`
+   holds the task budget after a verification failure.
+7. Compare the Arbitrum proof with the existing BNB Testnet ERC-8004/ERC-8183
    evidence to show the control plane is chain-adapter based.
 
 ## Scope boundary
 
-This is a hackathon/testnet proof, not a production escrow. The contract holds
-native testnet ETH, uses an explicit creator verifier, and leaves policy
-evaluation in AgentGuard. Production deployment would require an audited
-multi-sig verifier, timeout/refund policy, token support, and formal security
-review.
+This is a hackathon/testnet proof, not a production escrow. PolicyEscrowV2
+holds native testnet ETH or an ERC-20, enforces a deadline, emits policy and
+evidence events, supports pause and refund paths, and leaves policy evaluation
+in AgentGuard. Production deployment would still require an audited multi-sig
+verifier, formal dispute rules, monitoring, and a security review.
