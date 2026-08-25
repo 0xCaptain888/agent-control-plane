@@ -16,7 +16,9 @@ deadlines, and verification rules.
 </p>
 
 <p>
-  <a href="https://0xcaptain888.github.io/agent-control-plane/">Live Marketplace</a> ·
+  <a href="https://0xcaptain888.github.io/agent-control-plane/">Choose submission edition</a> ·
+  <a href="https://0xcaptain888.github.io/agent-control-plane/?network=bnb">BNB demo</a> ·
+  <a href="https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum">Arbitrum demo</a> ·
   <a href="docs/demo-script.md">3-minute demo</a> ·
   <a href="docs/submission-kit.md">Submission kit</a> ·
   <a href="docs/arbitrum-hackathon.md">Arbitrum evidence</a> ·
@@ -99,10 +101,16 @@ seller returns a quote and evidence, and Arbitrum holds the USDC budget until
 the evidence matches the policy. This is the product path; the BNB Agent
 profiles are compatibility examples built on the same control-plane contract.
 
-For the judge-facing path, the public Marketplace leads with the Arbitrum
-VerifyPay flow — Research Agent hires Data Agent — and also exposes four BNB
-Agent categories — SafeSwap, RebalanceGuard, YieldScout, and HealthGuard — with
-independent policy boundaries and activation presets.
+The public Marketplace now has explicit network-specific judge entrances. Use
+the [BNB Agent Studio Edition](https://0xcaptain888.github.io/agent-control-plane/?network=bnb)
+for ERC-8004 identity, ERC-8183 commerce, and Job 614. Use the
+[Arbitrum Agentic AI Edition](https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum)
+for PolicyEscrowV3 independent verification and VERIFIED/FROZEN/REFUNDED proof.
+The two views share this repository and control-plane core, but each page hides
+the other network's evidence so a judge sees one coherent submission at a time.
+
+Read the dedicated [BNB submission brief](docs/submissions/bnb.md) or
+[Arbitrum submission brief](docs/submissions/arbitrum.md) when filing a form.
 
 ## Run it in five minutes
 

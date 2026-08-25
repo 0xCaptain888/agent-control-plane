@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p _site/docs _site/deployments _site/evidence/judge _site/assets/social
           cp -R apps/marketplace/src/. _site/
-          cp docs/*.md _site/docs/
+          cp -R docs/. _site/docs/
           cp deployments/*.json _site/deployments/
           cp evidence/judge/*.json _site/evidence/judge/
           cp assets/social/*.svg _site/assets/social/

@@ -31,6 +31,11 @@ bad result freezes funds instead of silently paying.
 
 ## Evidence links
 
+Use the network-specific Marketplace URL in the submission form:
+
+- [BNB Agent Studio Edition](https://0xcaptain888.github.io/agent-control-plane/?network=bnb)
+- [Arbitrum Agentic AI Edition](https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum)
+
 - [Live Marketplace](https://0xcaptain888.github.io/agent-control-plane/)
 - [GitHub repository](https://github.com/0xCaptain888/agent-control-plane)
 - [Latest SafeSwap settlement — ERC-8183 Job 614](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
