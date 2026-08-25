@@ -35,6 +35,8 @@
     "demo:arbitrum:verification-artifact": "node scripts/arbitrum-verification-artifact.mjs",
     "demo:treasury-agent": "node scripts/treasury-agent-demo.mjs",
     "demo:yield-scout:live": "tsx scripts/yield-scout-live-demo.ts",
+    "demo:yield-scout:arbitrum": "tsx scripts/yield-scout-arbitrum-task.ts",
+    "demo:yield-scout:evidence": "node scripts/yield-scout-arbitrum-evidence.mjs",
     "mainnet:preflight": "tsx scripts/mainnet-preflight.ts",
     "security:preflight": "node scripts/security-preflight.mjs",
     "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge",

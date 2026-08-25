@@ -1,0 +1,119 @@
+{
+  "status": "VERIFIED",
+  "network": "arbitrum-sepolia",
+  "chainId": 421614,
+  "contract": "0xe2E444a7B742829f9d45B1165b352DbBf9F9d999",
+  "taskId": "4",
+  "creator": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+  "executor": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+  "budgetWei": "100000000000000",
+  "deadline": "1787632467",
+  "policyHash": "0xd604ab3563e1f20f8e1689ca88688b36ecd47da01167e087e7e198e04e4635d2",
+  "evidenceHash": "0x72ba140a432f05051d8a2d3c34c3c3c4c336e226ce82205a1fce0c01d476d5c5",
+  "decisionReason": "0x3c5732df980d27e5bf1cfb5ccf11dde0c46de54962edab6cfe3c2dd14b8832d6",
+  "source": "defillama",
+  "sourceUrl": "https://yields.llama.fi/pools",
+  "fetchedAt": "2026-08-25T04:04:27.307Z",
+  "policy": {
+    "chain": "BSC",
+    "symbols": [
+      "USDC",
+      "USDT",
+      "BNB"
+    ],
+    "minTvlUsd": 100000,
+    "minApy": 0.1,
+    "requireStablecoin": false,
+    "maxAgeSeconds": 300,
+    "maxCandidates": 3
+  },
+  "selected": {
+    "pool": "a116d53b-69ab-4665-a7c1-6813b3ebb728",
+    "chain": "BSC",
+    "project": "zerobase-cedefi",
+    "symbol": "USDT",
+    "tvlUsd": 18834194,
+    "apy": 8.76,
+    "apyBase": 6.76,
+    "apyReward": 2,
+    "stablecoin": true,
+    "ilRisk": "no",
+    "score": 33.876,
+    "reasons": [
+      "TVL 18,834,194 USD meets minimum",
+      "APY 8.76% meets minimum",
+      "stablecoin pool",
+      "no IL risk reported"
+    ]
+  },
+  "candidates": [
+    {
+      "pool": "a116d53b-69ab-4665-a7c1-6813b3ebb728",
+      "chain": "BSC",
+      "project": "zerobase-cedefi",
+      "symbol": "USDT",
+      "tvlUsd": 18834194,
+      "apy": 8.76,
+      "apyBase": 6.76,
+      "apyReward": 2,
+      "stablecoin": true,
+      "ilRisk": "no",
+      "score": 33.876,
+      "reasons": [
+        "TVL 18,834,194 USD meets minimum",
+        "APY 8.76% meets minimum",
+        "stablecoin pool",
+        "no IL risk reported"
+      ]
+    },
+    {
+      "pool": "51a44bca-7228-4138-a61f-fab53b7ef4c2",
+      "chain": "BSC",
+      "project": "zerobase-cedefi",
+      "symbol": "USDC",
+      "tvlUsd": 2048279,
+      "apy": 8.76,
+      "apyBase": 6.76,
+      "apyReward": 2,
+      "stablecoin": true,
+      "ilRisk": "no",
+      "score": 33.876,
+      "reasons": [
+        "TVL 2,048,279 USD meets minimum",
+        "APY 8.76% meets minimum",
+        "stablecoin pool",
+        "no IL risk reported"
+      ]
+    },
+    {
+      "pool": "a451a8da-e3c4-4049-9bab-ea90ab96234a",
+      "chain": "BSC",
+      "project": "bitway-earn",
+      "symbol": "USDT",
+      "tvlUsd": 25882976,
+      "apy": 8,
+      "apyBase": 8,
+      "apyReward": null,
+      "stablecoin": true,
+      "ilRisk": "no",
+      "score": 33.8,
+      "reasons": [
+        "TVL 25,882,976 USD meets minimum",
+        "APY 8.00% meets minimum",
+        "stablecoin pool",
+        "no IL risk reported"
+      ]
+    }
+  ],
+  "transactions": {
+    "create": "0xc5bbe027fe9fdf16223c061e0d1f6c86457803d9d783d9088a8c092772d3e5dc",
+    "submit": "0x1e6a8b1fe8540fdd62cbb8812e5ef62913940e0354875a24bb0fcbf064cc01f2",
+    "verify": "0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72"
+  },
+  "receipts": {
+    "createBlock": 301736674,
+    "submitBlock": 301736684,
+    "verifyBlock": 301736695
+  },
+  "explorer": "https://sepolia.arbiscan.io/tx/0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72"
+}

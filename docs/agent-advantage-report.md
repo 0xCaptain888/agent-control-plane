@@ -68,6 +68,14 @@ and an evidence hash. The command is read-only; no funds move. A production-like
 VerifyPay run should submit that exact hash in a fresh testnet task and release
 only after the verifier confirms the matching snapshot.
 
+That production-like testnet run now exists for Task `4`:
+
+- source: DeFiLlama pools;
+- selected pool: `zerobase-cedefi` USDT, `8.76% APY`, `$18,834,194 TVL`;
+- evidence hash: `0x72ba140a432f05051d8a2d3c34c3c3c4c336e226ce82205a1fce0c01d476d5c5`;
+- settlement: [Arbitrum Sepolia VERIFIED transaction](https://sepolia.arbiscan.io/tx/0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72);
+- independent check: `npm run demo:yield-scout:evidence`.
+
 ## Reproduce the benchmark
 
 Run:

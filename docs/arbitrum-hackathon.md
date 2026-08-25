@@ -46,6 +46,23 @@ Task `3` uses the same escrow lifecycle with `0.1 USDC`:
 - [Submit](https://sepolia.arbiscan.io/tx/0x995a17ba32c83499385e85c3fe3cd909407c7c124aeee99596a03c6429b711f3)
 - [Verify and release](https://sepolia.arbiscan.io/tx/0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b)
 
+### YieldScout live-data proof
+
+Task `4` connects a real DeFiLlama snapshot to the same escrow lifecycle:
+
+```bash
+npm run demo:yield-scout:arbitrum
+npm run demo:yield-scout:evidence
+```
+
+The run reads and normalizes the external data, hashes the selected result,
+creates a native testnet task, submits the exact hash, and verifies it on-chain.
+Task `4` is `VERIFIED`; no yield pool deposit is performed.
+
+- Selected pool: `zerobase-cedefi` USDT · `8.76% APY` · `$18,834,194 TVL`
+- Evidence hash: `0x72ba140a432f05051d8a2d3c34c3c3c4c336e226ce82205a1fce0c01d476d5c5`
+- [Verify and release](https://sepolia.arbiscan.io/tx/0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72)
+
 ## Reproduce locally
 
 Node.js 22 is recommended. The scripts read the deployer from the local

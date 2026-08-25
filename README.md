@@ -137,6 +137,8 @@ npm run demo:verify-pay
 npm run demo:arbitrum:evidence
 npm run demo:treasury-agent
 npm run demo:yield-scout:live
+npm run demo:yield-scout:arbitrum
+npm run demo:yield-scout:evidence
 ```
 
 `demo:arbitrum:evidence` is a read-only RPC check. It independently verifies
@@ -155,6 +157,11 @@ YieldScout also has a real external data-source path. `demo:yield-scout:live`
 reads DeFiLlama pools, applies a TVL/APY/asset policy, ranks up to three
 candidates, and emits an evidence hash. It is read-only and fails closed when
 the source is unavailable. See [YieldScout data source](docs/yield-scout-data-source.md).
+
+The full path has also been completed on Arbitrum Sepolia for Task `4`: the
+live DeFiLlama snapshot produced the submitted evidence hash, and the task was
+verified on-chain. Run `demo:yield-scout:evidence` to independently check the
+contract, policy hash, evidence hash, source marker, and settlement receipt.
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running
@@ -207,6 +214,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | ERC-8183 task | Real BNB Testnet Job `614`, funded, submitted, settled, and `COMPLETED` |
 | Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment, verified source, and `VERIFIED` task |
 | Arbitrum evidence check | Read-only RPC verification of contract, task state, hashes, and settlement receipt |
+| YieldScout live proof | DeFiLlama snapshot → evidence hash → Arbitrum Sepolia Task `4` `VERIFIED` |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |

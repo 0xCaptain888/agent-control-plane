@@ -37,6 +37,7 @@ bad result freezes funds instead of silently paying.
 - [Arbitrum verified source, ABI, and Read/Write Contract UI](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code)
 - [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
 - [Arbitrum real frozen proof](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
+- [YieldScout live DeFiLlama VERIFIED proof · Task 4](https://sepolia.arbiscan.io/tx/0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72)
 - [Arbitrum Agentic AI guide](arbitrum-hackathon.md)
 - [BNB hackathon guide](bnb-hackathon.md)
 - [Judge demo](demo.md)
@@ -98,6 +99,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
 - [ ] Treasury Agent decision trace is shown before the first transaction.
 - [ ] If YieldScout is shown, its source, fetched timestamp, policy, and evidence hash are visible.
+- [ ] YieldScout Task `4` and its public Arbitrum settlement are included when using the live-data path.
 - [ ] The video opens the real Arbitrum `VERIFIED` and `FROZEN` transactions.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.
 - [ ] Settlement transaction and Receipt evidence hash are included in the form.
