@@ -25,6 +25,17 @@ Explorer links:
 - [Verified settlement transaction](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
 - [Real FROZEN transaction](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9) — Task `2`, refunded immediately after the freeze proof
 
+### Real ERC-20 proof
+
+Task `3` uses the same escrow lifecycle with `0.1 USDC`:
+
+- Token: `0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d`
+- Evidence hash: `0x5555555555555555555555555555555555555555555555555555555555555555`
+- [Approve](https://sepolia.arbiscan.io/tx/0xaf4e68ed72b107fb8b4c452741ff0527bc9ffd0f4349fe2534549b0c6c8c992a)
+- [Create](https://sepolia.arbiscan.io/tx/0x5c3a3c637bc464b70fb1c0f04ef5a8292810a8617f50522d81690ae2ab20da2c)
+- [Submit](https://sepolia.arbiscan.io/tx/0x995a17ba32c83499385e85c3fe3cd909407c7c124aeee99596a03c6429b711f3)
+- [Verify and release](https://sepolia.arbiscan.io/tx/0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b)
+
 ## Reproduce locally
 
 Node.js 22 is recommended. The scripts read the deployer from the local
