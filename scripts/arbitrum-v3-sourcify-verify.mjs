@@ -34,7 +34,9 @@ const serialized = { submittedAt: new Date().toISOString(), endpoint, submission
 writeFileSync(resolve(root, "artifacts/arbiscan-v3/sourcify-verification.json"), `${JSON.stringify(serialized, null, 2)}\n`);
 const match = result.contract?.match ?? submission.contract?.match ?? submission.match;
 if (!new Set(["exact_match", "match", "perfect"]).has(String(match).toLowerCase())) throw new Error(`sourcify_verification_incomplete:${JSON.stringify(result)}`);
-deployment.sourceVerification = "sourcify-exact-match; arbiscan-pending";
+deployment.sourceVerification = deployment.arbiscanVerification === "exact_match"
+  ? "arbiscan-exact-match; sourcify-exact-match; blockscout-verified"
+  : "sourcify-exact-match; arbiscan-pending";
 deployment.sourcifyVerification = "exact_match";
 deployment.sourcifyUrl = `https://repo.sourcify.dev/421614/${deployment.address}`;
 deployment.blockscoutUrl = result.externalVerifications?.blockscout?.explorerUrl ?? deployment.blockscoutUrl ?? `https://arbitrum-sepolia.blockscout.com/address/${deployment.address}`;

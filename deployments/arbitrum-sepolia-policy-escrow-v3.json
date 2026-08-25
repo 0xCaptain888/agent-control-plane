@@ -14,8 +14,11 @@
     "enabled": true,
     "runs": 200
   },
-  "sourceVerification": "sourcify-exact-match; arbiscan-pending",
-  "explorerUrl": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+  "sourceVerification": "arbiscan-exact-match; sourcify-exact-match; blockscout-verified",
+  "arbiscanVerification": "exact_match",
+  "arbiscanVerifiedAt": "2026-08-25",
+  "explorerUrl": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code",
+  "arbiscanCodeUrl": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code",
   "deploymentExplorerUrl": "https://sepolia.arbiscan.io/tx/0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447",
   "v3Proof": {
     "network": "arbitrum-sepolia",

@@ -129,6 +129,8 @@ verifier, formal dispute rules, monitoring, and a security review.
 The repository now contains a deployed `PolicyEscrowV3` with an immutable
 EIP-712 verifier that is separate from the owner. It addresses the
 creator-as-verifier limitation with real Arbitrum Sepolia `VERIFIED`, `FROZEN`,
-and refund transactions. Run `npm run demo:independent-verifier` and
+and refund transactions. Its source is publicly verified as an Arbiscan Exact
+Match, with matching Sourcify and Blockscout mirrors. Run
+`npm run demo:independent-verifier` and
 `npm run security:attack-matrix` for offline-safe replay tests; the
 `demo:arbitrum:v3:task` command sends new testnet transactions.

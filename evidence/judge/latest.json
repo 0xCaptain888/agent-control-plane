@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T09:38:19.139Z",
+  "generatedAt": "2026-08-25T10:05:31.840Z",
   "revisionCheck": "Run git rev-parse HEAD and compare it with the repository main branch.",
   "networkBoundary": {
     "arbitrum": "Arbitrum Sepolia testnet",
@@ -19,7 +19,8 @@
     "repository": "https://github.com/0xCaptain888/agent-control-plane",
     "marketplace": "https://0xcaptain888.github.io/agent-control-plane/",
     "verifiedV2Contract": "https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code",
-    "independentVerifierV3Contract": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+    "independentVerifierV3Contract": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code",
+    "v3ArbiscanExactMatch": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code",
     "v3SourcifyExactMatch": "https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
     "v3BlockscoutVerifiedSource": "https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
     "v3Deployment": "https://sepolia.arbiscan.io/tx/0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447",
@@ -31,7 +32,7 @@
     "contract": "0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
     "owner": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
     "verifier": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
-    "sourceVerification": "sourcify-exact-match; arbiscan-pending",
+    "sourceVerification": "arbiscan-exact-match; sourcify-exact-match; blockscout-verified",
     "ownerIsVerifier": false
   },
   "evidencePolicy": "Real chain receipts are linked separately; deterministic demos and benchmarks are explicitly labeled builder-controlled."

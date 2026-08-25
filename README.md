@@ -287,8 +287,8 @@ owner. The verifier signs EIP-712 decisions off-chain; the contract binds the
 signature to the task, policy, evidence, chain, contract, issue time, and
 expiry before releasing or freezing funds.
 
-- Contract: [`0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB`](https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
-- Source: [Sourcify exact creation/runtime match](https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB) · [Blockscout verified source](https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- Contract: [`0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB`](https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code) — **Source Code Verified · Exact Match**
+- Source mirrors: [Arbiscan exact match](https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code) · [Sourcify exact creation/runtime match](https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB) · [Blockscout verified source](https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
 - Owner: `0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77`
 - Independent verifier: `0xB426c5bd7bbAc95892943e95819F7407E989fD34`
 - Deployment: [`0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447`](https://sepolia.arbiscan.io/tx/0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447)

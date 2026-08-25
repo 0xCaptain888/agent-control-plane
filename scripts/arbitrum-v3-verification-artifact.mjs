@@ -23,6 +23,9 @@ writeFileSync(resolve(outputDir, "verification.json"), `${JSON.stringify({
   license: "MIT",
   constructorArguments,
   verifier: deployment.verifier,
+  verificationStatus: deployment.arbiscanVerification ?? "pending",
+  verifiedAt: deployment.arbiscanVerifiedAt ?? null,
+  arbiscanCodeUrl: deployment.arbiscanCodeUrl ?? `${deployment.explorerUrl}#code`,
   uploadFile: "artifacts/arbiscan-v3/PolicyEscrowV3-standard-input.json"
 }, null, 2)}\n`);
 console.log(JSON.stringify({ status: "ready", outputDir: "artifacts/arbiscan-v3", contractAddress: deployment.address, verifier: deployment.verifier }, null, 2));

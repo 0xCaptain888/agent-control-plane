@@ -5,7 +5,7 @@
   "owner": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
   "verifier": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
   "verifierIndependentFromOwner": true,
-  "sourceVerification": "sourcify-exact-match; arbiscan-pending",
+  "sourceVerification": "arbiscan-exact-match; sourcify-exact-match; blockscout-verified",
   "sourcifyUrl": "https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
   "blockscoutUrl": "https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
   "attestationScheme": "EIP-712",

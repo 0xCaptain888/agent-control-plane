@@ -12,5 +12,8 @@
   "license": "MIT",
   "constructorArguments": "000000000000000000000000b426c5bd7bbac95892943e95819f7407e989fd34",
   "verifier": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
+  "verificationStatus": "exact_match",
+  "verifiedAt": "2026-08-25",
+  "arbiscanCodeUrl": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code",
   "uploadFile": "artifacts/arbiscan-v3/PolicyEscrowV3-standard-input.json"
 }

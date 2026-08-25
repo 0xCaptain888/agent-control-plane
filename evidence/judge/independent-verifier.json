@@ -9,7 +9,7 @@
     "deploymentTxHash": "0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447",
     "verifiedTaskTxHash": "0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702",
     "frozenTaskTxHash": "0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584",
-    "sourceVerification": "sourcify-exact-match; arbiscan-pending"
+    "sourceVerification": "arbiscan-exact-match; sourcify-exact-match; blockscout-verified"
   },
   "cases": [
     {

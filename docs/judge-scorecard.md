@@ -6,7 +6,7 @@ third-party audit, and external traction are not claimed.
 
 | Official dimension | Internal estimate | Current proof | Highest-value remaining evidence |
 | --- | --- | --- | --- |
-| Smart Contract Quality | 9.5/10 | Source-verified V2, Sourcify exact-match V3, separate verifier, real VERIFIED/FROZEN/refund paths, invariants | Arbiscan mirror is optional; formal audit is not claimed |
+| Smart Contract Quality | 9.6/10 | Arbiscan/Sourcify exact-match V3, source-verified V2, separate verifier, real VERIFIED/FROZEN/refund paths, invariants | Formal third-party audit is not claimed |
 | Product-Market Fit | 6.5/10 | Treasury Agent use case, public Marketplace, bounded activation, external test protocol | Three independent external-user records; current truthful count is 0/3 |
 | Innovation | 9.2/10 | Verify-to-Pay, visible failure states, live independent verifier boundary, open Agent discovery, explainable reputation | Demonstrate the verifier in the final video without diluting the main story |
 | Real-World Problem Solving | 8.2/10 | Real testnet escrow, live DeFiLlama evidence, policy recovery and 20-scenario impact fixture | One concise participant quote tied to a real receipt |
