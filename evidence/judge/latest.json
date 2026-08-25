@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T11:06:03.788Z",
+  "generatedAt": "2026-08-25T11:24:37.637Z",
   "revisionCheck": "Run git rev-parse HEAD and compare it with the repository main branch.",
   "networkBoundary": {
     "arbitrum": "Arbitrum Sepolia testnet",
@@ -27,7 +27,8 @@
     "v3Deployment": "https://sepolia.arbiscan.io/tx/0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447",
     "v3VerifiedTask": "https://sepolia.arbiscan.io/tx/0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702",
     "v3FrozenTask": "https://sepolia.arbiscan.io/tx/0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584",
-    "v3LiveEvidence": "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-v3-live-proof.json"
+    "v3LiveEvidence": "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-v3-live-proof.json",
+    "realAgentToAgentTask": "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-a2a-task.json"
   },
   "independentVerifier": {
     "contract": "0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",

@@ -37,10 +37,13 @@ intent → discover → quote → policy → escrow hold → seller execute
 npm run demo:agent-to-agent
 npm run demo:verify-pay
 npm run demo:arbitrum:judge
+npm run demo:arbitrum:a2a-evidence
 npm run judge:quick-check
 ```
 
-The first three commands are deterministic, builder-controlled evidence. The
-Arbitrum and BNB transaction links in the submission briefs are separate public
-testnet anchors; this document does not claim a mainnet execution or external
-user traction.
+The first three commands are deterministic, builder-controlled evidence. A
+separate real Arbitrum Sepolia Task `3` now binds the named Buyer/Seller pair to
+policy and evidence hashes and reaches `VERIFIED`; see
+[`evidence/judge/arbitrum-a2a-task.json`](../evidence/judge/arbitrum-a2a-task.json).
+The BNB and other Arbitrum links are separate public testnet anchors; this
+document does not claim a mainnet execution or external user traction.

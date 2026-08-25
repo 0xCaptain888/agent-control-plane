@@ -48,6 +48,7 @@ Use the network-specific Marketplace URL in the submission form:
 - [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
 - [Arbitrum real frozen proof](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
 - [YieldScout live DeFiLlama VERIFIED proof · Task 4](https://sepolia.arbiscan.io/tx/0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72)
+- [Real A2A Buyer/Seller Task 3 evidence](../evidence/judge/arbitrum-a2a-task.json)
 - [Arbitrum Agentic AI guide](arbitrum-hackathon.md)
 - [BNB hackathon guide](bnb-hackathon.md)
 - [Judge demo](demo.md)
@@ -135,6 +136,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] All four BNB Agent IDs are linked or visible in the Marketplace.
 - [ ] Job `614` is shown as `COMPLETED` with its public settlement transaction.
 - [ ] Arbitrum Sepolia contract address and verified settlement are included for the Agentic AI submission.
+- [ ] Real Buyer/Seller Task `3` is linked with named `treasury-agent` and `yield-scout` metadata.
 - [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
 - [ ] The video shows the complete Buyer → Seller → Policy → Verify → Pay path.
 - [ ] The one-command `npm run judge:quick-check` passes before submission.

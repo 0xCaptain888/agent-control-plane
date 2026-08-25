@@ -7,7 +7,7 @@ const bundle = {
   generatedAt: new Date().toISOString(),
   revisionCheck: "Run git rev-parse HEAD and compare it with the repository main branch.",
   networkBoundary: { arbitrum: "Arbitrum Sepolia testnet", bnb: "BNB Testnet", mainnetExecution: false },
-  commands: ["npm run judge:quick-check", "npm run demo:agent-to-agent", "npm run demo:independent-verifier", "npm run security:attack-matrix", "npm run demo:arbitrum:evidence", "npm run demo:bnb:evidence", "npm run submission:check"],
+  commands: ["npm run judge:quick-check", "npm run demo:agent-to-agent", "npm run demo:independent-verifier", "npm run security:attack-matrix", "npm run demo:arbitrum:evidence", "npm run demo:arbitrum:a2a-evidence", "npm run demo:bnb:evidence", "npm run submission:check"],
   transactionCommand: "npm run demo:arbitrum:v3:task (Arbitrum Sepolia transactions; do not run during read-only judging)",
   links: {
     repository: "https://github.com/0xCaptain888/agent-control-plane",
@@ -20,7 +20,8 @@ const bundle = {
     v3Deployment: v3.deploymentExplorerUrl,
     v3VerifiedTask: v3.v3Proof.verified.verifyExplorerUrl,
     v3FrozenTask: v3.v3Proof.frozen.verifyExplorerUrl,
-    v3LiveEvidence: "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-v3-live-proof.json"
+    v3LiveEvidence: "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-v3-live-proof.json",
+    realAgentToAgentTask: "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-a2a-task.json"
   },
   independentVerifier: { contract: v3.address, owner: v3.owner, verifier: v3.verifier, sourceVerification: v3.sourceVerification, ownerIsVerifier: v3.owner.toLowerCase() === v3.verifier.toLowerCase() },
   evidencePolicy: "Real chain receipts are linked separately; deterministic demos and benchmarks are explicitly labeled builder-controlled."

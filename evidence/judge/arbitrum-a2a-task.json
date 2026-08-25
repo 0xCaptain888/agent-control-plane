@@ -1,0 +1,82 @@
+{
+  "kind": "real-testnet-agent-to-agent-task",
+  "network": "arbitrum-sepolia",
+  "chainId": 421614,
+  "contract": "0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+  "status": "VERIFIED",
+  "budgetWei": "100000000000000",
+  "buyerAgent": {
+    "id": "treasury-agent",
+    "role": "buyer",
+    "address": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+    "objective": "Compare stablecoin yield before allocating treasury funds"
+  },
+  "sellerAgent": {
+    "id": "yield-scout",
+    "role": "seller",
+    "address": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
+    "capability": "yield_comparison",
+    "source": "DeFiLlama pools"
+  },
+  "policyMetadata": {
+    "buyerAgent": {
+      "id": "treasury-agent",
+      "role": "buyer",
+      "address": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+      "objective": "Compare stablecoin yield before allocating treasury funds"
+    },
+    "sellerAgent": {
+      "id": "yield-scout",
+      "role": "seller",
+      "address": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
+      "capability": "yield_comparison",
+      "source": "DeFiLlama pools"
+    },
+    "policy": {
+      "id": "treasury-yield-policy",
+      "version": "1.0.0",
+      "maxBudgetUSDC": "1.00",
+      "allowedAssets": [
+        "USDC"
+      ],
+      "minTvlUSD": 1000000,
+      "minApy": 5,
+      "requireVerification": true
+    },
+    "taskType": "agent-to-agent-yield-comparison"
+  },
+  "evidence": {
+    "source": "DeFiLlama pools",
+    "selectedPool": "zerobase-cedefi",
+    "asset": "USDC",
+    "apy": 8.76,
+    "tvlUSD": 18834194,
+    "quality": 0.97,
+    "buyerAgent": "treasury-agent",
+    "sellerAgent": "yield-scout"
+  },
+  "policyHash": "0x6da9ca334555eb190cc4eca5d55d0800b46f0be041ac1de8dd87962cfaa19631",
+  "evidenceHash": "0xf74daf7162d16a37d8610fa39362c9f16b4927f095a29af542aac7ad7b926402",
+  "attestationDigest": "0xe01c12c179c35c975571c3596d10d8b558801760b2ecd382718fa17547bdd7fa",
+  "transactions": {
+    "fundSeller": {
+      "hash": "0x470075668e75dad0f74e8c6d7c394dfd3702d8daed96de6378b4a5a7b14f5df5",
+      "url": "https://sepolia.arbiscan.io/tx/0x470075668e75dad0f74e8c6d7c394dfd3702d8daed96de6378b4a5a7b14f5df5",
+      "amountWei": "2000000000000000"
+    },
+    "create": {
+      "hash": "0xd61d79c76f749f758d6b6202f7cb7e66e01b83af42bcb6b6e26adc19bbf7a35f",
+      "url": "https://sepolia.arbiscan.io/tx/0xd61d79c76f749f758d6b6202f7cb7e66e01b83af42bcb6b6e26adc19bbf7a35f"
+    },
+    "submit": {
+      "hash": "0x5c57a0928112d562b5013b41e5f5a34dbabda7c021eee72d6d8450b65be1f078",
+      "url": "https://sepolia.arbiscan.io/tx/0x5c57a0928112d562b5013b41e5f5a34dbabda7c021eee72d6d8450b65be1f078"
+    },
+    "verifyAndRelease": {
+      "hash": "0x1d076c667ae6348c09f2805ef6209c2e39a7a9d1915482a7c61b342b9ad70ad0",
+      "url": "https://sepolia.arbiscan.io/tx/0x1d076c667ae6348c09f2805ef6209c2e39a7a9d1915482a7c61b342b9ad70ad0"
+    }
+  },
+  "verifier": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
+  "note": "Real Arbitrum Sepolia testnet task. Buyer and Seller names are bound into the policy/evidence metadata hashes; no mainnet claim."
+}

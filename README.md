@@ -318,6 +318,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | Arbitrum evidence check | Read-only RPC verification of contract, task state, hashes, and settlement receipt |
 | YieldScout live proof | DeFiLlama snapshot → evidence hash → Arbitrum Sepolia Task `4` `VERIFIED` |
 | Independent verifier | Real Arbitrum Sepolia V3 deployment with a separate verifier address, VERIFIED release, FROZEN decision, and refund proof |
+| Agent-to-Agent task | Real Arbitrum Sepolia Task `3`: Treasury Agent → YieldScout, named in policy/evidence metadata, `VERIFIED` and released |
 | Impact benchmark | 20 builder-controlled scenarios with explicit VERIFIED/BLOCKED/FROZEN/EXPIRED labels |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
@@ -383,6 +384,24 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 - Create: [`0x5c3a3c637bc464b70fb1c0f04ef5a8292810a8617f50522d81690ae2ab20da2c`](https://sepolia.arbiscan.io/tx/0x5c3a3c637bc464b70fb1c0f04ef5a8292810a8617f50522d81690ae2ab20da2c)
 - Submit: [`0x995a17ba32c83499385e85c3fe3cd909407c7c124aeee99596a03c6429b711f3`](https://sepolia.arbiscan.io/tx/0x995a17ba32c83499385e85c3fe3cd909407c7c124aeee99596a03c6429b711f3)
 - Verify / release: [`0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b`](https://sepolia.arbiscan.io/tx/0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b)
+
+### Real Buyer → Seller task
+
+Task `3` is a real Arbitrum Sepolia `PolicyEscrowV3` task whose public policy
+and evidence metadata name both participants:
+
+- Buyer: `treasury-agent` (`0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77`)
+- Seller: `yield-scout` (`0xB426c5bd7bbAc95892943e95819F7407E989fD34`)
+- Objective: compare stablecoin yield before allocating treasury funds
+- Policy hash: `0x6da9ca334555eb190cc4eca5d55d0800b46f0be041ac1de8dd87962cfaa19631`
+- Evidence hash: `0xf74daf7162d16a37d8610fa39362c9f16b4927f095a29af542aac7ad7b926402`
+- Create: [`0xd61d79c76f749f758d6b6202f7cb7e66e01b83af42bcb6b6e26adc19bbf7a35f`](https://sepolia.arbiscan.io/tx/0xd61d79c76f749f758d6b6202f7cb7e66e01b83af42bcb6b6e26adc19bbf7a35f)
+- Submit: [`0x5c57a0928112d562b5013b41e5f5a34dbabda7c021eee72d6d8450b65be1f078`](https://sepolia.arbiscan.io/tx/0x5c57a0928112d562b5013b41e5f5a34dbabda7c021eee72d6d8450b65be1f078)
+- Verify and release: [`0x1d076c667ae6348c09f2805ef6209c2e39a7a9d1915482a7c61b342b9ad70ad0`](https://sepolia.arbiscan.io/tx/0x1d076c667ae6348c09f2805ef6209c2e39a7a9d1915482a7c61b342b9ad70ad0)
+- Machine-readable evidence: [`evidence/judge/arbitrum-a2a-task.json`](evidence/judge/arbitrum-a2a-task.json)
+
+This is real Arbitrum Sepolia testnet evidence. The task budget is testnet
+ETH; no mainnet execution or external-user traction is claimed.
 
 ### Verified Contract
 

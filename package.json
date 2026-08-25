@@ -37,6 +37,8 @@
     "demo:arbitrum:v3:deploy": "node scripts/arbitrum-v3-deploy.mjs",
     "demo:arbitrum:v3:verification-artifact": "node scripts/arbitrum-v3-verification-artifact.mjs",
     "demo:arbitrum:v3:task": "node scripts/arbitrum-v3-task-demo.mjs",
+    "demo:arbitrum:a2a-task": "node scripts/arbitrum-a2a-task.mjs",
+    "demo:arbitrum:a2a-evidence": "node scripts/arbitrum-a2a-evidence.mjs",
     "demo:arbitrum:v3:evidence": "node scripts/arbitrum-v3-evidence-check.mjs",
     "demo:arbitrum:v3:sourcify": "node scripts/arbitrum-v3-sourcify-verify.mjs",
     "demo:treasury-agent": "node scripts/treasury-agent-demo.mjs",

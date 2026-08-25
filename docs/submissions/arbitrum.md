@@ -19,6 +19,8 @@ evidence, chain, contract, and expiry before funds release or freeze.
 - V3 FROZEN: <https://sepolia.arbiscan.io/tx/0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584>
 - V3 refund: <https://sepolia.arbiscan.io/tx/0xfdb02e85cc4d1e3110d35dfdc64317ef14b4f01daa56ffa62d3ff1e1b3398acc>
 - V2 ERC-20 proof: <https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code>
+- Real Buyer/Seller Task 3 evidence: [`evidence/judge/arbitrum-a2a-task.json`](../../evidence/judge/arbitrum-a2a-task.json)
+- Task 3 verify/release: <https://sepolia.arbiscan.io/tx/0x1d076c667ae6348c09f2805ef6209c2e39a7a9d1915482a7c61b342b9ad70ad0>
 
 ## Three-minute path
 
