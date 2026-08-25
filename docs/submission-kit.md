@@ -75,7 +75,9 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
 - Treasury Agent decision trace: intent → discover → compare → policy → decision.
 - YieldScout live external-data path with source timestamp, policy, candidate ranking, and evidence hash.
-- Four-domain live read-only data paths: DeFiLlama, Venus, BNB RPC + DeFiLlama prices, and DexScreener.
+- Four-domain live read-only data paths: DeFiLlama, Venus, BNB RPC + DeFiLlama prices, and PancakeSwap Router quotes.
+- Open ERC-8004 discovery and comparison for external BNB Testnet Agents, with identity-only/hirable states and observation warnings.
+- Explainable reputation components instead of unsupported opaque success rates.
 - `npm run benchmark:agent-advantage` reproducibly emits the source, timestamp, policy status, and evidence hash for all four profiles.
 - Canonical story: a Treasury Agent hires a Risk/Data Agent before moving funds.
 - Why Arbitrum: low-cost escrow settlement with public, independently checked evidence.
@@ -102,6 +104,9 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Treasury Agent decision trace is shown before the first transaction.
 - [ ] If YieldScout is shown, its source, fetched timestamp, policy, and evidence hash are visible.
 - [ ] Marketplace live-data section names the source for each domain Agent and links to the reproducible commands.
+- [ ] ERC-8004 discovery shows at least one external Agent and clearly separates identity, endpoint, and task history.
+- [ ] Reputation comparison shows observation counts and `insufficient_observations` for unproven Agents.
+- [ ] PancakeSwap quote is labeled read-only unless an actual transaction is separately linked.
 - [ ] Benchmark output is labeled builder-controlled and not an external-user or human-productivity study.
 - [ ] Every real comparison has a completed [task log](agent-advantage-task-log-template.md) with timestamps, raw outputs, source freshness, and evidence hash.
 - [ ] Any external-user result includes consent/reviewer notes and is not conflated with internal testing.

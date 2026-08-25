@@ -48,12 +48,25 @@ their BNB Testnet ERC-8183 activity:
 | YieldScout | DeFiLlama pools | APY, TVL, stablecoin and candidate ranking + evidence hash | `npm run demo:yield-scout:live` |
 | HealthGuard | Venus public markets API + optional Comptroller `getAccountLiquidity` | market risk, liquidity headroom and derived health factor; `BLOCKED` if account data is missing | `npm run demo:health-guard:live` |
 | RebalanceGuard | BNB JSON-RPC + DeFiLlama prices | balances, allocation drift and turnover policy | `npm run demo:rebalance-guard:live` |
-| SafeSwap | DexScreener public pair search | price, liquidity, volume and quote evidence | `npm run demo:safe-swap:live` |
+| SafeSwap | PancakeSwap V2 Router + public pair discovery | direct/multihop output, estimated price impact and quote evidence | `npm run demo:pancakeswap:live` |
 
 All four adapters are read-only and fail closed. A live snapshot is not a
 mainnet execution claim, an external-user claim, or a protocol endorsement.
 Run `npm run benchmark:agent-advantage` to emit one timestamped JSON report
 covering all four tasks.
+
+## Open Marketplace discovery
+
+The Marketplace is no longer limited to the four repository-owned profiles.
+It scans the BNB Testnet ERC-8004 Registry, queries arbitrary Agent IDs, parses
+registration metadata, classifies endpoint evidence, and compares external
+Agents. The pinned August 25, 2026 snapshot contains six external identities
+(`1906`–`1911`) and labels every one with zero observed tasks as
+`insufficient_observations`.
+
+Run `npm run demo:erc8004:discover`. See
+[`erc8004-discovery.md`](erc8004-discovery.md) and
+[`reputation-model.md`](reputation-model.md).
 
 For the required manual-versus-Agent evidence, use the
 [`Agent Advantage Task Log`](agent-advantage-task-log-template.md) and record

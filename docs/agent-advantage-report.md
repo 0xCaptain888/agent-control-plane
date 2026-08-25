@@ -138,6 +138,16 @@ for each real comparison. The template separates builder-controlled evidence
 from independent external-user evidence and prevents unsupported productivity
 or traction claims.
 
+Store completed JSON logs under `evidence/agent-advantage/` and run:
+
+```bash
+npm run evidence:advantage:check
+```
+
+The command reports `pending-external-evidence` until three valid independent
+external-user records exist. It fails only when a committed record is malformed
+or an external-user record lacks its reviewer/consent note.
+
 ## Live BNB Testnet evidence
 
 - ERC-8004 AgentGuard identity: `agentId=1898`.

@@ -1,0 +1,452 @@
+{
+  "network": "bnb-testnet",
+  "chainId": 97,
+  "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+  "scanned": {
+    "fromBlock": "0x7932a7a",
+    "toBlock": "0x793789a"
+  },
+  "generatedAt": "2026-08-25T07:42:58.589Z",
+  "evidenceClass": "live-chain-discovery",
+  "agents": [
+    {
+      "agentId": "1911",
+      "identityId": "erc8004:97:1911",
+      "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "chainId": 97,
+      "owner": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentWallet": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentUri": "data:application/json;base64,eyJkZXNjcmlwdGlvbiI6IjIxLWNlbGwgYWRhcHRpdmUgZ3JpZCBvbiBCTkIvVVNEVC4gUmUtY2VudGVycyBvbiBicmVha291dCwgaGFydmVzdHMgZXZlcnkgb3NjaWxsYXRpb24uIiwiaW1hZ2UiOiIiLCJuYW1lIjoiR3JpZEhhd2stMDciLCJyZWdpc3RyYXRpb25zIjpbeyJhZ2VudElkIjoxOTExLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1Ojk3OjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XSwic2VydmljZXMiOlt7ImVuZHBvaW50IjoiaHR0cHM6Ly9sb2NhbGhvc3Q6MzEwMC9tYXJrZXRwbGFjZS9HUkQtMDciLCJuYW1lIjoibWFya2V0cGxhY2UifV0sInR5cGUiOiJodHRwczovL2VpcHMuZXRoZXJldW0ub3JnL0VJUFMvZWlwLTgwMDQjcmVnaXN0cmF0aW9uLXYxIn0=",
+      "registration": {
+        "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+        "name": "GridHawk-07",
+        "description": "21-cell adaptive grid on BNB/USDT. Re-centers on breakout, harvests every oscillation.",
+        "services": [
+          {
+            "name": "marketplace",
+            "endpoint": "https://localhost:3100/marketplace/GRD-07"
+          }
+        ],
+        "capabilities": [],
+        "registrations": [
+          {
+            "agentId": 1911,
+            "agentRegistry": "eip155:97:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+          }
+        ]
+      },
+      "metadataStatus": "valid",
+      "endpointStatus": "not-declared",
+      "availability": "identity-only",
+      "discoveredAt": "2026-08-25T07:42:57.087Z",
+      "source": "erc8004-chain",
+      "reputation": {
+        "score": 45,
+        "grade": "D",
+        "observations": 0,
+        "components": [
+          {
+            "key": "onchain_identity",
+            "score": 20,
+            "max": 20,
+            "reason": "ERC-8004 owner resolved on-chain"
+          },
+          {
+            "key": "metadata",
+            "score": 15,
+            "max": 15,
+            "reason": "registration metadata valid"
+          },
+          {
+            "key": "endpoint",
+            "score": 0,
+            "max": 15,
+            "reason": "endpoint not-declared"
+          },
+          {
+            "key": "agent_wallet",
+            "score": 10,
+            "max": 10,
+            "reason": "payment wallet resolved"
+          },
+          {
+            "key": "verified_history",
+            "score": 0,
+            "max": 30,
+            "reason": "no observed task history"
+          },
+          {
+            "key": "freshness",
+            "score": 0,
+            "max": 10,
+            "reason": "no observed activity timestamp"
+          }
+        ],
+        "warning": "insufficient_observations"
+      }
+    },
+    {
+      "agentId": "1910",
+      "identityId": "erc8004:97:1910",
+      "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "chainId": 97,
+      "owner": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentWallet": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentUri": "data:application/json;base64,eyJkZXNjcmlwdGlvbiI6IkhlZGdlZCByZWJhbGFuY2luZyBcdTIwMTQga2VlcHMgZGVsdGEgbmV1dHJhbCwgaGFydmVzdHMgZmVlcyB3aXRob3V0IGRpcmVjdGlvbmFsIHJpc2suIiwiaW1hZ2UiOiIiLCJuYW1lIjoiRGVsdGEgRHJpZnRlciIsInJlZ2lzdHJhdGlvbnMiOlt7ImFnZW50SWQiOjE5MTAsImFnZW50UmVnaXN0cnkiOiJlaXAxNTU6OTc6MHg4MDA0QTgxOEJGQjkxMjIzM2M0OTE4NzFiM2Q4NGM4OUE0OTRCRDllIn1dLCJzZXJ2aWNlcyI6W3siZW5kcG9pbnQiOiJodHRwczovL2xvY2FsaG9zdDozMTAwL21hcmtldHBsYWNlL1JORy0wNyIsIm5hbWUiOiJtYXJrZXRwbGFjZSJ9XSwidHlwZSI6Imh0dHBzOi8vZWlwcy5ldGhlcmV1bS5vcmcvRUlQUy9laXAtODAwNCNyZWdpc3RyYXRpb24tdjEifQ==",
+      "registration": {
+        "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+        "name": "Delta Drifter",
+        "description": "Hedged rebalancing — keeps delta neutral, harvests fees without directional risk.",
+        "services": [
+          {
+            "name": "marketplace",
+            "endpoint": "https://localhost:3100/marketplace/RNG-07"
+          }
+        ],
+        "capabilities": [],
+        "registrations": [
+          {
+            "agentId": 1910,
+            "agentRegistry": "eip155:97:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+          }
+        ]
+      },
+      "metadataStatus": "valid",
+      "endpointStatus": "not-declared",
+      "availability": "identity-only",
+      "discoveredAt": "2026-08-25T07:42:57.178Z",
+      "source": "erc8004-chain",
+      "reputation": {
+        "score": 45,
+        "grade": "D",
+        "observations": 0,
+        "components": [
+          {
+            "key": "onchain_identity",
+            "score": 20,
+            "max": 20,
+            "reason": "ERC-8004 owner resolved on-chain"
+          },
+          {
+            "key": "metadata",
+            "score": 15,
+            "max": 15,
+            "reason": "registration metadata valid"
+          },
+          {
+            "key": "endpoint",
+            "score": 0,
+            "max": 15,
+            "reason": "endpoint not-declared"
+          },
+          {
+            "key": "agent_wallet",
+            "score": 10,
+            "max": 10,
+            "reason": "payment wallet resolved"
+          },
+          {
+            "key": "verified_history",
+            "score": 0,
+            "max": 30,
+            "reason": "no observed task history"
+          },
+          {
+            "key": "freshness",
+            "score": 0,
+            "max": 10,
+            "reason": "no observed activity timestamp"
+          }
+        ],
+        "warning": "insufficient_observations"
+      }
+    },
+    {
+      "agentId": "1909",
+      "identityId": "erc8004:97:1909",
+      "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "chainId": 97,
+      "owner": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentWallet": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentUri": "data:application/json;base64,eyJkZXNjcmlwdGlvbiI6IkNvbmNlbnRyYXRlZCBMUCB3aXRoIGR5bmFtaWMgd2lkdGggXHUyMDE0IHRhcmdldHMgMi0zXHUwMGQ3IGZlZSBBUFIgdnMgc3RhdGljIHJhbmdlLiIsImltYWdlIjoiIiwibmFtZSI6IkJhbmRpdCBMUCIsInJlZ2lzdHJhdGlvbnMiOlt7ImFnZW50SWQiOjE5MDksImFnZW50UmVnaXN0cnkiOiJlaXAxNTU6OTc6MHg4MDA0QTgxOEJGQjkxMjIzM2M0OTE4NzFiM2Q4NGM4OUE0OTRCRDllIn1dLCJzZXJ2aWNlcyI6W3siZW5kcG9pbnQiOiJodHRwczovL2xvY2FsaG9zdDozMTAwL21hcmtldHBsYWNlL1JORy0wNCIsIm5hbWUiOiJtYXJrZXRwbGFjZSJ9XSwidHlwZSI6Imh0dHBzOi8vZWlwcy5ldGhlcmV1bS5vcmcvRUlQUy9laXAtODAwNCNyZWdpc3RyYXRpb24tdjEifQ==",
+      "registration": {
+        "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+        "name": "Bandit LP",
+        "description": "Concentrated LP with dynamic width — targets 2-3× fee APR vs static range.",
+        "services": [
+          {
+            "name": "marketplace",
+            "endpoint": "https://localhost:3100/marketplace/RNG-04"
+          }
+        ],
+        "capabilities": [],
+        "registrations": [
+          {
+            "agentId": 1909,
+            "agentRegistry": "eip155:97:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+          }
+        ]
+      },
+      "metadataStatus": "valid",
+      "endpointStatus": "not-declared",
+      "availability": "identity-only",
+      "discoveredAt": "2026-08-25T07:42:57.265Z",
+      "source": "erc8004-chain",
+      "reputation": {
+        "score": 45,
+        "grade": "D",
+        "observations": 0,
+        "components": [
+          {
+            "key": "onchain_identity",
+            "score": 20,
+            "max": 20,
+            "reason": "ERC-8004 owner resolved on-chain"
+          },
+          {
+            "key": "metadata",
+            "score": 15,
+            "max": 15,
+            "reason": "registration metadata valid"
+          },
+          {
+            "key": "endpoint",
+            "score": 0,
+            "max": 15,
+            "reason": "endpoint not-declared"
+          },
+          {
+            "key": "agent_wallet",
+            "score": 10,
+            "max": 10,
+            "reason": "payment wallet resolved"
+          },
+          {
+            "key": "verified_history",
+            "score": 0,
+            "max": 30,
+            "reason": "no observed task history"
+          },
+          {
+            "key": "freshness",
+            "score": 0,
+            "max": 10,
+            "reason": "no observed activity timestamp"
+          }
+        ],
+        "warning": "insufficient_observations"
+      }
+    },
+    {
+      "agentId": "1908",
+      "identityId": "erc8004:97:1908",
+      "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "chainId": 97,
+      "owner": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentWallet": "0xe1da3bdd4189fdefb2ef8a73bd37a4083f284477",
+      "agentUri": "data:application/json;base64,eyJkZXNjcmlwdGlvbiI6IkF1dG8tcmVzZXRzIExQIHJhbmdlcyBhcm91bmQgdm9sYXRpbGl0eSBiYW5kcy4gTm8gb3V0LW9mLXJhbmdlIGdhcHMuIiwiaW1hZ2UiOiIiLCJuYW1lIjoiUmFuZ2VLZWVwZXIgdjIiLCJyZWdpc3RyYXRpb25zIjpbeyJhZ2VudElkIjoxOTA4LCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1Ojk3OjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XSwic2VydmljZXMiOlt7ImVuZHBvaW50IjoiaHR0cHM6Ly9sb2NhbGhvc3Q6MzEwMC9tYXJrZXRwbGFjZS9STkctMDEiLCJuYW1lIjoibWFya2V0cGxhY2UifV0sInR5cGUiOiJodHRwczovL2VpcHMuZXRoZXJldW0ub3JnL0VJUFMvZWlwLTgwMDQjcmVnaXN0cmF0aW9uLXYxIn0=",
+      "registration": {
+        "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+        "name": "RangeKeeper v2",
+        "description": "Auto-resets LP ranges around volatility bands. No out-of-range gaps.",
+        "services": [
+          {
+            "name": "marketplace",
+            "endpoint": "https://localhost:3100/marketplace/RNG-01"
+          }
+        ],
+        "capabilities": [],
+        "registrations": [
+          {
+            "agentId": 1908,
+            "agentRegistry": "eip155:97:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+          }
+        ]
+      },
+      "metadataStatus": "valid",
+      "endpointStatus": "not-declared",
+      "availability": "identity-only",
+      "discoveredAt": "2026-08-25T07:42:57.363Z",
+      "source": "erc8004-chain",
+      "reputation": {
+        "score": 45,
+        "grade": "D",
+        "observations": 0,
+        "components": [
+          {
+            "key": "onchain_identity",
+            "score": 20,
+            "max": 20,
+            "reason": "ERC-8004 owner resolved on-chain"
+          },
+          {
+            "key": "metadata",
+            "score": 15,
+            "max": 15,
+            "reason": "registration metadata valid"
+          },
+          {
+            "key": "endpoint",
+            "score": 0,
+            "max": 15,
+            "reason": "endpoint not-declared"
+          },
+          {
+            "key": "agent_wallet",
+            "score": 10,
+            "max": 10,
+            "reason": "payment wallet resolved"
+          },
+          {
+            "key": "verified_history",
+            "score": 0,
+            "max": 30,
+            "reason": "no observed task history"
+          },
+          {
+            "key": "freshness",
+            "score": 0,
+            "max": 10,
+            "reason": "no observed activity timestamp"
+          }
+        ],
+        "warning": "insufficient_observations"
+      }
+    },
+    {
+      "agentId": "1907",
+      "identityId": "erc8004:97:1907",
+      "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "chainId": 97,
+      "owner": "0x26e94a350d2d0b118716dc17dc98730a77a8b85e",
+      "agentWallet": "0x26e94a350d2d0b118716dc17dc98730a77a8b85e",
+      "agentUri": "data:application/json;base64,eyJuYW1lIjoiQWdlbnRQcm9vZiBIZWFsdGggRmFjdG9yIE1vbml0b3IiLCJkZXNjcmlwdGlvbiI6IlNlbGYtYnVpbHQgQWdlbnRQcm9vZiBhZ2VudCB0aGF0IG1vbml0b3JzIGEgd2FsbGV0J3MgdGVzdG5ldCBCTkIgYmFsYW5jZSBhbmQgcmVwb3J0cyBhIGhlYWx0aCBzaWduYWwsIHN1Ym1pdHRpbmcgYSByZWFsIGZlZWRiYWNrIHRyYW5zYWN0aW9uIHRvIHRoZSBFUkMtODAwNCBSZXB1dGF0aW9uIFJlZ2lzdHJ5IGVhY2ggcnVuLiIsImVuZHBvaW50cyI6W3sibmFtZSI6Im1vbml0b3IiLCJlbmRwb2ludCI6Imh0dHBzOi8vYWdlbnRwcm9vZi5leGFtcGxlL2FwaS9hZ2VudHMvc2VsZi1idWlsdC9oZWFsdGgtZmFjdG9yLW1vbml0b3IiLCJ2ZXJzaW9uIjoiMC4xLjAifV19",
+      "metadataStatus": "invalid",
+      "endpointStatus": "not-declared",
+      "availability": "identity-only",
+      "discoveredAt": "2026-08-25T07:42:57.462Z",
+      "source": "erc8004-chain",
+      "reputation": {
+        "score": 30,
+        "grade": "D",
+        "observations": 0,
+        "components": [
+          {
+            "key": "onchain_identity",
+            "score": 20,
+            "max": 20,
+            "reason": "ERC-8004 owner resolved on-chain"
+          },
+          {
+            "key": "metadata",
+            "score": 0,
+            "max": 15,
+            "reason": "registration metadata invalid"
+          },
+          {
+            "key": "endpoint",
+            "score": 0,
+            "max": 15,
+            "reason": "endpoint not-declared"
+          },
+          {
+            "key": "agent_wallet",
+            "score": 10,
+            "max": 10,
+            "reason": "payment wallet resolved"
+          },
+          {
+            "key": "verified_history",
+            "score": 0,
+            "max": 30,
+            "reason": "no observed task history"
+          },
+          {
+            "key": "freshness",
+            "score": 0,
+            "max": 10,
+            "reason": "no observed activity timestamp"
+          }
+        ],
+        "warning": "insufficient_observations"
+      }
+    },
+    {
+      "agentId": "1906",
+      "identityId": "erc8004:97:1906",
+      "registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+      "chainId": 97,
+      "owner": "0xb0f7681668f916eed97da066d31aa295d34727c0",
+      "agentWallet": "0xb0f7681668f916eed97da066d31aa295d34727c0",
+      "agentUri": "data:application/json;base64,eyJkZXNjcmlwdGlvbiI6IkJTQyBUZXN0bmV0IEVSQy04MTgzIHNlcnZpY2Ugc2VsbGVyIFx1MjAxNCByZWFsIG5lZ290aWF0ZWQgcXVvdGUgc2VydmljZSwgdGVzdG5ldC1vbmx5IiwiaW1hZ2UiOiIiLCJuYW1lIjoiQk5CIEFnZW50IFN0dWRpbyB2MiBUZXN0bmV0IFNlbGxlciIsInJlZ2lzdHJhdGlvbnMiOlt7ImFnZW50SWQiOjE5MDYsImFnZW50UmVnaXN0cnkiOiJlaXAxNTU6OTc6MHg4MDA0QTgxOEJGQjkxMjIzM2M0OTE4NzFiM2Q4NGM4OUE0OTRCRDllIn1dLCJzZXJ2aWNlcyI6W3siZW5kcG9pbnQiOiJodHRwczovL2ZsdXgtbWFuYWdlbWVudC1oZWxwcy1hdHRlbmRlZC50cnljbG91ZGZsYXJlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJuYW1lIjoiQTJBIn1dLCJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSJ9",
+      "registration": {
+        "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+        "name": "BNB Agent Studio v2 Testnet Seller",
+        "description": "BSC Testnet ERC-8183 service seller — real negotiated quote service, testnet-only",
+        "services": [
+          {
+            "name": "A2A",
+            "endpoint": "https://flux-management-helps-attended.trycloudflare.com/.well-known/agent-card.json"
+          }
+        ],
+        "capabilities": [],
+        "registrations": [
+          {
+            "agentId": 1906,
+            "agentRegistry": "eip155:97:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+          }
+        ]
+      },
+      "metadataStatus": "valid",
+      "endpointStatus": "self-attested",
+      "availability": "hirable",
+      "discoveredAt": "2026-08-25T07:42:57.563Z",
+      "source": "erc8004-chain",
+      "reputation": {
+        "score": 52,
+        "grade": "C",
+        "observations": 0,
+        "components": [
+          {
+            "key": "onchain_identity",
+            "score": 20,
+            "max": 20,
+            "reason": "ERC-8004 owner resolved on-chain"
+          },
+          {
+            "key": "metadata",
+            "score": 15,
+            "max": 15,
+            "reason": "registration metadata valid"
+          },
+          {
+            "key": "endpoint",
+            "score": 7,
+            "max": 15,
+            "reason": "endpoint self-attested"
+          },
+          {
+            "key": "agent_wallet",
+            "score": 10,
+            "max": 10,
+            "reason": "payment wallet resolved"
+          },
+          {
+            "key": "verified_history",
+            "score": 0,
+            "max": 30,
+            "reason": "no observed task history"
+          },
+          {
+            "key": "freshness",
+            "score": 0,
+            "max": 10,
+            "reason": "no observed activity timestamp"
+          }
+        ],
+        "warning": "insufficient_observations"
+      }
+    }
+  ],
+  "caveat": "ERC-8004 identity and self-declared metadata do not prove task quality. Agents without observed task history remain insufficient-observations."
+}

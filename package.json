@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --test examples/judge-demo.test.mjs examples/agent-verify-pay.test.mjs examples/arbitrum-contract.test.mjs examples/arbitrum-contract-invariants.test.mjs examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs && tsx --test apps/api/test/*.test.ts packages/observability/test/*.test.ts packages/receipts/test/*.test.ts packages/control-plane/test/*.test.ts packages/marketplace/test/*.test.ts packages/persistence/test/*.test.ts packages/tenancy/test/*.test.ts packages/session-policy/test/*.test.ts packages/reliability/test/*.test.ts adapters/x402/test/*.test.ts adapters/bnb/test/*.test.ts adapters/defillama/test/*.test.ts adapters/venus/test/*.test.ts adapters/portfolio/test/*.test.ts adapters/dexscreener/test/*.test.ts adapters/erc8004/test/*.test.ts adapters/erc8183/test/*.test.ts adapters/okx/test/*.test.ts adapters/solana/test/*.test.ts",
+    "test": "node --test examples/judge-demo.test.mjs examples/agent-verify-pay.test.mjs examples/arbitrum-contract.test.mjs examples/arbitrum-contract-invariants.test.mjs examples/safe-trade/test/*.test.mjs examples/api-procurement/test/*.test.mjs examples/okx-trade/test/*.test.mjs examples/agent-commerce/test/*.test.mjs examples/treasury-guard/test/*.test.mjs && tsx --test apps/api/test/*.test.ts packages/observability/test/*.test.ts packages/receipts/test/*.test.ts packages/control-plane/test/*.test.ts packages/marketplace/test/*.test.ts packages/persistence/test/*.test.ts packages/tenancy/test/*.test.ts packages/session-policy/test/*.test.ts packages/reliability/test/*.test.ts adapters/x402/test/*.test.ts adapters/bnb/test/*.test.ts adapters/defillama/test/*.test.ts adapters/venus/test/*.test.ts adapters/portfolio/test/*.test.ts adapters/dexscreener/test/*.test.ts adapters/pancakeswap/test/*.test.ts adapters/erc8004/test/*.test.ts adapters/erc8183/test/*.test.ts adapters/okx/test/*.test.ts adapters/solana/test/*.test.ts",
     "api:dev": "tsx apps/api/src/start.ts",
     "db:backup": "node scripts/backup-postgres.mjs",
     "db:restore": "node scripts/restore-postgres.mjs",
@@ -40,7 +40,10 @@
     "demo:health-guard:live": "tsx scripts/health-guard-live-demo.ts",
     "demo:rebalance-guard:live": "tsx scripts/rebalance-guard-live-demo.ts",
     "demo:safe-swap:live": "tsx scripts/safe-swap-live-demo.ts",
+    "demo:pancakeswap:live": "tsx scripts/pancakeswap-live-demo.ts",
+    "demo:erc8004:discover": "tsx scripts/erc8004-discover.ts",
     "benchmark:agent-advantage": "tsx scripts/agent-advantage-benchmark.ts",
+    "evidence:advantage:check": "node scripts/agent-advantage-log-check.mjs",
     "mainnet:preflight": "tsx scripts/mainnet-preflight.ts",
     "security:preflight": "node scripts/security-preflight.mjs",
     "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge",
@@ -60,6 +63,8 @@
   },
   "overrides": {
     "rpc-websockets": "9.0.2",
+    "tmp": "0.2.7",
+    "ws": "8.21.0",
     "uuid": "11.1.1"
   },
   "devDependencies": {

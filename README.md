@@ -142,6 +142,8 @@ npm run demo:yield-scout:evidence
 npm run demo:health-guard:live
 npm run demo:rebalance-guard:live
 npm run demo:safe-swap:live
+npm run demo:pancakeswap:live
+npm run demo:erc8004:discover
 npm run benchmark:agent-advantage
 ```
 
@@ -170,9 +172,19 @@ contract, policy hash, evidence hash, source marker, and settlement receipt.
 The other three BNB profiles expose the same evidence discipline through
 read-only public data paths: HealthGuard reads Venus market/account liquidity,
 RebalanceGuard combines BNB JSON-RPC balances with DeFiLlama prices, and
-SafeSwap reads DexScreener pair quotes. Each adapter hashes the exact snapshot
+SafeSwap reads both public pair data and PancakeSwap V2 Router quotes. Each adapter hashes the exact snapshot
 and fails closed when data is unavailable or outside policy. These probes do
 not execute swaps, repayments, or rebalances. See the [Agent Advantage Report](docs/agent-advantage-report.md).
+
+The Marketplace can also scan recent BNB Testnet ERC-8004 registrations or
+query arbitrary Agent IDs. It resolves identity owner, Agent wallet and
+registration metadata, then separates `identity-only`, `hirable`, endpoint
+proof and verified task history. See [ERC-8004 discovery](docs/erc8004-discovery.md)
+and the [explainable reputation model](docs/reputation-model.md).
+
+The PancakeSwap-native SafeSwap path compares direct and multihop V2 Router
+quotes and applies a price-impact policy without approving tokens or sending a
+trade. See [PancakeSwap SafeSwap](docs/pancakeswap-safe-swap.md).
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running

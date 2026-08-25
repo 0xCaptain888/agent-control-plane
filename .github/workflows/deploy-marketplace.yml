@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "apps/marketplace/src/**"
+      - "docs/**"
+      - "deployments/*.json"
       - ".github/workflows/deploy-marketplace.yml"
   workflow_dispatch:
 
@@ -28,10 +30,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Build judge site artifact
+        run: |
+          mkdir -p _site/docs _site/deployments
+          cp -R apps/marketplace/src/. _site/
+          cp docs/*.md _site/docs/
+          cp deployments/*.json _site/deployments/
       - name: Upload Marketplace
         uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/marketplace/src
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
