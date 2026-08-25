@@ -1,8 +1,8 @@
 # AgentGuard submission kit
 
-This is the short version to reuse for BNB, OKX, wallet, API-commerce, and
-general Agent hackathons. Keep the implementation stable and change only the
-vertical proof that matches the track.
+This is the short version to reuse for Arbitrum Agentic AI, BNB, OKX, wallet,
+API-commerce, and general Agent hackathons. Keep the implementation stable and
+change only the vertical proof that matches the track.
 
 ## One-line pitch
 
@@ -22,8 +22,8 @@ and a failed outcome freezes funds instead of silently paying.
 
 ```text
 0:00  Problem: Agents can act, but users cannot bound or verify them.
-0:20  Marketplace: discover SafeSwap and show ERC-8004 evidence.
-0:50  VERIFIED: 50 USDT budget, valid fill, payment released.
+0:20  Marketplace: show the Arbitrum Sepolia PolicyEscrow and Agent evidence.
+0:50  VERIFIED: funded Arbitrum task, matching evidence, payment released.
 1:25  BLOCKED: oversized budget never reaches the adapter.
 1:55  FROZEN: bad fill fails verification and holds payment.
 2:25  Receipt: policy, identity, execution proof, and recovery reason.
@@ -35,6 +35,9 @@ and a failed outcome freezes funds instead of silently paying.
 - [Live Marketplace](https://0xcaptain888.github.io/agent-control-plane/)
 - [GitHub repository](https://github.com/0xCaptain888/agent-control-plane)
 - [Latest SafeSwap settlement — ERC-8183 Job 614](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
+- [Arbitrum PolicyEscrow contract](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB)
+- [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac)
+- [Arbitrum Agentic AI guide](arbitrum-hackathon.md)
 - [BNB hackathon guide](bnb-hackathon.md)
 - [Judge demo](demo.md)
 - [Three-minute script](demo-script.md)
@@ -66,6 +69,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - Reusable adapters rather than a single hard-coded Agent.
 - Public, independently checkable evidence.
 - BNB-native identity, task, settlement, and receipt evidence.
+- Arbitrum Sepolia contract, task, settlement, and evidence hash for the Agentic AI track.
 - The difference between a real Testnet settlement and a simulated business adapter.
 
 ## What not to claim
@@ -84,6 +88,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] `VERIFIED`, `BLOCKED`, and `FROZEN` are all shown.
 - [ ] All four BNB Agent IDs are linked or visible in the Marketplace.
 - [ ] Job `614` is shown as `COMPLETED` with its public settlement transaction.
+- [ ] Arbitrum Sepolia contract address and verified settlement are included for the Agentic AI submission.
+- [ ] Arbitrum evidence is labeled as testnet, never mainnet.
 - [ ] Settlement transaction and Receipt evidence hash are included in the form.
 - [ ] Judge can run `npm ci && npm run demo:judge`.
 - [ ] Final local gate passes with `npm run submission:check`.

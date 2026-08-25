@@ -1,4 +1,4 @@
-# BNB Judge Demo Script
+# Arbitrum Agentic AI Judge Demo Script
 
 Target duration: 3 minutes.
 
@@ -6,43 +6,43 @@ Target duration: 3 minutes.
 
 > Agents can call tools, but users still cannot reliably discover, compare, hire, or pay them. AgentGuard adds the missing execution boundary.
 
-Open the Marketplace homepage. Point out the four categories and the `BNB Testnet` safety boundary.
+Open the Marketplace homepage. Point out the Arbitrum Sepolia proof card and the
+testnet safety boundary. Mention that BNB Testnet remains a second live adapter.
 
 ## 0:20–0:50 — Discover and compare
 
-Filter to `Grid Trading`. Open `SafeSwap Agent` and call out:
+Open the Arbitrum proof card and call out:
 
-- BNB Testnet identity;
-- capabilities;
-- success rate and latency;
-- prior receipt evidence;
-- per-task price.
+- PolicyEscrow contract address;
+- Task `1` in `VERIFIED` state;
+- matching evidence hash;
+- public Arbiscan settlement transaction.
 
-Explain that the Marketplace ranks agents from evidence-backed reliability, not an opaque popularity number.
+Then scroll to the Agent directory and explain that the same control plane ranks
+capabilities from evidence-backed reliability, not an opaque popularity number.
 
 ## 0:50–1:25 — Hire safely
 
-Click `Hire safely` and narrate the intent:
+Run the real Arbitrum proof command and narrate the intent:
 
 ```text
-Swap BNB
-Maximum budget: 50 USDT
-Maximum slippage: 50 bps
-Allowed assets: BNB, USDT
+Create a bounded Agent task
+Arbitrum Sepolia budget: 0.001 ETH
+Evidence: required before release
 Payment: held until verification
 ```
 
-Run `npm run demo:bnb` in a terminal or use the UI receipt. Show:
+Run `npm run demo:arbitrum:task` or open the recorded proof. Show:
 
-- policy approved;
-- task executed through the BNB adapter boundary;
-- result verified;
+- task created and funded;
+- evidence submitted;
+- result verified on-chain;
 - payment released;
-- receipt created.
+- Arbiscan receipt opened.
 
 ## 1:25–1:55 — Show the block
 
-Run the over-budget scenario. The important line is:
+Click `Show BLOCKED` in the judge path. The important line is:
 
 ```text
 BLOCKED — budget policy stops hiring
@@ -56,7 +56,7 @@ Say:
 
 ## 1:55–2:25 — Show the freeze
 
-Run the verification-failure scenario. Show:
+Click `Show FROZEN` in the judge path. Show:
 
 ```text
 FROZEN — verification failure holds payment
@@ -69,7 +69,7 @@ Say:
 
 ## 2:25–2:50 — Open the receipt
 
-Point to:
+Point to the Arbitrum transaction and then the receipt fields:
 
 - Agent identity;
 - policy ID and version;

@@ -17,6 +17,7 @@ Agents can propose actions. The control plane decides whether they are still all
   <a href="https://0xcaptain888.github.io/agent-control-plane/">Live Marketplace</a> ·
   <a href="docs/demo-script.md">3-minute demo</a> ·
   <a href="docs/submission-kit.md">Submission kit</a> ·
+  <a href="docs/arbitrum-hackathon.md">Arbitrum evidence</a> ·
   <a href="docs/bnb-hackathon.md">BNB evidence</a>
 </p>
 
@@ -116,6 +117,17 @@ npm run demo:judge
 
 It shows `VERIFIED`, `BLOCKED`, and `FROZEN` outcomes with auditable receipts in one command. See the [Judge Demo](docs/demo.md).
 
+Run the Arbitrum Sepolia PolicyEscrow proof:
+
+```bash
+npm run demo:arbitrum:task
+```
+
+The deployment and task evidence are recorded in
+[`deployments/arbitrum-sepolia-policy-escrow.json`](deployments/arbitrum-sepolia-policy-escrow.json).
+To deploy a fresh testnet instance, run `npm run demo:arbitrum:deploy` with a
+local Keychain wallet or an ignored `ARBITRUM_PRIVATE_KEY` environment variable.
+
 Run the BNB AgentGuard Marketplace vertical slice:
 
 ```bash
@@ -129,7 +141,9 @@ cd apps/marketplace
 npm start
 ```
 
-See the [BNB hackathon build guide](docs/bnb-hackathon.md) for the marketplace flow, testnet boundary, and submission checklist.
+See the [Arbitrum hackathon build guide](docs/arbitrum-hackathon.md) for the
+Agentic AI submission path. The [BNB hackathon build guide](docs/bnb-hackathon.md)
+documents the existing cross-chain evidence.
 
 The optional signing probe sends only a tiny self-transfer on Devnet:
 
@@ -153,6 +167,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | --- | --- |
 | ERC-8004 identities | Real BNB Testnet registrations, Agent IDs `1898`, `1902`, `1903`, and `1904` |
 | ERC-8183 task | Real BNB Testnet Job `614`, funded, submitted, settled, and `COMPLETED` |
+| Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrow` deployment and `VERIFIED` task |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |
@@ -170,6 +185,20 @@ was independently verified by the BNB receipt adapter.
 - Settlement transaction hash: `0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93`
 - Receipt evidence hash: `5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b`
 - Public Marketplace: [Open the live demo](https://0xcaptain888.github.io/agent-control-plane/)
+
+## Latest Arbitrum Sepolia proof
+
+The AgentGuard PolicyEscrow contract is deployed on Arbitrum Sepolia and has
+completed a real funded task with evidence-backed verification and native ETH
+settlement.
+
+- Network: Arbitrum Sepolia (`421614`)
+- Contract: [`0xD35B56D0C7212aC4630cF52ECeb36884451598CB`](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB)
+- Deployment transaction: [`0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3`](https://sepolia.arbiscan.io/tx/0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3)
+- Task: `1`
+- Policy hash: `0x1111111111111111111111111111111111111111111111111111111111111111`
+- Evidence hash: `0x2222222222222222222222222222222222222222222222222222222222222222`
+- Verified settlement: [`0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac`](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac)
 
 ## Safety boundary
 

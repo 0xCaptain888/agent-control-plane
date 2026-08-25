@@ -1,0 +1,21 @@
+{
+  "network": "arbitrum-sepolia",
+  "chainId": 421614,
+  "contract": "PolicyEscrow",
+  "address": "0xD35B56D0C7212aC4630cF52ECeb36884451598CB",
+  "deployer": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+  "deploymentTxHash": "0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3",
+  "blockNumber": 301682395,
+  "explorerUrl": "https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB",
+  "taskProof": {
+    "taskId": "1",
+    "status": "VERIFIED",
+    "budgetWei": "1000000000000000",
+    "policyHash": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "evidenceHash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "createTxHash": "0x6f4fd345391fac6173f0ea0cf119504993ea97189ce4faac8dad0286f59d64af",
+    "submitTxHash": "0xf9c615368c301dd8e8ee4088fe95fe27f5858bed42b19cf1eb1e9d9df757eb4c",
+    "verifyTxHash": "0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac",
+    "verifyExplorerUrl": "https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac"
+  }
+}

@@ -73,6 +73,20 @@ Attach:
 - ERC-8183 Job `603`: created, registered, funded with 1 U, submitted, and settled on-chain; final state is `COMPLETED`. Settlement transaction: `0x465153182e802dcc741f0b5809cfa692c775cc167dc10a618b7d5877297a353c`.
 - ERC-8183 Job `614` (SafeSwap): created, registered, funded with 1 U, submitted, and settled on-chain; final state is `COMPLETED`. [Settlement transaction](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93); Receipt evidence hash: `5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b`.
 
+## Live Arbitrum Sepolia evidence
+
+The Arbitrum Agentic AI vertical slice uses a separately deployed native ETH
+PolicyEscrow contract. This is real testnet evidence, not a simulated hash.
+
+- Network: Arbitrum Sepolia (`421614`).
+- Contract: [PolicyEscrow](https://sepolia.arbiscan.io/address/0xD35B56D0C7212aC4630cF52ECeb36884451598CB).
+- Deployment: [transaction](https://sepolia.arbiscan.io/tx/0x95b4a9389c4b05ec3cc69c826685c993dc4231695fd466d8a1ab6667c2a4e4b3).
+- Task `1`: funded, submitted, verified, and settled.
+- Verified settlement: [transaction](https://sepolia.arbiscan.io/tx/0xce20b21528a1144f0149bac8e8ff83aeb783aae6fbb50e956a77aba48f4bd1ac).
+- Policy hash: `0x1111111111111111111111111111111111111111111111111111111111111111`.
+- Evidence hash: `0x2222222222222222222222222222222222222222222222222222222222222222`.
+- Final result: `VERIFIED`; native testnet ETH released only after matching evidence.
+
 ## Four-category domain activity proofs
 
 The three non-grid profiles now run through the same policy → execute → verify
