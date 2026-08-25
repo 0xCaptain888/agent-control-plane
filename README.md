@@ -142,7 +142,7 @@ or [Arbitrum demo](https://0xcaptain888.github.io/agent-control-plane/?network=a
 when submitting; the root URL is only the edition selector.
 
 The repository also keeps immutable submission snapshots: [BNB `bnb-v0.1.0`](https://github.com/0xCaptain888/agent-control-plane/tree/bnb-v0.1.0)
-and [Arbitrum `arbitrum-v0.1.0`](https://github.com/0xCaptain888/agent-control-plane/tree/arbitrum-v0.1.0).
+and [Arbitrum `arbitrum-v0.1.1`](https://github.com/0xCaptain888/agent-control-plane/tree/arbitrum-v0.1.1).
 
 ### The canonical product story
 
