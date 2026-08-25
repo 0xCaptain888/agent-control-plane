@@ -177,7 +177,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | --- | --- |
 | ERC-8004 identities | Real BNB Testnet registrations, Agent IDs `1898`, `1902`, `1903`, and `1904` |
 | ERC-8183 task | Real BNB Testnet Job `614`, funded, submitted, settled, and `COMPLETED` |
-| Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment and `VERIFIED` task |
+| Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment, verified source, and `VERIFIED` task |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |
@@ -203,7 +203,7 @@ completed a real funded VerifyPay task with a deadline, policy decision hash,
 evidence-backed verification, and native ETH settlement.
 
 - Network: Arbitrum Sepolia (`421614`)
-- Contract: [`0xe2e444a7b742829f9d45b1165b352dbbf9f9d999`](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
+- Contract: [`0xe2e444a7b742829f9d45b1165b352dbbf9f9d999`](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code) — **Source Code Verified · Exact Match**
 - Deployment transaction: [`0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba`](https://sepolia.arbiscan.io/tx/0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba)
 - Task: `1`
 - Policy hash: `0x1111111111111111111111111111111111111111111111111111111111111111`
@@ -225,7 +225,8 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 
 ### Verified Contract
 
-- [PolicyEscrowV2 on Arbiscan](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code)
+- Status: **Source Code Verified · Exact Match** on Arbitrum Sepolia (verified August 25, 2026)
+- [PolicyEscrowV2 source, ABI, and Read/Write Contract UI on Arbiscan](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code)
 - Compiler: Solidity `v0.8.26+commit.8a97fa7a`
 - Optimizer: enabled, `200` runs
 - License: MIT; constructor arguments: none

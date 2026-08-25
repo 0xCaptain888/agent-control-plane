@@ -80,6 +80,7 @@ PolicyEscrowV2 contract. This is real testnet evidence, not a simulated hash.
 
 - Network: Arbitrum Sepolia (`421614`).
 - Contract: [PolicyEscrowV2](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999).
+- Contract source: [Verified · Exact Match](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code), Solidity `v0.8.26`, optimizer `200` runs.
 - Deployment: [transaction](https://sepolia.arbiscan.io/tx/0x7a0cd5fe0ef72a6798e345e828a8e09d7d93ec1e7b640816904a962ce268d3ba).
 - Task `1`: funded, submitted, verified, and settled with a deadline.
 - Verified settlement: [transaction](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce).

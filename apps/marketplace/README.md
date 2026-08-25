@@ -20,6 +20,10 @@ The `src` directory is also static-host compatible. The repository includes a
 GitHub Pages workflow; after Pages is enabled for the repository, every push to
 `main` publishes the same judge-facing surface at the repository Pages URL.
 
+The Marketplace's primary Arbitrum proof card links to the publicly verified
+`PolicyEscrowV2` source, ABI, and Read/Write Contract UI on Arbiscan:
+[Source Code Verified · Exact Match](https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code).
+
 ## Real BNB Testnet activation
 
 Each Agent card now has two explicit paths:

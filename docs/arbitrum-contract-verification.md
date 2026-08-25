@@ -4,6 +4,10 @@
 
 [PolicyEscrowV2 on Arbiscan](https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code)
 
+**Verification status: Source Code Verified · Exact Match** (Arbitrum Sepolia,
+verified August 25, 2026). The explorer exposes the verified Solidity source,
+ABI, Read Contract, and Write Contract surfaces for the deployed address.
+
 | Field | Value |
 | --- | --- |
 | Network | Arbitrum Sepolia (`421614`) |
@@ -27,13 +31,12 @@ This produces the exact Standard JSON Input used by the deployment script:
 - [`verification.json`](../artifacts/arbiscan/verification.json)
 - [`constructor-args.txt`](../artifacts/arbiscan/constructor-args.txt)
 
-In Arbiscan Verify & Publish, select **Solidity (Standard-Json-Input)**,
+For a fresh reproduction, in Arbiscan Verify & Publish select **Solidity (Standard-Json-Input)**,
 compiler `v0.8.26+commit.8a97fa7a`, contract
 `PolicyEscrowV2.sol:PolicyEscrowV2`, optimizer enabled with `200` runs, and
 paste the generated Standard JSON Input. The constructor argument field is
 empty because the constructor has no parameters.
 
-The repository includes the public code link and reproducible package. If the
-explorer still shows “Contract Source Code Not Verified”, publication is the
-remaining explorer-account step; an Arbiscan API key can be supplied later for
-automation.
+The repository includes the public code link and reproducible package. The
+deployed instance has already been published and matched by Arbiscan; an API
+key is not required for the public verification result.

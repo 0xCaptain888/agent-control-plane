@@ -18,8 +18,10 @@ Open the VerifyPay card and call out:
 - capability: `market-research`;
 - quote and evidence are both policy-checked.
 
-Then open the Arbitrum proof card and point to the PolicyEscrowV2 contract,
-Task `1`, matching evidence hash, and public Arbiscan settlement transaction.
+Then open the Arbitrum proof card and point to the publicly verified
+PolicyEscrowV2 contract (the Arbiscan page shows **Source Code Verified · Exact
+Match**), Task `1`, matching evidence hash, and public Arbiscan settlement
+transaction.
 
 ## 0:50–1:25 — Hire safely
 

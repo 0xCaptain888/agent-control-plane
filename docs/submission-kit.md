@@ -34,6 +34,7 @@ bad result freezes funds instead of silently paying.
 - [GitHub repository](https://github.com/0xCaptain888/agent-control-plane)
 - [Latest SafeSwap settlement — ERC-8183 Job 614](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
 - [Arbitrum PolicyEscrowV2 contract](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
+- [Arbitrum verified source, ABI, and Read/Write Contract UI](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code)
 - [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
 - [Arbitrum real frozen proof](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
 - [Arbitrum Agentic AI guide](arbitrum-hackathon.md)
@@ -67,6 +68,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - A visible recovery path, not just a happy path.
 - Reusable adapters rather than a single hard-coded Agent.
 - Public, independently checkable evidence.
+- Publicly verified source with an exact bytecode match, not just a deployment address.
 - BNB-native identity, task, settlement, and receipt evidence.
 - Arbitrum Sepolia contract, task, settlement, and evidence hash for the Agentic AI track.
 - Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
