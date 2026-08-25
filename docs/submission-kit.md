@@ -72,6 +72,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - BNB-native identity, task, settlement, and receipt evidence.
 - Arbitrum Sepolia contract, task, settlement, and evidence hash for the Agentic AI track.
 - Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
+- Canonical story: a Treasury Agent hires a Risk/Data Agent before moving funds.
+- Why Arbitrum: low-cost escrow settlement with public, independently checked evidence.
 - The difference between a real Testnet settlement and a simulated business adapter.
 
 ## What not to claim
@@ -96,6 +98,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.
 - [ ] Settlement transaction and Receipt evidence hash are included in the form.
 - [ ] Judge can run `npm ci && npm run demo:judge`.
+- [ ] Judge can run `npm run demo:arbitrum:evidence` for a read-only live proof check.
 - [ ] Final local gate passes with `npm run submission:check`.
 - [ ] Network boundary and simulated/real boundary are explicit.
 - [ ] No secrets, private keys, or production claims are present.

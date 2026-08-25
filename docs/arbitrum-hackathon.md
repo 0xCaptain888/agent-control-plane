@@ -6,6 +6,15 @@ locks payment, validates the result, and releases funds only after evidence
 passes. A failed verification remains frozen instead of releasing funds; an
 over-budget quote is blocked before seller execution.
 
+## Canonical product story
+
+The primary product path is a **Treasury Agent hiring a Risk or Data Agent**
+before moving treasury funds. This makes the Arbitrum deployment necessary:
+the USDC budget is escrowed on-chain, the policy and evidence hashes are
+public, and the release decision can be checked independently by a judge or
+operator. The BNB Agent profiles are compatibility examples, not separate
+product directions.
+
 ## Arbitrum proof
 
 | Item | Value |
@@ -48,7 +57,12 @@ npm ci
 npm run demo:arbitrum:task
 npm run demo:arbitrum:judge
 npm run demo:verify-pay
+npm run demo:arbitrum:evidence
 ```
+
+The evidence command is read-only. It checks the live Arbitrum Sepolia RPC for
+the deployed contract, Task `1` status, matching policy/evidence hashes, and a
+successful settlement receipt.
 
 The V2 contract also supports ERC-20 settlement. To run it with Arbitrum
 Sepolia USDC or another test ERC-20, fund the deployer wallet first and then

@@ -44,3 +44,7 @@ version, MIT license, and no constructor arguments.
 
 The compile-time test in `examples/arbitrum-contract.test.mjs` checks that the
 deadline, pause, refund, policy event, and ERC-20 entry points remain present.
+The regression suite in
+`examples/arbitrum-contract-invariants.test.mjs` additionally checks evidence
+matching, state-before-transfer ordering, refund boundaries, and explicit
+privileged/reentrancy guards.

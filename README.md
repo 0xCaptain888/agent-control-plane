@@ -89,6 +89,14 @@ The important distinction is not “an Agent called a tool.” It is that the sa
 control plane proves what the Agent was allowed to do, what actually happened,
 and why funds were released or frozen.
 
+### The canonical product story
+
+AgentGuard's primary use case is a **Treasury Agent hiring a Risk or Data Agent**
+before moving treasury funds. The buyer Agent proposes a bounded task, the
+seller returns a quote and evidence, and Arbitrum holds the USDC budget until
+the evidence matches the policy. This is the product path; the BNB Agent
+profiles are compatibility examples built on the same control-plane contract.
+
 For the judge-facing path, the public Marketplace leads with the Arbitrum
 VerifyPay flow — Research Agent hires Data Agent — and also exposes four BNB
 Agent categories — SafeSwap, RebalanceGuard, YieldScout, and HealthGuard — with
@@ -126,7 +134,12 @@ Run the Arbitrum Sepolia PolicyEscrow proof:
 npm run demo:arbitrum:task
 npm run demo:arbitrum:judge
 npm run demo:verify-pay
+npm run demo:arbitrum:evidence
 ```
+
+`demo:arbitrum:evidence` is a read-only RPC check. It independently verifies
+the deployed bytecode exists, Task `1` is `VERIFIED`, the policy and evidence
+hashes match the repository proof, and the settlement receipt succeeded.
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running
@@ -178,6 +191,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | ERC-8004 identities | Real BNB Testnet registrations, Agent IDs `1898`, `1902`, `1903`, and `1904` |
 | ERC-8183 task | Real BNB Testnet Job `614`, funded, submitted, settled, and `COMPLETED` |
 | Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment, verified source, and `VERIFIED` task |
+| Arbitrum evidence check | Read-only RPC verification of contract, task state, hashes, and settlement receipt |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |
@@ -245,7 +259,7 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 The current reference implementation is validated with:
 
 ```text
-43 tests passing · lint passing · typecheck passing · security preflight passing
+52 tests passing (9 Node + 43 TypeScript) · lint passing · typecheck passing · security preflight passing
 ```
 
 More detail:

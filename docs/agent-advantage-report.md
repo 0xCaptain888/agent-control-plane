@@ -78,6 +78,15 @@ Attach:
 The Arbitrum Agentic AI vertical slice uses a separately deployed native ETH
 PolicyEscrowV2 contract. This is real testnet evidence, not a simulated hash.
 
+The live proof can be independently rechecked without signing a transaction:
+
+```bash
+npm run demo:arbitrum:evidence
+```
+
+The command reads the Arbitrum Sepolia RPC and verifies deployment, task state,
+policy/evidence hash equality, and settlement receipt success.
+
 - Network: Arbitrum Sepolia (`421614`).
 - Contract: [PolicyEscrowV2](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999).
 - Contract source: [Verified · Exact Match](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code), Solidity `v0.8.26`, optimizer `200` runs.
