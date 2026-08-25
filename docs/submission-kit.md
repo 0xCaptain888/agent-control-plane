@@ -103,6 +103,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] If YieldScout is shown, its source, fetched timestamp, policy, and evidence hash are visible.
 - [ ] Marketplace live-data section names the source for each domain Agent and links to the reproducible commands.
 - [ ] Benchmark output is labeled builder-controlled and not an external-user or human-productivity study.
+- [ ] Every real comparison has a completed [task log](agent-advantage-task-log-template.md) with timestamps, raw outputs, source freshness, and evidence hash.
+- [ ] Any external-user result includes consent/reviewer notes and is not conflated with internal testing.
 - [ ] YieldScout Task `4` and its public Arbitrum settlement are included when using the live-data path.
 - [ ] The video opens the real Arbitrum `VERIFIED` and `FROZEN` transactions.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.

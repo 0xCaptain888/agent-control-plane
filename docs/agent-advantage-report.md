@@ -133,6 +133,11 @@ Attach:
 - links to any BNB Testnet transactions;
 - the exact policy version used for every run.
 
+Use [`agent-advantage-task-log-template.md`](agent-advantage-task-log-template.md)
+for each real comparison. The template separates builder-controlled evidence
+from independent external-user evidence and prevents unsupported productivity
+or traction claims.
+
 ## Live BNB Testnet evidence
 
 - ERC-8004 AgentGuard identity: `agentId=1898`.

@@ -55,5 +55,10 @@ mainnet execution claim, an external-user claim, or a protocol endorsement.
 Run `npm run benchmark:agent-advantage` to emit one timestamped JSON report
 covering all four tasks.
 
+For the required manual-versus-Agent evidence, use the
+[`Agent Advantage Task Log`](agent-advantage-task-log-template.md) and record
+each comparison separately. The repository intentionally does not invent
+external-user results.
+
 The Marketplace labels the three new profiles as live BNB Testnet activity,
 while the deterministic harness remains available for repeatable judge demos.
