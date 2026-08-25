@@ -24,7 +24,7 @@ const server = createServer(async (request, response) => {
   const pathname = request.url === "/" ? "/index.html" : request.url;
   const safePath = pathname.replace(/^\/+/, "").replace(/\.\./g, "");
   try {
-    const fileRoot = safePath.startsWith("docs/") || safePath.startsWith("deployments/") || safePath.startsWith("evidence/") || safePath.startsWith("assets/social/") ? repositoryRoot : root;
+    const fileRoot = safePath.startsWith("docs/") || safePath.startsWith("deployments/") || safePath.startsWith("evidence/") || safePath.startsWith("assets/social/") || safePath.startsWith("assets/brand/") ? repositoryRoot : root;
     const body = await readFile(join(fileRoot, safePath));
     const extension = extname(safePath);
     const contentTypes = {

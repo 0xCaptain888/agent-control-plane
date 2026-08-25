@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/brand/agentguard-verify-pay-logo.svg" alt="AgentGuard VerifyPay" width="720">
+</p>
+
 # Agent Control Plane
 
 ### AgentGuard VerifyPay — policy-controlled commerce for autonomous AI agents.
