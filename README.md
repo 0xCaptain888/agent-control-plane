@@ -136,6 +136,7 @@ npm run demo:arbitrum:judge
 npm run demo:verify-pay
 npm run demo:arbitrum:evidence
 npm run demo:treasury-agent
+npm run demo:yield-scout:live
 ```
 
 `demo:arbitrum:evidence` is a read-only RPC check. It independently verifies
@@ -149,6 +150,11 @@ cannot be satisfied.
 
 When the local Marketplace server is running, the same public, read-only plan is
 available at `/api/treasury/plan` for judge tooling and integrations.
+
+YieldScout also has a real external data-source path. `demo:yield-scout:live`
+reads DeFiLlama pools, applies a TVL/APY/asset policy, ranks up to three
+candidates, and emits an evidence hash. It is read-only and fails closed when
+the source is unavailable. See [YieldScout data source](docs/yield-scout-data-source.md).
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running

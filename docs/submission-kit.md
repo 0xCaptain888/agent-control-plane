@@ -73,6 +73,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - Arbitrum Sepolia contract, task, settlement, and evidence hash for the Agentic AI track.
 - Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
 - Treasury Agent decision trace: intent → discover → compare → policy → decision.
+- YieldScout live external-data path with source timestamp, policy, candidate ranking, and evidence hash.
 - Canonical story: a Treasury Agent hires a Risk/Data Agent before moving funds.
 - Why Arbitrum: low-cost escrow settlement with public, independently checked evidence.
 - The difference between a real Testnet settlement and a simulated business adapter.
@@ -96,6 +97,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Arbitrum Sepolia contract address and verified settlement are included for the Agentic AI submission.
 - [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
 - [ ] Treasury Agent decision trace is shown before the first transaction.
+- [ ] If YieldScout is shown, its source, fetched timestamp, policy, and evidence hash are visible.
 - [ ] The video opens the real Arbitrum `VERIFIED` and `FROZEN` transactions.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.
 - [ ] Settlement transaction and Receipt evidence hash are included in the form.

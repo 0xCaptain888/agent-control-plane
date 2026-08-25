@@ -55,6 +55,19 @@ This is deliberately deterministic judge infrastructure, not a claim that an
 LLM has signed or moved funds. Signing remains an injected wallet capability;
 PolicyEscrow remains the final settlement boundary.
 
+## YieldScout external data evidence
+
+YieldScout can now read a live DeFiLlama pool snapshot without credentials:
+
+```bash
+npm run demo:yield-scout:live
+```
+
+The output records the source, fetch time, policy, selected candidates, reasons,
+and an evidence hash. The command is read-only; no funds move. A production-like
+VerifyPay run should submit that exact hash in a fresh testnet task and release
+only after the verifier confirms the matching snapshot.
+
 ## Reproduce the benchmark
 
 Run:
