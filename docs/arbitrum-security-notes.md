@@ -1,7 +1,12 @@
-# Arbitrum VerifyPay security notes
+# Contract Security Notes — Arbitrum VerifyPay
 
 This document describes the hackathon threat model for `PolicyEscrowV2`. It is
 not a production audit and must not be read as one.
+
+Public deployment: [PolicyEscrowV2 on Arbiscan](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code). Reproduction material is in
+[`artifacts/arbiscan/`](../artifacts/arbiscan/). Build parameters are Solidity
+`v0.8.26+commit.8a97fa7a`, optimizer enabled with `200` runs, default EVM
+version, MIT license, and no constructor arguments.
 
 ## Trust boundaries
 
@@ -32,6 +37,10 @@ not a production audit and must not be read as one.
 - The contract has not received a third-party formal audit.
 - ERC-20 behavior assumes a standard boolean-returning token.
 - The deployed contract is Arbitrum Sepolia testnet infrastructure only.
+- The creator is also the verifier in this demo; that is an explicit trust
+  boundary, not a claim of decentralized adjudication.
+- The ERC-20 path assumes a standard boolean-returning token and is not audited
+  against fee-on-transfer, rebasing, or callback tokens.
 
 The compile-time test in `examples/arbitrum-contract.test.mjs` checks that the
 deadline, pause, refund, policy event, and ERC-20 entry points remain present.

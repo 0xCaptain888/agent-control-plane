@@ -1,0 +1,14 @@
+{
+  "contractAddress": "0xe2E444a7B742829f9d45B1165b352DbBf9F9d999",
+  "network": "Arbitrum Sepolia",
+  "chainId": 421614,
+  "contractName": "PolicyEscrowV2.sol:PolicyEscrowV2",
+  "compiler": "v0.8.26+commit.8a97fa7a",
+  "optimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "evmVersion": "default",
+  "license": "MIT",
+  "constructorArguments": ""
+}

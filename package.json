@@ -31,6 +31,7 @@
     "demo:verify-pay": "node scripts/agent-verify-pay.mjs",
     "demo:arbitrum:judge": "node scripts/arbitrum-judge.mjs",
     "demo:arbitrum:token-task": "node scripts/arbitrum-token-task.mjs",
+    "demo:arbitrum:verification-artifact": "node scripts/arbitrum-verification-artifact.mjs",
     "mainnet:preflight": "tsx scripts/mainnet-preflight.ts",
     "security:preflight": "node scripts/security-preflight.mjs",
     "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge",

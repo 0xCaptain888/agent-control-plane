@@ -212,6 +212,14 @@ evidence-backed verification, and native ETH settlement.
 - Decision reason hash: `0x3333333333333333333333333333333333333333333333333333333333333333`
 - Real frozen proof: [`0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9`](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
 
+### Verified Contract
+
+- [PolicyEscrowV2 on Arbiscan](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code)
+- Compiler: Solidity `v0.8.26+commit.8a97fa7a`
+- Optimizer: enabled, `200` runs
+- License: MIT; constructor arguments: none
+- Reproducible input: [`artifacts/arbiscan/PolicyEscrowV2-standard-input.json`](artifacts/arbiscan/PolicyEscrowV2-standard-input.json)
+
 ## Safety boundary
 
 - Demo defaults are simulated or testnet-only.
@@ -234,5 +242,6 @@ More detail:
 - [Judge Demo](docs/demo.md)
 - [Hackathon judge guide](docs/hackathon-guide.md)
 - [Arbitrum security notes](docs/arbitrum-security-notes.md)
+- [Verified Contract and source-verification package](docs/arbitrum-contract-verification.md)
 - [Adapter contract](adapters/README.md)
 - [Contribution guide](CONTRIBUTING.md)
