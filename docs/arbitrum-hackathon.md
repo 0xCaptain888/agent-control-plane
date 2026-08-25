@@ -39,15 +39,17 @@ npm run demo:verify-pay
 ```
 
 The V2 contract also supports ERC-20 settlement. To run it with Arbitrum
-Sepolia USDC or another test ERC-20, set the token address locally (never in
-source control) and use:
+Sepolia USDC or another test ERC-20, fund the deployer wallet first and then
+use the guarded command. The official Circle testnet USDC address is
+`0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d`:
 
 ```bash
-ARBITRUM_TEST_TOKEN_ADDRESS=0x... npm run demo:arbitrum:token-task
+ARBITRUM_TOKEN_AMOUNT=100000 npm run demo:arbitrum:token-task
 ```
 
-Without a token address the command exits with `not_configured`; it never
-pretends that a token settlement happened.
+The script checks the token balance before approving or creating a task and
+fails closed with `insufficient_balance` if the wallet has not been funded.
+Circle's public faucet is [faucet.circle.com](https://faucet.circle.com/).
 
 To deploy a new testnet instance:
 
