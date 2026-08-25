@@ -6,8 +6,10 @@ Target duration: 3 minutes.
 
 > Agents can call tools, but they still cannot safely hire and pay one another. AgentGuard VerifyPay adds the missing execution and settlement boundary.
 
-Open the Marketplace homepage. Point out the Arbitrum Sepolia proof card and the
-testnet safety boundary. Mention that BNB Testnet remains a second live adapter.
+Open the Arbitrum-specific Marketplace URL:
+<https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum>. Point out
+the Arbitrum Sepolia proof card and the testnet safety boundary. Do not open the
+root edition selector or the BNB URL during this submission.
 
 ## 0:20–0:50 — Treasury Agent chooses a seller
 
@@ -43,7 +45,8 @@ Open the Independent Verifier section and say:
 > The buyer cannot approve its own payout. A separate verifier signs the task,
 > policy, evidence, chain, contract, and expiry. Tampering and replay fail closed.
 
-Run `npm run demo:independent-verifier` or open the published verifier JSON.
+Run `npm run demo:independent-verifier` in a normal terminal or open the
+published verifier JSON.
 Open PolicyEscrowV3 at `0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB`
 and show **Source Code Verified · Exact Match** on Arbiscan. Point out that the
 immutable verifier differs from the owner, then open Task `1` `VERIFIED` and
@@ -69,7 +72,7 @@ Run `npm run demo:arbitrum:evidence` or open the recorded proof. Show:
 
 ## 1:35–2:00 — Show the block
 
-Click `Show BLOCKED` in the judge path. The important line is:
+Click `Show BLOCKED` in the Arbitrum judge path. The important line is:
 
 ```text
 BLOCKED — budget policy stops hiring
@@ -83,7 +86,7 @@ Say:
 
 ## 2:00–2:25 — Show the freeze
 
-Click `Show FROZEN` in the judge path. Show:
+Click `Show FROZEN` in the Arbitrum judge path. Show:
 
 ```text
 FROZEN — verification failure holds payment
