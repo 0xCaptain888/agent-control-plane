@@ -139,6 +139,10 @@ npm run demo:treasury-agent
 npm run demo:yield-scout:live
 npm run demo:yield-scout:arbitrum
 npm run demo:yield-scout:evidence
+npm run demo:health-guard:live
+npm run demo:rebalance-guard:live
+npm run demo:safe-swap:live
+npm run benchmark:agent-advantage
 ```
 
 `demo:arbitrum:evidence` is a read-only RPC check. It independently verifies
@@ -162,6 +166,13 @@ The full path has also been completed on Arbitrum Sepolia for Task `4`: the
 live DeFiLlama snapshot produced the submitted evidence hash, and the task was
 verified on-chain. Run `demo:yield-scout:evidence` to independently check the
 contract, policy hash, evidence hash, source marker, and settlement receipt.
+
+The other three BNB profiles expose the same evidence discipline through
+read-only public data paths: HealthGuard reads Venus market/account liquidity,
+RebalanceGuard combines BNB JSON-RPC balances with DeFiLlama prices, and
+SafeSwap reads DexScreener pair quotes. Each adapter hashes the exact snapshot
+and fails closed when data is unavailable or outside policy. These probes do
+not execute swaps, repayments, or rebalances. See the [Agent Advantage Report](docs/agent-advantage-report.md).
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running

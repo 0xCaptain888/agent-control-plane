@@ -75,6 +75,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
 - Treasury Agent decision trace: intent → discover → compare → policy → decision.
 - YieldScout live external-data path with source timestamp, policy, candidate ranking, and evidence hash.
+- Four-domain live read-only data paths: DeFiLlama, Venus, BNB RPC + DeFiLlama prices, and DexScreener.
+- `npm run benchmark:agent-advantage` reproducibly emits the source, timestamp, policy status, and evidence hash for all four profiles.
 - Canonical story: a Treasury Agent hires a Risk/Data Agent before moving funds.
 - Why Arbitrum: low-cost escrow settlement with public, independently checked evidence.
 - The difference between a real Testnet settlement and a simulated business adapter.
@@ -99,6 +101,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
 - [ ] Treasury Agent decision trace is shown before the first transaction.
 - [ ] If YieldScout is shown, its source, fetched timestamp, policy, and evidence hash are visible.
+- [ ] Marketplace live-data section names the source for each domain Agent and links to the reproducible commands.
+- [ ] Benchmark output is labeled builder-controlled and not an external-user or human-productivity study.
 - [ ] YieldScout Task `4` and its public Arbitrum settlement are included when using the live-data path.
 - [ ] The video opens the real Arbitrum `VERIFIED` and `FROZEN` transactions.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.

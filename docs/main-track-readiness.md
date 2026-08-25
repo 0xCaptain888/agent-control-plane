@@ -38,5 +38,22 @@ Agent Studio main track.
 - Attach three completed manual-equivalent vs Agent comparisons to the Agent
   Advantage Report.
 
+## New external-data upgrade
+
+The four profiles now expose a reproducible read-only data path in addition to
+their BNB Testnet ERC-8183 activity:
+
+| Agent | External source | Snapshot / policy output | Reproduce |
+| --- | --- | --- | --- |
+| YieldScout | DeFiLlama pools | APY, TVL, stablecoin and candidate ranking + evidence hash | `npm run demo:yield-scout:live` |
+| HealthGuard | Venus public markets API + optional Comptroller `getAccountLiquidity` | market risk, liquidity headroom and derived health factor; `BLOCKED` if account data is missing | `npm run demo:health-guard:live` |
+| RebalanceGuard | BNB JSON-RPC + DeFiLlama prices | balances, allocation drift and turnover policy | `npm run demo:rebalance-guard:live` |
+| SafeSwap | DexScreener public pair search | price, liquidity, volume and quote evidence | `npm run demo:safe-swap:live` |
+
+All four adapters are read-only and fail closed. A live snapshot is not a
+mainnet execution claim, an external-user claim, or a protocol endorsement.
+Run `npm run benchmark:agent-advantage` to emit one timestamped JSON report
+covering all four tasks.
+
 The Marketplace labels the three new profiles as live BNB Testnet activity,
 while the deterministic harness remains available for repeatable judge demos.

@@ -89,6 +89,37 @@ count, Agent action count, adapter calls, result status, payment state, and
 receipt ID. Local elapsed milliseconds are included for debugging only; they are
 not used as a human productivity claim.
 
+## External-data benchmark (four domain profiles)
+
+The domain adapters now make the same advantage measurable with live, public
+read-only sources. The benchmark records the source URL, fetch timestamp,
+policy result, and evidence hash; it does not claim external users or human
+productivity. A missing, malformed, stale, or policy-violating source returns
+`BLOCKED` rather than being silently substituted with fixture data.
+
+| Agent | Source | Agent action | Safety boundary |
+| --- | --- | ---: | --- |
+| YieldScout | DeFiLlama pools | 1 snapshot + ranked candidates | TVL/APY/asset policy |
+| HealthGuard | Venus markets + Comptroller liquidity when configured | 1 snapshot | missing account liquidity blocks |
+| RebalanceGuard | BNB RPC + DeFiLlama prices | 1 snapshot | drift and turnover caps |
+| SafeSwap | DexScreener pair search | 1 quote | minimum liquidity and later slippage verification |
+
+Run the live probes with:
+
+```bash
+npm run demo:yield-scout:live
+npm run demo:health-guard:live
+npm run demo:rebalance-guard:live
+npm run demo:safe-swap:live
+npm run benchmark:agent-advantage
+```
+
+The first four commands are read-only. The combined benchmark intentionally
+keeps network failures visible as `BLOCKED`; it never invents a quote, health
+factor, or balance. The external-source proof complements the testnet
+settlement proofs below: it demonstrates data quality and policy discipline,
+while the chain receipts demonstrate payment gating.
+
 ## Evidence bundle
 
 Attach:
