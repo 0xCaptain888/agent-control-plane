@@ -58,6 +58,25 @@ Use the network-specific Marketplace URL in the submission form:
 - [External user test protocol](external-user-test.md)
 - [Impact Dashboard](impact-dashboard.md)
 - [BNB main-track readiness](main-track-readiness.md)
+- [Why BNB + Arbitrum](chain-fit.md)
+- [Canonical Agent-to-Agent path](agent-to-agent.md)
+
+## One-command judge verification
+
+```bash
+npm ci
+npm run judge:quick-check
+```
+
+The quick check is offline-safe and prints the expected lifecycle states. It
+does not broadcast transactions. For the TypeScript verifier replay and attack
+matrix, use the dedicated commands in a normal terminal. To verify the
+already-published testnet anchors, run:
+
+```bash
+npm run demo:arbitrum:evidence
+BNB_TX_HASH=0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93 npm run demo:bnb:evidence
+```
 
 For BNB submissions, point judges to the four real BNB Testnet ERC-8004
 identities — Agent IDs `1898`, `1902`, `1903`, and `1904` — and the public
@@ -117,6 +136,8 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Job `614` is shown as `COMPLETED` with its public settlement transaction.
 - [ ] Arbitrum Sepolia contract address and verified settlement are included for the Agentic AI submission.
 - [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
+- [ ] The video shows the complete Buyer → Seller → Policy → Verify → Pay path.
+- [ ] The one-command `npm run judge:quick-check` passes before submission.
 - [ ] Treasury Agent decision trace is shown before the first transaction.
 - [ ] If YieldScout is shown, its source, fetched timestamp, policy, and evidence hash are visible.
 - [ ] Marketplace live-data section names the source for each domain Agent and links to the reproducible commands.

@@ -21,6 +21,7 @@ deadlines, and verification rules.
   <a href="https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum">Arbitrum demo</a> ·
   <a href="docs/demo-script.md">3-minute demo</a> ·
   <a href="docs/submission-kit.md">Submission kit</a> ·
+  <a href="docs/chain-fit.md">Why BNB + Arbitrum</a> ·
   <a href="docs/arbitrum-hackathon.md">Arbitrum evidence</a> ·
   <a href="docs/bnb-hackathon.md">BNB evidence</a>
 </p>
@@ -92,6 +93,53 @@ Each reference app demonstrates a distinct winning moment and reuses the same co
 The important distinction is not “an Agent called a tool.” It is that the same
 control plane proves what the Agent was allowed to do, what actually happened,
 and why funds were released or frozen.
+
+## Canonical Agent-to-Agent path
+
+The winning path is one Buyer Agent hiring one Seller Agent — not four unrelated
+Agent demos:
+
+```text
+Treasury Agent intent
+  → discover YieldScout
+  → compare quote (0.40 USDC)
+  → enforce budget / asset / freshness policy
+  → hold escrow
+  → Seller Agent returns DeFiLlama evidence
+  → independent verification
+  → VERIFIED release, or BLOCKED / FROZEN recovery
+```
+
+Run the deterministic, offline-safe version:
+
+```bash
+npm run demo:agent-to-agent
+```
+
+It is builder-controlled demo evidence; the linked BNB and Arbitrum
+transactions are the separate testnet proof anchors.
+
+## One-command judge verification
+
+For a fast repository review, run:
+
+```bash
+npm run judge:quick-check
+```
+
+Expected result: `VERIFIED`, `BLOCKED`, and `FROZEN`, followed by the Buyer →
+Seller VerifyPay trace and the Arbitrum judge bundle. For the TypeScript
+independent-verifier replay tests and security attack matrix, run their
+dedicated commands in a normal terminal. For live read-only proof, then run:
+
+```bash
+npm run demo:arbitrum:evidence
+BNB_TX_HASH=0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93 npm run demo:bnb:evidence
+```
+
+Use the network-specific [BNB demo](https://0xcaptain888.github.io/agent-control-plane/?network=bnb)
+or [Arbitrum demo](https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum)
+when submitting; the root URL is only the edition selector.
 
 ### The canonical product story
 
@@ -369,6 +417,7 @@ The current reference implementation is validated with:
 More detail:
 
 - [Architecture](docs/architecture.md)
+- [Why BNB + Arbitrum](docs/chain-fit.md)
 - [Judge scorecard](docs/judge-scorecard.md)
 - [Judge Demo](docs/demo.md)
 - [Hackathon judge guide](docs/hackathon-guide.md)

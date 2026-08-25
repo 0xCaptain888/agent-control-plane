@@ -12,6 +12,7 @@ evidence, chain, contract, and expiry before funds release or freeze.
 - Demo: <https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum>
 - Repository: <https://github.com/0xCaptain888/agent-control-plane>
 - Arbitrum runbook: [`docs/arbitrum-hackathon.md`](../arbitrum-hackathon.md)
+- Canonical Agent-to-Agent path: [`docs/agent-to-agent.md`](../agent-to-agent.md)
 - Verified V3 source: <https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code>
 - V3 VERIFIED: <https://sepolia.arbiscan.io/tx/0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702>
 - V3 FROZEN: <https://sepolia.arbiscan.io/tx/0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584>
@@ -35,3 +36,19 @@ evidence, chain, contract, and expiry before funds release or freeze.
 This submission uses Arbitrum Sepolia (`chainId 421614`). All linked execution
 proofs are testnet evidence. No mainnet execution or third-party formal audit
 is claimed.
+
+## Why Arbitrum for this edition
+
+Arbitrum is the verification-and-settlement layer for this submission.
+PolicyEscrowV3 holds the task budget while an immutable verifier, separate from
+the owner, attests to the task, policy, evidence, chain, contract, and expiry.
+This makes Verify-to-Pay independently auditable with public testnet proofs
+rather than a UI-only success state.
+
+Reproduce the buyer-to-seller path and local safety checks with:
+
+```bash
+npm run demo:agent-to-agent
+npm run judge:quick-check
+npm run demo:arbitrum:evidence
+```
