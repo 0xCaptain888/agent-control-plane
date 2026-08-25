@@ -15,6 +15,7 @@ const agents = [
 const server = createServer(async (request, response) => {
   if (request.url === "/api/agents") return json(response, { agents });
   if (request.url === "/api/activity") return json(response, { activities: agents.map(({ id, name, category, activity }) => ({ id, name, category, activity })) });
+  if (request.url === "/api/treasury/plan") return json(response, treasuryPlan());
   const pathname = request.url === "/" ? "/index.html" : request.url;
   const safePath = pathname.replace(/^\/+/, "").replace(/\.\./g, "");
   try {
@@ -34,4 +35,22 @@ server.listen(port, "127.0.0.1", () => console.log(`AgentGuard Marketplace liste
 function json(response, value) {
   response.writeHead(200, { "content-type": "application/json; charset=utf-8" });
   response.end(JSON.stringify(value));
+}
+
+function treasuryPlan() {
+  return {
+    buyer: "treasury-agent-demo",
+    objective: "Compare yield before allocating treasury USDC",
+    policy: { maxBudgetUSDC: "1", allowedAssets: ["USDC"], requireVerification: true },
+    decision: "APPROVED",
+    selectedAgent: "yield-scout",
+    quote: "0.40 USDT",
+    trace: [
+      { step: "intent", passed: true, detail: "Bound objective, budget, asset allowlist, and expiry" },
+      { step: "discover", passed: true, detail: "Searched 4 registered Agent profiles" },
+      { step: "compare", passed: true, detail: "YieldScout matched yield_comparison and allocation_guard" },
+      { step: "policy", passed: true, detail: "Quote is inside budget; payment remains held" },
+      { step: "decision", passed: true, detail: "Escrow may release only after matching evidence" }
+    ]
+  };
 }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { AgentRegistry, rankAgents, runAllDomainActivities, runBnbMarketplaceDemo, runDomainActivity, runSafeSwapHire, sampleAgents } from "../src/index.js";
+import { AgentRegistry, planTreasuryHire, rankAgents, runAllDomainActivities, runBnbMarketplaceDemo, runDomainActivity, runSafeSwapHire, sampleAgents } from "../src/index.js";
 
 test("registry exposes four BNB Agent Studio marketplace categories", () => {
   const registry = new AgentRegistry(sampleAgents());
@@ -64,4 +64,32 @@ test("domain policy blocks oversized work and freezes invalid verification", asy
   const frozen = await runDomainActivity(agent, { activityId: "yield-frozen", scenario: "verification-failure" });
   assert.equal(frozen.activity.status, "frozen");
   assert.equal(frozen.result.execution?.payment?.state, "frozen");
+});
+
+test("Treasury Agent selects a capable seller and emits an auditable decision trace", () => {
+  const approved = planTreasuryHire({
+    taskId: "treasury-risk-001",
+    treasuryAgentId: "treasury-agent-demo",
+    objective: "Get a yield comparison before allocating treasury USDC",
+    maxBudgetUSDT: "1",
+    allowedAssets: ["USDC"],
+    expiresAt: "2026-08-25T12:00:00.000Z"
+  });
+  assert.equal(approved.status, "approved");
+  assert.equal(approved.selectedAgent?.id, "yield-scout");
+  assert.equal(approved.quote?.priceUSDT, "0.40");
+  assert.ok(approved.trace.some((step) => step.step === "compare" && step.passed));
+  assert.match(approved.trace.at(-1)?.detail ?? "", /APPROVED/);
+
+  const blocked = planTreasuryHire({
+    taskId: "treasury-risk-002",
+    treasuryAgentId: "treasury-agent-demo",
+    objective: "Get a yield comparison before allocating treasury USDC",
+    maxBudgetUSDT: "0.10",
+    allowedAssets: ["USDC"],
+    expiresAt: "2026-08-25T12:00:00.000Z"
+  });
+  assert.equal(blocked.status, "blocked");
+  assert.equal(blocked.reason, "quote_exceeds_budget");
+  assert.match(blocked.trace.at(-1)?.detail ?? "", /BLOCKED/);
 });

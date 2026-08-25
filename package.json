@@ -33,6 +33,7 @@
     "demo:arbitrum:evidence": "node scripts/arbitrum-evidence-check.mjs",
     "demo:arbitrum:token-task": "node scripts/arbitrum-token-task.mjs",
     "demo:arbitrum:verification-artifact": "node scripts/arbitrum-verification-artifact.mjs",
+    "demo:treasury-agent": "node scripts/treasury-agent-demo.mjs",
     "mainnet:preflight": "tsx scripts/mainnet-preflight.ts",
     "security:preflight": "node scripts/security-preflight.mjs",
     "submission:check": "npm run lint && npm run typecheck && npm test && npm run demo:judge",

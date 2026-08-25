@@ -20,7 +20,7 @@ bad result freezes funds instead of silently paying.
 
 ```text
 0:00  Problem: Agents can act, but users cannot bound or verify them.
-0:20  Marketplace: show Research Agent hiring Data Agent through VerifyPay.
+0:20  Marketplace: Treasury Agent compares and hires YieldScout/Risk Agent.
 0:50  VERIFIED: funded Arbitrum task, matching evidence, payment released.
 1:25  BLOCKED: oversized budget never reaches the adapter.
 1:55  FROZEN: bad fill fails verification and holds payment.
@@ -72,6 +72,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - BNB-native identity, task, settlement, and receipt evidence.
 - Arbitrum Sepolia contract, task, settlement, and evidence hash for the Agentic AI track.
 - Agent-to-Agent VerifyPay flow with a buyer, seller, quote, result verification, and receipt.
+- Treasury Agent decision trace: intent → discover → compare → policy → decision.
 - Canonical story: a Treasury Agent hires a Risk/Data Agent before moving funds.
 - Why Arbitrum: low-cost escrow settlement with public, independently checked evidence.
 - The difference between a real Testnet settlement and a simulated business adapter.
@@ -94,6 +95,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Job `614` is shown as `COMPLETED` with its public settlement transaction.
 - [ ] Arbitrum Sepolia contract address and verified settlement are included for the Agentic AI submission.
 - [ ] Buyer Agent and seller Agent are named in the video and judge runbook.
+- [ ] Treasury Agent decision trace is shown before the first transaction.
 - [ ] The video opens the real Arbitrum `VERIFIED` and `FROZEN` transactions.
 - [ ] Arbitrum evidence is labeled as testnet, never mainnet.
 - [ ] Settlement transaction and Receipt evidence hash are included in the form.

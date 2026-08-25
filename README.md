@@ -135,11 +135,20 @@ npm run demo:arbitrum:task
 npm run demo:arbitrum:judge
 npm run demo:verify-pay
 npm run demo:arbitrum:evidence
+npm run demo:treasury-agent
 ```
 
 `demo:arbitrum:evidence` is a read-only RPC check. It independently verifies
 the deployed bytecode exists, Task `1` is `VERIFIED`, the policy and evidence
 hashes match the repository proof, and the settlement receipt succeeded.
+
+`demo:treasury-agent` shows the canonical buyer flow: a Treasury Agent turns an
+objective into a bounded hire request, compares registered seller capabilities,
+checks the quote against budget, and fails closed before escrow when the request
+cannot be satisfied.
+
+When the local Marketplace server is running, the same public, read-only plan is
+available at `/api/treasury/plan` for judge tooling and integrations.
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running
@@ -259,12 +268,13 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 The current reference implementation is validated with:
 
 ```text
-52 tests passing (9 Node + 43 TypeScript) · lint passing · typecheck passing · security preflight passing
+53 tests passing (9 Node + 44 TypeScript) · lint passing · typecheck passing · security preflight passing
 ```
 
 More detail:
 
 - [Architecture](docs/architecture.md)
+- [Judge scorecard](docs/judge-scorecard.md)
 - [Judge Demo](docs/demo.md)
 - [Hackathon judge guide](docs/hackathon-guide.md)
 - [Arbitrum security notes](docs/arbitrum-security-notes.md)

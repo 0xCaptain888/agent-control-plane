@@ -80,6 +80,90 @@ export type AgentQuote = {
 };
 export type MarketplaceSearch = { category?: AgentCategory; capability?: string; maxPriceUSDT?: number; query?: string };
 
+export type TreasuryHireRequest = {
+  taskId: string;
+  treasuryAgentId: string;
+  objective: string;
+  maxBudgetUSDT: string;
+  requiredCapabilities?: string[];
+  allowedAssets?: string[];
+  expiresAt: string;
+};
+
+export type TreasuryDecisionTrace = {
+  step: "intent" | "discover" | "compare" | "policy" | "decision";
+  actor: string;
+  detail: string;
+  passed: boolean;
+};
+
+export type TreasuryHirePlan = {
+  status: "approved" | "blocked";
+  selectedAgent?: AgentProfile;
+  quote?: AgentQuote;
+  intent: HireIntent;
+  policy: { maxBudgetUSDT: string; allowedAssets: string[]; requireVerification: true };
+  trace: TreasuryDecisionTrace[];
+  reason?: string;
+};
+
+/**
+ * Policy-first planner for the canonical Treasury Agent story. It is
+ * intentionally deterministic: an LLM may propose the request, but selection,
+ * budget checks, and the final payment boundary remain typed and auditable.
+ */
+export function planTreasuryHire(request: TreasuryHireRequest, agents: AgentProfile[] = sampleAgents()): TreasuryHirePlan {
+  const required = (request.requiredCapabilities ?? inferCapabilities(request.objective)).map(normalize);
+  const allowedAssets = request.allowedAssets ?? ["USDC"];
+  const trace: TreasuryDecisionTrace[] = [
+    { step: "intent", actor: request.treasuryAgentId, detail: `Received bounded objective: ${request.objective}`, passed: true },
+    { step: "discover", actor: request.treasuryAgentId, detail: `Searching ${agents.length} registered Agent profiles`, passed: true }
+  ];
+  const candidates = agents.filter((agent) => required.every((capability) => agent.capabilities.some((item) => normalize(item).includes(capability) || capability.includes(normalize(item)))));
+  const ranked = rankAgents(candidates);
+  trace.push({ step: "compare", actor: request.treasuryAgentId, detail: `${ranked.length} candidate(s) match required capabilities: ${required.join(", ") || "general risk/data work"}`, passed: ranked.length > 0 });
+  const selectedAgent = ranked[0];
+  const intent: HireIntent = {
+    taskId: request.taskId,
+    agentId: selectedAgent?.id ?? "unselected",
+    userAddress: request.treasuryAgentId,
+    objective: request.objective,
+    maxBudgetUSDT: request.maxBudgetUSDT,
+    allowedActions: ["report", "attest"],
+    allowedAssets,
+    expiresAt: request.expiresAt,
+    requireVerification: true,
+    referencePrice: 100,
+    scenario: "approved"
+  };
+  if (!selectedAgent) {
+    trace.push({ step: "policy", actor: "AgentGuard", detail: "No registered Agent satisfies the requested capability boundary", passed: false });
+    trace.push({ step: "decision", actor: "AgentGuard", detail: "BLOCKED before seller execution", passed: false });
+    return { status: "blocked", intent, policy: { maxBudgetUSDT: request.maxBudgetUSDT, allowedAssets, requireVerification: true }, trace, reason: "no_capability_match" };
+  }
+  const quote = createQuote(intent, selectedAgent);
+  const withinBudget = Number(quote.priceUSDT) <= Number(request.maxBudgetUSDT);
+  const assetsSupported = allowedAssets.every((asset) => selectedAgent.supportedAssets.includes(asset));
+  trace.push({ step: "policy", actor: "AgentGuard", detail: `Quote ${quote.priceUSDT} USDT vs budget ${request.maxBudgetUSDT} USDT; assets ${assetsSupported ? "allowed" : "outside boundary"}`, passed: withinBudget && assetsSupported });
+  if (!withinBudget || !assetsSupported) {
+    trace.push({ step: "decision", actor: "AgentGuard", detail: "BLOCKED before escrow or seller adapter", passed: false });
+    return { status: "blocked", selectedAgent, quote, intent, policy: { maxBudgetUSDT: request.maxBudgetUSDT, allowedAssets, requireVerification: true }, trace, reason: !withinBudget ? "quote_exceeds_budget" : "asset_not_supported" };
+  }
+  trace.push({ step: "decision", actor: "AgentGuard", detail: `APPROVED: hire ${selectedAgent.name}; hold payment until evidence matches`, passed: true });
+  return { status: "approved", selectedAgent, quote, intent, policy: { maxBudgetUSDT: request.maxBudgetUSDT, allowedAssets, requireVerification: true }, trace };
+}
+
+function inferCapabilities(objective: string): string[] {
+  const value = objective.toLowerCase();
+  if (value.includes("health") || value.includes("liquidation")) return ["health"];
+  if (value.includes("yield") || value.includes("apy")) return ["yield"];
+  if (value.includes("rebalance") || value.includes("allocation")) return ["allocation"];
+  if (value.includes("swap") || value.includes("trade") || value.includes("market")) return ["quote"];
+  return [];
+}
+
+function normalize(value: string): string { return value.toLowerCase().replace(/[_-]/g, " ").trim(); }
+
 export class AgentRegistry {
   private readonly agents = new Map<string, AgentProfile>();
   constructor(initialAgents: AgentProfile[] = []) { initialAgents.forEach((agent) => this.register(agent)); }
@@ -231,7 +315,7 @@ export function sampleAgents(): AgentProfile[] {
   return [
     { id: "safe-swap", name: "SafeSwap Agent", category: "grid-trading", description: "Runs bounded BNB grid entries with quote comparison and hard slippage verification.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1898", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/safe-swap", capabilities: ["grid_entry", "quote_comparison", "slippage_verification"], supportedAssets: ["BNB", "USDT"], pricingModel: "per-task", priceUSDT: "0.50", successRate: 0.96, averageLatencyMs: 18000, reputationScore: 0.94, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x1bf2e5dc3162e91c47af6b091db12a7359e4d83f487d227d4aa1ab80274cd8bf", kind: "transaction" }, { label: "Verified BNB Testnet receipt", uri: "https://testnet.bscscan.com/tx/0x9ad83e817a44e0c7a512836119835670bcced9ef8f412a9f3f1de82412a9d565", kind: "receipt" }, { label: "ERC-8183 settlement · Job 614", uri: "https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93", kind: "transaction" }], activity: { status: "verified", source: "bnb-testnet", label: "ERC-8183 Job 614 completed", jobId: "614", receipt: "bnb-testnet-proof-5dc5469c:receipt", evidenceHash: "5c9bd98ffd7de6fa5a1d2ff26cec2f0fb2e951ef8b608d9444ffb811bf512f5b", chainTxHash: "0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93", evidenceUri: "https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93" }, availability: "live", dataSource: "bnb-testnet", lastActivity: "ERC-8183 Job 614 settled on BNB Testnet", policyBoundary: "50 USDT max · 50 bps slippage · BNB/USDT only" },
     { id: "rebalance-guard", name: "RebalanceGuard Agent", category: "rebalancing", description: "Proposes risk-bounded BNB portfolio rebalancing with exposure and turnover limits.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1902", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/rebalance-guard", capabilities: ["allocation_drift", "turnover_limit", "rebalance_proposal"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.35", successRate: 0.93, averageLatencyMs: 14000, reputationScore: 0.91, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x51adb89544bec3a5baee7886dc8fa6ca5758c0ef1c3535dd6f416c3ecafef287", kind: "transaction" }, { label: "ERC-8183 task creation · Job 611", uri: "https://testnet.bscscan.com/tx/0x0c9d870c57ca6f90ac9a2ccf03b88b50d2d422955b5a127988878240b5adff7b", kind: "transaction" }, { label: "ERC-8183 settlement · Job 611", uri: "https://testnet.bscscan.com/tx/0x53f6cc0e3c72e0c11852b87ca003ee68e672a3de46fb0fa698bf5557e13bd54c", kind: "transaction" }], activity: { status: "verified", source: "bnb-testnet", label: "ERC-8183 Job 611 completed", jobId: "611", receipt: "bnb-testnet-proof-53f6cc0e:receipt", evidenceHash: "308944720f560c52a3295d96f97b7f658b2ec60af1da56c5e252f8d6e122368f", chainTxHash: "0x53f6cc0e3c72e0c11852b87ca003ee68e672a3de46fb0fa698bf5557e13bd54c", evidenceUri: "https://testnet.bscscan.com/tx/0x53f6cc0e3c72e0c11852b87ca003ee68e672a3de46fb0fa698bf5557e13bd54c" }, availability: "live", dataSource: "bnb-testnet", lastActivity: "ERC-8183 Job 611 settled on BNB Testnet", policyBoundary: "10% max drift · 15% max turnover · approval before execution" },
-    { id: "yield-scout", name: "YieldScout Agent", category: "yield-optimisation", description: "Compares BNB Chain yield opportunities and proposes risk-bounded allocation changes.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1903", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/yield-scout", capabilities: ["yield_comparison", "apy_delta_analysis", "allocation_guard"], supportedAssets: ["BNB", "USDT"], pricingModel: "per-task", priceUSDT: "0.40", successRate: 0.89, averageLatencyMs: 26000, reputationScore: 0.88, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x8ff096f7abdcacf573d229449659fbb4b21fbe90e66dd1ffb0c55ca2c68e2696", kind: "transaction" }, { label: "ERC-8183 task creation · Job 612", uri: "https://testnet.bscscan.com/tx/0x94e928be49bb3308b87e2c588068657014f7a8f5547692b277f4b5f846bd0455", kind: "transaction" }, { label: "ERC-8183 settlement · Job 612", uri: "https://testnet.bscscan.com/tx/0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88", kind: "transaction" }], activity: { status: "verified", source: "bnb-testnet", label: "ERC-8183 Job 612 completed", jobId: "612", receipt: "bnb-testnet-proof-74e2eab3:receipt", evidenceHash: "bdc3464afedc9a49a03c6edb0b6c6ae6b1fc1ed98c52eaad97d27dc829b06a0f", chainTxHash: "0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88", evidenceUri: "https://testnet.bscscan.com/tx/0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88" }, availability: "live", dataSource: "bnb-testnet", lastActivity: "ERC-8183 Job 612 settled on BNB Testnet", policyBoundary: "APY delta required · exposure cap · human approval before rebalance" },
+    { id: "yield-scout", name: "YieldScout Agent", category: "yield-optimisation", description: "Compares BNB Chain yield opportunities and proposes risk-bounded allocation changes.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1903", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/yield-scout", capabilities: ["yield_comparison", "apy_delta_analysis", "allocation_guard"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.40", successRate: 0.89, averageLatencyMs: 26000, reputationScore: 0.88, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0x8ff096f7abdcacf573d229449659fbb4b21fbe90e66dd1ffb0c55ca2c68e2696", kind: "transaction" }, { label: "ERC-8183 task creation · Job 612", uri: "https://testnet.bscscan.com/tx/0x94e928be49bb3308b87e2c588068657014f7a8f5547692b277f4b5f846bd0455", kind: "transaction" }, { label: "ERC-8183 settlement · Job 612", uri: "https://testnet.bscscan.com/tx/0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88", kind: "transaction" }], activity: { status: "verified", source: "bnb-testnet", label: "ERC-8183 Job 612 completed", jobId: "612", receipt: "bnb-testnet-proof-74e2eab3:receipt", evidenceHash: "bdc3464afedc9a49a03c6edb0b6c6ae6b1fc1ed98c52eaad97d27dc829b06a0f", chainTxHash: "0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88", evidenceUri: "https://testnet.bscscan.com/tx/0x74e2eab33d492b5a712fbddacd6f122128a8f11a201753cfd4805a7709e53f88" }, availability: "live", dataSource: "bnb-testnet", lastActivity: "ERC-8183 Job 612 settled on BNB Testnet", policyBoundary: "APY delta required · exposure cap · human approval before rebalance" },
     { id: "health-guard", name: "HealthGuard Agent", category: "health-factor-monitoring", description: "Monitors lending health factors and proposes bounded protection actions before liquidation risk increases.", chain: "bnb-testnet", identityId: "erc8004:bnb-testnet:1904", operatorAddress: "0x61ce53891c35f3261388ea2910d9d63d6d918390", endpoint: "https://demo.agentguard.local/agents/health-guard", capabilities: ["health_factor_monitoring", "liquidation_alerts", "bounded_repay"], supportedAssets: ["BNB", "USDT", "USDC"], pricingModel: "per-task", priceUSDT: "0.25", successRate: 0.93, averageLatencyMs: 9000, reputationScore: 0.91, evidence: [{ label: "ERC-8004 registration", uri: "https://testnet.bscscan.com/tx/0xa0d7f194736e19ea8bbde496d28a030222125a9911a03a0cd1e36b0822697673", kind: "transaction" }, { label: "ERC-8183 task creation · Job 613", uri: "https://testnet.bscscan.com/tx/0x7a4bc5b52b1222ee15a8d086be58fca76181abf1b1b2986cbccb39854364a70b", kind: "transaction" }, { label: "ERC-8183 settlement · Job 613", uri: "https://testnet.bscscan.com/tx/0x467d0efdfbf4fb13bb657728f91b5124e48526194023fcd63774866163aad764", kind: "transaction" }], activity: { status: "verified", source: "bnb-testnet", label: "ERC-8183 Job 613 completed", jobId: "613", receipt: "bnb-testnet-proof-467d0efd:receipt", evidenceHash: "09792e7431d4b6339e04993894d484775822f4320d445929953e29ecee3632d8", chainTxHash: "0x467d0efdfbf4fb13bb657728f91b5124e48526194023fcd63774866163aad764", evidenceUri: "https://testnet.bscscan.com/tx/0x467d0efdfbf4fb13bb657728f91b5124e48526194023fcd63774866163aad764" }, availability: "live", dataSource: "bnb-testnet", lastActivity: "ERC-8183 Job 613 settled on BNB Testnet", policyBoundary: "alert below 1.35 · repay cap · no unsanctioned collateral movement" }
   ];
 }

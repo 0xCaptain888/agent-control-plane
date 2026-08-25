@@ -33,6 +33,28 @@ Record elapsed time, number of actions, final result, failed attempts, and wheth
 - The Agent is more accountable because every decision and outcome produces a Receipt.
 - The Agent does not get a free pass on failure: verification failure freezes settlement.
 
+## Treasury Agent selection benchmark
+
+The canonical buyer is now executable as a deterministic planner. A model may
+propose the natural-language objective, but the typed planner owns the final
+selection and payment boundary:
+
+```text
+intent → discover → compare → policy → decision
+```
+
+The planner selects a registered seller only when capabilities match, the quote
+fits the budget, and the requested asset is supported. Otherwise it returns a
+`BLOCKED` plan with a reason and no escrow or adapter call. Run:
+
+```bash
+npm run demo:treasury-agent
+```
+
+This is deliberately deterministic judge infrastructure, not a claim that an
+LLM has signed or moved funds. Signing remains an injected wallet capability;
+PolicyEscrow remains the final settlement boundary.
+
 ## Reproduce the benchmark
 
 Run:
