@@ -12,6 +12,7 @@ path.
 
 - Demo: <https://0xcaptain888.github.io/agent-control-plane/?network=bnb>
 - Repository: <https://github.com/0xCaptain888/agent-control-plane>
+- Submission snapshot: <https://github.com/0xCaptain888/agent-control-plane/tree/bnb-v0.1.0>
 - BNB runbook: [`docs/bnb-hackathon.md`](../bnb-hackathon.md)
 - Canonical Agent-to-Agent path: [`docs/agent-to-agent.md`](../agent-to-agent.md)
 - ERC-8004 discovery evidence: [`deployments/erc8004-bnb-testnet-discovery.json`](../../deployments/erc8004-bnb-testnet-discovery.json)

@@ -11,6 +11,7 @@ evidence, chain, contract, and expiry before funds release or freeze.
 
 - Demo: <https://0xcaptain888.github.io/agent-control-plane/?network=arbitrum>
 - Repository: <https://github.com/0xCaptain888/agent-control-plane>
+- Submission snapshot: <https://github.com/0xCaptain888/agent-control-plane/tree/arbitrum-v0.1.0>
 - Arbitrum runbook: [`docs/arbitrum-hackathon.md`](../arbitrum-hackathon.md)
 - Canonical Agent-to-Agent path: [`docs/agent-to-agent.md`](../agent-to-agent.md)
 - Verified V3 source: <https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB#code>
