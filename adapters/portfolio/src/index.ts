@@ -28,7 +28,7 @@ export async function analyzeRebalance(
 ): Promise<RebalanceSnapshot> {
   const policy = options.policy ?? { targetAllocation: { BNB: 0.6, USDT: 0.4 }, maxDriftPct: 10, maxTurnoverPct: 15 };
   const fetchedAt = (options.now ?? new Date()).toISOString();
-  const sourceUrls = [`${PRICE_URL}/coingecko:binancecoin`];
+  const sourceUrls = [`${PRICE_URL}/coingecko:binancecoin,bsc:${(options.tokenAddresses ?? { USDT: "0x55d398326f99059ff775485246999027b3197955" }).USDT}`];
   const base = { source: "bnb-rpc+defillama" as const, account, chainId: 56 as const, sourceUrls, fetchedAt, policy };
   try {
     if (!/^0x[a-fA-F0-9]{40}$/.test(account)) throw new Error("invalid_account");

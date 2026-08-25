@@ -16,7 +16,7 @@ const rpc = async (method: string, params: unknown[]) => {
 };
 
 const yieldScout = await analyzeYieldScout();
-const healthGuard = await analyzeVenusHealth(account);
+const healthGuard = await analyzeVenusHealth(account, { rpc });
 const rebalanceGuard = await analyzeRebalance(account, { rpc });
 const safeSwap = await getSafeSwapQuote("BNB USDT");
 const harness = await runSafeSwapHire({ taskId: "benchmark-safe-swap", agentId: sampleAgents()[0].id, userAddress: account, objective: "Compare a bounded BNB quote", maxBudgetUSDT: "50", maxSlippageBps: 50, allowedActions: ["swap"], allowedAssets: ["BNB", "USDT"], expiresAt: "2026-08-25T23:59:59.000Z", requireVerification: true, referencePrice: 100 }, sampleAgents()[0]);
