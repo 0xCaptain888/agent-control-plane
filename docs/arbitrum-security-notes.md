@@ -48,3 +48,16 @@ The regression suite in
 `examples/arbitrum-contract-invariants.test.mjs` additionally checks evidence
 matching, state-before-transfer ordering, refund boundaries, and explicit
 privileged/reentrancy guards.
+
+## Independent-verifier reference upgrade
+
+`PolicyEscrowV3.sol` removes the creator-as-verifier settlement authority. It
+accepts an EIP-712 attestation only from an immutable verifier address and
+binds that attestation to the task ID, policy hash, evidence hash, chain ID,
+contract address, issue time, and expiry. The reference also rejects high-s
+ECDSA signatures.
+
+This V3 contract compiles and is covered by negative tests, but it has not been
+deployed or source-verified. The public chain proof remains PolicyEscrowV2.
+See [Independent verification](independent-verification.md) and the
+[attack matrix](security-attack-matrix.md).

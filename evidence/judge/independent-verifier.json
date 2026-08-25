@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "network": "arbitrum-sepolia",
+  "verifierAddress": "0xc461C40bCF41B3AcA8c397fF4142151a74d3CBC0",
+  "contractMode": "PolicyEscrowV3 reference; not deployed",
+  "cases": [
+    {
+      "name": "independent verifier approves matching evidence",
+      "status": "VERIFIED",
+      "reasons": []
+    },
+    {
+      "name": "tampered evidence",
+      "status": "REJECTED",
+      "reasons": [
+        "evidence_hash_mismatch"
+      ]
+    },
+    {
+      "name": "cross-chain replay",
+      "status": "REJECTED",
+      "reasons": [
+        "chain_binding_mismatch"
+      ]
+    },
+    {
+      "name": "expired attestation",
+      "status": "REJECTED",
+      "reasons": [
+        "attestation_expired"
+      ]
+    }
+  ],
+  "attestation": {
+    "taskId": "4",
+    "policyHash": "0xcb0ed4cba24ed691272322b43c8a58cfe3d467762b7b29ed40f5d6c4ea63a88f",
+    "evidenceHash": "0xba7689329e242180a33d16c98884da7f57b983306e1776c25b9f26f7e765edd9",
+    "digest": "0xfc70e7c4fc73188e3977e4b4e3ba72eb4882b7de2339dd6fe0078f03e9446f06",
+    "signatureLength": 132
+  }
+}

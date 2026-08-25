@@ -36,9 +36,18 @@ PolicyEscrowV2 contract (the Arbiscan page shows **Source Code Verified · Exact
 Match**), Task `1`, matching evidence hash, and public Arbiscan settlement
 transaction.
 
-## 1:10–1:35 — Hire safely
+## 1:10–1:35 — Independent verification
 
-Run the real Arbitrum proof command and narrate the intent:
+Open the Independent Verifier section and say:
+
+> The buyer cannot approve its own payout. A separate verifier signs the task,
+> policy, evidence, chain, contract, and expiry. Tampering and replay fail closed.
+
+Run `npm run demo:independent-verifier` or open the published verifier JSON.
+State clearly that PolicyEscrowV3 is tested reference code and that the real
+chain proof remains the verified PolicyEscrowV2 deployment.
+
+Then summarize the real Arbitrum proof:
 
 ```text
 Research Agent hires Data Agent
@@ -47,11 +56,11 @@ Evidence: required before release
 Payment: held until verification
 ```
 
-Run `npm run demo:arbitrum:task` or open the recorded proof. Show:
+Run `npm run demo:arbitrum:evidence` or open the recorded proof. Show:
 
 - task created and funded;
 - evidence submitted;
-- result verified on-chain;
+- result verified on-chain by the current V2 creator boundary;
 - payment released;
 - Arbiscan receipt opened.
 
@@ -82,7 +91,7 @@ Say:
 
 > Execution happened, but the fill exceeded the allowed slippage. The result was rejected and the held payment was frozen.
 
-## 2:25–2:50 — Open the receipt
+## 2:25–2:45 — Open the receipt
 
 Point to the Arbitrum transaction and then the receipt fields:
 
@@ -94,6 +103,6 @@ Point to the Arbitrum transaction and then the receipt fields:
 - settlement state;
 - recovery reason.
 
-## 2:50–3:00 — Close
+## 2:45–3:00 — Close
 
 > We are not building another trading Agent. We are building the marketplace and control plane that makes an Agent economy safe to use: discoverable, hireable, policy-bounded, verifiable, and auditable.

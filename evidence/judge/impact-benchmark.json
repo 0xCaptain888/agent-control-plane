@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-08-25T09:06:00.453Z",
+  "methodology": "Builder-controlled deterministic policy simulation; not external-user traction, revenue, or production performance.",
+  "sampleSize": 20,
+  "scenarios": [
+    {
+      "id": "verified-1",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-2",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-3",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-4",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-5",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-6",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-7",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-8",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-9",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "verified-10",
+      "expected": "VERIFIED",
+      "budget": 1,
+      "evidence": "matching"
+    },
+    {
+      "id": "blocked-1",
+      "expected": "BLOCKED",
+      "budget": 101,
+      "evidence": "not-started"
+    },
+    {
+      "id": "blocked-2",
+      "expected": "BLOCKED",
+      "budget": 101,
+      "evidence": "not-started"
+    },
+    {
+      "id": "blocked-3",
+      "expected": "BLOCKED",
+      "budget": 101,
+      "evidence": "not-started"
+    },
+    {
+      "id": "blocked-4",
+      "expected": "BLOCKED",
+      "budget": 101,
+      "evidence": "not-started"
+    },
+    {
+      "id": "blocked-5",
+      "expected": "BLOCKED",
+      "budget": 101,
+      "evidence": "not-started"
+    },
+    {
+      "id": "frozen-1",
+      "expected": "FROZEN",
+      "budget": 1,
+      "evidence": "mismatch"
+    },
+    {
+      "id": "frozen-2",
+      "expected": "FROZEN",
+      "budget": 1,
+      "evidence": "mismatch"
+    },
+    {
+      "id": "frozen-3",
+      "expected": "FROZEN",
+      "budget": 1,
+      "evidence": "mismatch"
+    },
+    {
+      "id": "expired-1",
+      "expected": "EXPIRED",
+      "budget": 1,
+      "evidence": "expired"
+    },
+    {
+      "id": "expired-2",
+      "expected": "EXPIRED",
+      "budget": 1,
+      "evidence": "expired"
+    }
+  ],
+  "counts": {
+    "VERIFIED": 10,
+    "BLOCKED": 5,
+    "FROZEN": 3,
+    "EXPIRED": 2
+  },
+  "policy": {
+    "maxBudget": 100,
+    "matchingEvidenceRequired": true,
+    "expiryFailsClosed": true
+  },
+  "nonReleasedBudgetUnits": 510,
+  "evidenceHash": "1af230567da5e6fbfc001fba5840fa0e3653c8e6499d82ecd664eb951cf528d2"
+}

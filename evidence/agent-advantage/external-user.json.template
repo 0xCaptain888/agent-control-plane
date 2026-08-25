@@ -1,0 +1,17 @@
+{
+  "task_id": "external-001",
+  "agent": "YieldScout",
+  "network": "Arbitrum Sepolia or BNB Testnet",
+  "operator": "participant wallet or anonymous participant id",
+  "started_at_utc": "YYYY-MM-DDTHH:mm:ss.sssZ",
+  "finished_at_utc": "YYYY-MM-DDTHH:mm:ss.sssZ",
+  "evidence_class": "independent-external-user",
+  "objective": "Participant-authored objective",
+  "baseline": "How the participant would otherwise complete the task",
+  "agent_path": "Steps completed through AgentGuard",
+  "data_sources": [],
+  "evidence_hash": "sha256 or chain evidence hash",
+  "quality_check": "Participant assessment and observed outcome",
+  "receipt_or_transaction_uri": "public testnet or receipt URI",
+  "consent_or_reviewer_note": "Anonymized publication approved by participant"
+}

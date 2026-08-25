@@ -45,8 +45,9 @@ flowchart LR
     B --> C[Risk checks]
     C --> D[Adapter execution]
     D --> E[Outcome verification]
-    E -->|verified| F[Release / settle]
-    E -->|failed| G[Recover / freeze]
+    E --> I[Independent verifier attestation]
+    I -->|verified| F[Release / settle]
+    I -->|failed| G[Recover / freeze]
     F --> H[Signed receipt]
     G --> H
 ```
@@ -59,6 +60,7 @@ flowchart LR
 | **Risk** | simulation, exposure, duplication, slippage, runtime drift | block a changed quote or repeated action |
 | **Execution** | exchange, chain, payment, MCP, x402, workflow adapters | OKX, Solana RPC, EVM, escrow, MCP |
 | **Verification** | accept only an outcome that satisfies the task | validate an API result before release |
+| **Attestation** | independent signature bound to task, policy, evidence, chain and expiry | EIP-712 Verifier Agent proof |
 | **Recovery** | cancel, refund, retry, freeze, circuit breaker | freeze on transport or verification failure |
 | **Receipts** | auditable decisions, proofs, and execution history | SHA-256 Merkle proofs and lifecycle receipts |
 
@@ -144,6 +146,10 @@ npm run demo:rebalance-guard:live
 npm run demo:safe-swap:live
 npm run demo:pancakeswap:live
 npm run demo:erc8004:discover
+npm run demo:independent-verifier
+npm run security:attack-matrix
+npm run impact:benchmark
+npm run evidence:judge:bundle
 npm run benchmark:agent-advantage
 ```
 
@@ -185,6 +191,14 @@ and the [explainable reputation model](docs/reputation-model.md).
 The PancakeSwap-native SafeSwap path compares direct and multihop V2 Router
 quotes and applies a price-impact policy without approving tokens or sending a
 trade. See [PancakeSwap SafeSwap](docs/pancakeswap-safe-swap.md).
+
+The independent-verifier path produces an EIP-712 attestation bound to the
+task, policy, evidence, Arbitrum chain, settlement contract and expiry. The
+compiled `PolicyEscrowV3` reference accepts only the configured verifier and
+rejects tampering or replay. It is explicitly a tested reference, not a live
+deployment claim. See [Independent verification](docs/independent-verification.md),
+the [attack matrix](docs/security-attack-matrix.md), and the
+[Impact Dashboard](docs/impact-dashboard.md).
 
 PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `ARBITRUM_TEST_TOKEN_ADDRESS` locally before running
@@ -238,6 +252,8 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment, verified source, and `VERIFIED` task |
 | Arbitrum evidence check | Read-only RPC verification of contract, task state, hashes, and settlement receipt |
 | YieldScout live proof | DeFiLlama snapshot → evidence hash → Arbitrum Sepolia Task `4` `VERIFIED` |
+| Independent verifier | EIP-712 task/policy/evidence attestation and fail-closed replay checks; V3 is reference-only |
+| Impact benchmark | 20 builder-controlled scenarios with explicit VERIFIED/BLOCKED/FROZEN/EXPIRED labels |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
 | Mainnet execution | Disabled by design |
@@ -305,7 +321,7 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 The current reference implementation is validated with:
 
 ```text
-56 tests passing (9 Node + 47 TypeScript) · lint passing · typecheck passing · security preflight passing
+73 tests passing (10 Node + 63 TypeScript) · lint passing · typecheck passing · security preflight passing
 ```
 
 More detail:
@@ -315,6 +331,9 @@ More detail:
 - [Judge Demo](docs/demo.md)
 - [Hackathon judge guide](docs/hackathon-guide.md)
 - [Arbitrum security notes](docs/arbitrum-security-notes.md)
+- [Independent Verifier Agent](docs/independent-verification.md)
+- [Security attack matrix](docs/security-attack-matrix.md)
+- [Impact Dashboard](docs/impact-dashboard.md)
 - [Verified Contract and source-verification package](docs/arbitrum-contract-verification.md)
 - [Adapter contract](adapters/README.md)
 - [Contribution guide](CONTRIBUTING.md)

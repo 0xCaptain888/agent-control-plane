@@ -10,9 +10,11 @@ flowchart LR
     P --> R[Risk gate\nslippage · exposure · drift]
     R -->|deny| B
     R --> X[Execution adapter\nBNB · OKX · x402 · API]
-    X --> V{Verification\nexpected outcome + evidence}
-    V -->|pass| S[VERIFIED\nsettle / release payment]
+    X --> V{Result verification\nexpected outcome + evidence}
+    V --> A{Independent attestation\ntask · policy · chain · expiry}
+    A -->|pass| S[VERIFIED\nsettle / release payment]
     V -->|fail| F[FROZEN\nhold funds + recover]
+    A -->|fail| F
     B --> Q[Auditable receipt]
     S --> Q
     F --> Q
@@ -31,8 +33,9 @@ The control plane is deliberately domain-neutral. Every high-risk agent action f
 3. **Risk** — evaluate the current account, portfolio, environment, and runtime drift.
 4. **Execute** — call one adapter through the `ExecutionAdapter` contract.
 5. **Verify** — compare the observed result with the expected result.
-6. **Recover** — cancel, refund, freeze, reduce, or escalate when execution deviates.
-7. **Receipt** — persist a tamper-evident decision and execution record.
+6. **Attest** — bind an independent verifier signature to task, policy, evidence, chain, contract, and expiry.
+7. **Recover** — cancel, refund, freeze, reduce, or escalate when execution deviates.
+8. **Receipt** — persist a tamper-evident decision and execution record.
 
 The core must not import a vendor SDK directly. Vendor-specific code belongs in `adapters/`.
 

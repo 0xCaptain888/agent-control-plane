@@ -7,6 +7,7 @@ on:
       - "apps/marketplace/src/**"
       - "docs/**"
       - "deployments/*.json"
+      - "evidence/judge/*.json"
       - ".github/workflows/deploy-marketplace.yml"
   workflow_dispatch:
 
@@ -32,10 +33,11 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Build judge site artifact
         run: |
-          mkdir -p _site/docs _site/deployments
+          mkdir -p _site/docs _site/deployments _site/evidence/judge
           cp -R apps/marketplace/src/. _site/
           cp docs/*.md _site/docs/
           cp deployments/*.json _site/deployments/
+          cp evidence/judge/*.json _site/evidence/judge/
       - name: Upload Marketplace
         uses: actions/upload-pages-artifact@v5
         with:

@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "methodology": "deterministic negative tests; not a third-party audit",
+  "cases": [
+    {
+      "name": "tampered evidence",
+      "status": "BLOCKED",
+      "reasons": [
+        "evidence_hash_mismatch"
+      ]
+    },
+    {
+      "name": "wrong task replay",
+      "status": "BLOCKED",
+      "reasons": [
+        "task_binding_mismatch"
+      ]
+    },
+    {
+      "name": "cross-chain replay",
+      "status": "BLOCKED",
+      "reasons": [
+        "chain_binding_mismatch"
+      ]
+    },
+    {
+      "name": "wrong contract replay",
+      "status": "BLOCKED",
+      "reasons": [
+        "contract_binding_mismatch"
+      ]
+    },
+    {
+      "name": "expired signature",
+      "status": "BLOCKED",
+      "reasons": [
+        "attestation_expired"
+      ]
+    },
+    {
+      "name": "wrong verifier",
+      "status": "BLOCKED",
+      "reasons": [
+        "verifier_signature_mismatch"
+      ]
+    }
+  ]
+}
