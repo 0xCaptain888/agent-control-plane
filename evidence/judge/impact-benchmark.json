@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T09:06:00.453Z",
+  "generatedAt": "2026-08-25T09:28:49.442Z",
   "methodology": "Builder-controlled deterministic policy simulation; not external-user traction, revenue, or production performance.",
   "sampleSize": 20,
   "scenarios": [
@@ -136,5 +136,5 @@
     "expiryFailsClosed": true
   },
   "nonReleasedBudgetUnits": 510,
-  "evidenceHash": "1af230567da5e6fbfc001fba5840fa0e3653c8e6499d82ecd664eb951cf528d2"
+  "evidenceHash": "9e95d91c147e600564689e22779fa51868b50fcde045b1b3570ce95cccf7cbf9"
 }

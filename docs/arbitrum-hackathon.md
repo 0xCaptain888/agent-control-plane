@@ -110,7 +110,7 @@ deployment metadata to `deployments/arbitrum-sepolia-policy-escrow.json`.
 3. Show the Arbitrum Sepolia PolicyEscrowV2 address and verified settlement.
 4. Run the deterministic demo to show `VERIFIED`, `BLOCKED`, and `FROZEN`.
 5. Show the Independent Verifier Agent rejecting tampered and replayed evidence;
-   label PolicyEscrowV3 as compiled reference code, not a live deployment.
+   open the live V3 contract plus its `VERIFIED` and `FROZEN` transactions.
 6. Open the real FROZEN transaction and show the linked refund transaction in
    `deployments/arbitrum-sepolia-policy-escrow-v2.json`.
 7. Explain that `BLOCKED` happens before seller execution, while `FROZEN`
@@ -126,7 +126,9 @@ evidence events, supports pause and refund paths, and leaves policy evaluation
 in AgentGuard. Production deployment would still require an audited multi-sig
 verifier, formal dispute rules, monitoring, and a security review.
 
-The repository now contains a compiled `PolicyEscrowV3` reference with an
-immutable EIP-712 verifier. It addresses the creator-as-verifier limitation but
-is not part of the live deployment proof. Run `npm run demo:independent-verifier`
-and `npm run security:attack-matrix` to reproduce its signed and negative paths.
+The repository now contains a deployed `PolicyEscrowV3` with an immutable
+EIP-712 verifier that is separate from the owner. It addresses the
+creator-as-verifier limitation with real Arbitrum Sepolia `VERIFIED`, `FROZEN`,
+and refund transactions. Run `npm run demo:independent-verifier` and
+`npm run security:attack-matrix` for offline-safe replay tests; the
+`demo:arbitrum:v3:task` command sends new testnet transactions.

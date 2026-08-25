@@ -1,8 +1,10 @@
 import { Wallet, keccak256, toUtf8Bytes } from "ethers";
 import { createHash } from "node:crypto";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createVerifierAttestation, verifyVerifierAttestation } from "../packages/independent-verifier/src/index.js";
+
+const liveDeployment = JSON.parse(readFileSync(resolve("deployments/arbitrum-sepolia-policy-escrow-v3.json"), "utf8"));
 
 const verifier = new Wallet(keccak256(toUtf8Bytes("agentguard-independent-verifier-demo-v1")));
 const domain = { name: "AgentGuard Policy Escrow" as const, version: "3" as const, chainId: 421614n, verifyingContract: "0x0000000000000000000000000000000000000003" };
@@ -19,8 +21,16 @@ if (!verified.passed || tampered.passed || replayed.passed || expired.passed) th
 const output = {
   status: "passed",
   network: "arbitrum-sepolia",
-  verifierAddress: verifier.address,
-  contractMode: "PolicyEscrowV3 reference; not deployed",
+  mode: "deterministic-replay-test",
+  fixtureVerifierAddress: verifier.address,
+  liveDeployment: {
+    contract: liveDeployment.address,
+    verifier: liveDeployment.verifier,
+    deploymentTxHash: liveDeployment.deploymentTxHash,
+    verifiedTaskTxHash: liveDeployment.v3Proof?.verified?.verifyTxHash,
+    frozenTaskTxHash: liveDeployment.v3Proof?.frozen?.verifyTxHash,
+    sourceVerification: liveDeployment.sourceVerification
+  },
   cases: [
     { name: "independent verifier approves matching evidence", status: "VERIFIED", reasons: verified.reasons },
     { name: "tampered evidence", status: "REJECTED", reasons: tampered.reasons },

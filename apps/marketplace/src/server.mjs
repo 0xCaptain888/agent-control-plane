@@ -24,18 +24,17 @@ const server = createServer(async (request, response) => {
   const pathname = request.url === "/" ? "/index.html" : request.url;
   const safePath = pathname.replace(/^\/+/, "").replace(/\.\./g, "");
   try {
-    const fileRoot = safePath.startsWith("docs/") || safePath.startsWith("deployments/") || safePath.startsWith("evidence/") ? repositoryRoot : root;
+    const fileRoot = safePath.startsWith("docs/") || safePath.startsWith("deployments/") || safePath.startsWith("evidence/") || safePath.startsWith("assets/social/") ? repositoryRoot : root;
     const body = await readFile(join(fileRoot, safePath));
     const extension = extname(safePath);
-    const type = extension === ".html"
-      ? "text/html"
-      : extension === ".js"
-        ? "text/javascript"
-        : extension === ".json"
-          ? "application/json"
-          : extension === ".md"
-            ? "text/markdown"
-            : "text/plain";
+    const contentTypes = {
+      ".html": "text/html",
+      ".js": "text/javascript",
+      ".json": "application/json",
+      ".md": "text/markdown",
+      ".svg": "image/svg+xml"
+    };
+    const type = contentTypes[extension] ?? "text/plain";
     response.writeHead(200, { "content-type": `${type}; charset=utf-8` });
     response.end(body);
   } catch {

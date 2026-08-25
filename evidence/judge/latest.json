@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T09:06:07.471Z",
+  "generatedAt": "2026-08-25T09:38:19.139Z",
   "revisionCheck": "Run git rev-parse HEAD and compare it with the repository main branch.",
   "networkBoundary": {
     "arbitrum": "Arbitrum Sepolia testnet",
@@ -9,14 +9,30 @@
   "commands": [
     "npm run demo:judge",
     "npm run demo:independent-verifier",
+    "npm run demo:arbitrum:v3:evidence",
     "npm run security:attack-matrix",
     "npm run impact:benchmark",
     "npm run submission:check"
   ],
+  "transactionCommand": "npm run demo:arbitrum:v3:task (Arbitrum Sepolia transactions; do not run during read-only judging)",
   "links": {
     "repository": "https://github.com/0xCaptain888/agent-control-plane",
     "marketplace": "https://0xcaptain888.github.io/agent-control-plane/",
-    "contract": "https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code"
+    "verifiedV2Contract": "https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code",
+    "independentVerifierV3Contract": "https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+    "v3SourcifyExactMatch": "https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+    "v3BlockscoutVerifiedSource": "https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+    "v3Deployment": "https://sepolia.arbiscan.io/tx/0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447",
+    "v3VerifiedTask": "https://sepolia.arbiscan.io/tx/0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702",
+    "v3FrozenTask": "https://sepolia.arbiscan.io/tx/0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584",
+    "v3LiveEvidence": "https://0xcaptain888.github.io/agent-control-plane/evidence/judge/arbitrum-v3-live-proof.json"
+  },
+  "independentVerifier": {
+    "contract": "0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+    "owner": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+    "verifier": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
+    "sourceVerification": "sourcify-exact-match; arbiscan-pending",
+    "ownerIsVerifier": false
   },
   "evidencePolicy": "Real chain receipts are linked separately; deterministic demos and benchmarks are explicitly labeled builder-controlled."
 }

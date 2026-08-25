@@ -1,0 +1,16 @@
+{
+  "submittedAt": "2026-08-25T09:33:24.218Z",
+  "endpoint": "https://sourcify.dev/server/v2/verify/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+  "submission": {
+    "customCode": "already_verified",
+    "message": "Contract 0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB on chain 421614 is already verified with runtimeMatch and creationMatch both being exact matches.",
+    "errorId": "1427398e-6025-4234-a83a-9ac5eb877d0b"
+  },
+  "result": {
+    "contract": {
+      "match": "exact_match"
+    },
+    "alreadyVerified": true,
+    "message": "Contract 0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB on chain 421614 is already verified with runtimeMatch and creationMatch both being exact matches."
+  }
+}

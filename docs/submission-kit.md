@@ -36,6 +36,10 @@ bad result freezes funds instead of silently paying.
 - [Latest SafeSwap settlement — ERC-8183 Job 614](https://testnet.bscscan.com/tx/0x5dc5469cfdb84c9758208b0bee796f775203dca6445bf9fc98a7f3becb82aa93)
 - [Arbitrum PolicyEscrowV2 contract](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
 - [Arbitrum verified source, ABI, and Read/Write Contract UI](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999#code)
+- [PolicyEscrowV3 independent-verifier contract](https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- [PolicyEscrowV3 Sourcify exact match](https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- [PolicyEscrowV3 VERIFIED task](https://sepolia.arbiscan.io/tx/0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702)
+- [PolicyEscrowV3 FROZEN task](https://sepolia.arbiscan.io/tx/0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584)
 - [Arbitrum verified settlement](https://sepolia.arbiscan.io/tx/0xc11864b4fa56a8906a036d9bff1f1ac4af9dc1e67324bbdbf53fdec996b5b5ce)
 - [Arbitrum real frozen proof](https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9)
 - [YieldScout live DeFiLlama VERIFIED proof · Task 4](https://sepolia.arbiscan.io/tx/0x8ad90afe94eb1ec009704f971c16dd194b4ceb202b62e33f3297c13aca52cf72)
@@ -83,7 +87,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - Open ERC-8004 discovery and comparison for external BNB Testnet Agents, with identity-only/hirable states and observation warnings.
 - Explainable reputation components instead of unsupported opaque success rates.
 - Independent Verifier Agent with task, policy, evidence, chain, contract and expiry binding.
-- PolicyEscrowV3 compiled reference and negative replay/tampering tests, clearly labeled not deployed.
+- PolicyEscrowV3 live Arbitrum Sepolia deployment with separate owner/verifier addresses, VERIFIED release, FROZEN decision, refund, and negative replay/tampering tests.
 - 20-scenario builder-controlled Impact Dashboard and machine-readable Judge Evidence Bundle.
 - `npm run benchmark:agent-advantage` reproducibly emits the source, timestamp, policy status, and evidence hash for all four profiles.
 - Canonical story: a Treasury Agent hires a Risk/Data Agent before moving funds.
@@ -115,7 +119,7 @@ control-plane demonstrations. They are not claims of real mainnet trades.
 - [ ] Reputation comparison shows observation counts and `insufficient_observations` for unproven Agents.
 - [ ] PancakeSwap quote is labeled read-only unless an actual transaction is separately linked.
 - [ ] Independent-verifier demo rejects tampered evidence, cross-chain replay and expiry.
-- [ ] PolicyEscrowV3 is described as reference-only until a real deployment is linked.
+- [ ] PolicyEscrowV3 contract, verifier, VERIFIED transaction, and FROZEN transaction are linked.
 - [ ] Impact Dashboard is labeled builder-controlled rather than external traction.
 - [ ] Judge Evidence Bundle JSON is publicly accessible.
 - [ ] Benchmark output is labeled builder-controlled and not an external-user or human-productivity study.

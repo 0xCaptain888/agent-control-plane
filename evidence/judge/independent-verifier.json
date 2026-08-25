@@ -1,8 +1,16 @@
 {
   "status": "passed",
   "network": "arbitrum-sepolia",
-  "verifierAddress": "0xc461C40bCF41B3AcA8c397fF4142151a74d3CBC0",
-  "contractMode": "PolicyEscrowV3 reference; not deployed",
+  "mode": "deterministic-replay-test",
+  "fixtureVerifierAddress": "0xc461C40bCF41B3AcA8c397fF4142151a74d3CBC0",
+  "liveDeployment": {
+    "contract": "0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB",
+    "verifier": "0xB426c5bd7bbAc95892943e95819F7407E989fD34",
+    "deploymentTxHash": "0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447",
+    "verifiedTaskTxHash": "0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702",
+    "frozenTaskTxHash": "0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584",
+    "sourceVerification": "sourcify-exact-match; arbiscan-pending"
+  },
   "cases": [
     {
       "name": "independent verifier approves matching evidence",

@@ -26,6 +26,12 @@ before execution, verification failures freeze settlement after execution, and
 only verified outcomes release payment. The same control plane is reused by
 each adapter; only the external execution transport changes.
 
+The live Arbitrum Sepolia V3 boundary uses owner
+`0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77` and independent verifier
+`0xB426c5bd7bbAc95892943e95819F7407E989fD34`. The verifier signs off-chain; any
+relayer may submit the signature, but the contract accepts only that immutable
+verifier and binds the decision to its own chain and address.
+
 The control plane is deliberately domain-neutral. Every high-risk agent action follows the same lifecycle:
 
 1. **Intent** — normalize the model's proposal into an `AgentAction`.

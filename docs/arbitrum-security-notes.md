@@ -49,7 +49,7 @@ The regression suite in
 matching, state-before-transfer ordering, refund boundaries, and explicit
 privileged/reentrancy guards.
 
-## Independent-verifier reference upgrade
+## Independent-verifier deployment
 
 `PolicyEscrowV3.sol` removes the creator-as-verifier settlement authority. It
 accepts an EIP-712 attestation only from an immutable verifier address and
@@ -57,7 +57,11 @@ binds that attestation to the task ID, policy hash, evidence hash, chain ID,
 contract address, issue time, and expiry. The reference also rejects high-s
 ECDSA signatures.
 
-This V3 contract compiles and is covered by negative tests, but it has not been
-deployed or source-verified. The public chain proof remains PolicyEscrowV2.
+This V3 contract is deployed on Arbitrum Sepolia at
+`0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB`. Its immutable verifier is
+`0xB426c5bd7bbAc95892943e95819F7407E989fD34`, separate from the owner. Real
+Task `1` reached `VERIFIED`; Task `2` reached `FROZEN` and was refunded.
+PolicyEscrowV2 remains the verified-source ERC-20 proof while V3 demonstrates
+the independent authorization boundary.
 See [Independent verification](independent-verification.md) and the
 [attack matrix](security-attack-matrix.md).

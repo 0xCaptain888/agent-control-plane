@@ -44,8 +44,10 @@ Open the Independent Verifier section and say:
 > policy, evidence, chain, contract, and expiry. Tampering and replay fail closed.
 
 Run `npm run demo:independent-verifier` or open the published verifier JSON.
-State clearly that PolicyEscrowV3 is tested reference code and that the real
-chain proof remains the verified PolicyEscrowV2 deployment.
+Open PolicyEscrowV3 at `0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB`,
+point out that the immutable verifier differs from the owner, then open Task
+`1` `VERIFIED` and Task `2` `FROZEN`. PolicyEscrowV2 remains the verified-source
+ERC-20 proof; V3 is the live independent-verifier proof.
 
 Then summarize the real Arbitrum proof:
 

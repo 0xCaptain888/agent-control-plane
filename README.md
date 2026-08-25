@@ -147,6 +147,8 @@ npm run demo:safe-swap:live
 npm run demo:pancakeswap:live
 npm run demo:erc8004:discover
 npm run demo:independent-verifier
+npm run demo:arbitrum:v3:verification-artifact
+npm run demo:arbitrum:v3:evidence
 npm run security:attack-matrix
 npm run impact:benchmark
 npm run evidence:judge:bundle
@@ -194,9 +196,10 @@ trade. See [PancakeSwap SafeSwap](docs/pancakeswap-safe-swap.md).
 
 The independent-verifier path produces an EIP-712 attestation bound to the
 task, policy, evidence, Arbitrum chain, settlement contract and expiry. The
-compiled `PolicyEscrowV3` reference accepts only the configured verifier and
-rejects tampering or replay. It is explicitly a tested reference, not a live
-deployment claim. See [Independent verification](docs/independent-verification.md),
+deployed `PolicyEscrowV3` accepts only the configured verifier and rejects
+tampering or replay. Its owner and verifier are different addresses, and real
+Arbitrum Sepolia tasks prove both `VERIFIED` release and `FROZEN` recovery.
+See [Independent verification](docs/independent-verification.md),
 the [attack matrix](docs/security-attack-matrix.md), and the
 [Impact Dashboard](docs/impact-dashboard.md).
 
@@ -205,10 +208,13 @@ PolicyEscrowV2 also exposes a testnet ERC-20 path. Set
 `npm run demo:arbitrum:token-task`; the command fails closed when no token is
 configured.
 
-The deployment and task evidence are recorded in
-[`deployments/arbitrum-sepolia-policy-escrow.json`](deployments/arbitrum-sepolia-policy-escrow.json).
+The V2 and V3 deployment and task evidence are recorded in
+[`deployments/arbitrum-sepolia-policy-escrow-v2.json`](deployments/arbitrum-sepolia-policy-escrow-v2.json)
+and [`deployments/arbitrum-sepolia-policy-escrow-v3.json`](deployments/arbitrum-sepolia-policy-escrow-v3.json).
 To deploy a fresh testnet instance, run `npm run demo:arbitrum:deploy` with a
 local Keychain wallet or an ignored `ARBITRUM_PRIVATE_KEY` environment variable.
+`npm run demo:arbitrum:v3:task` sends new testnet transactions and should not be
+used as a read-only judge command.
 
 Run the BNB AgentGuard Marketplace vertical slice:
 
@@ -252,7 +258,7 @@ docs/       architecture, safety rules, migration notes, and judging guide
 | Arbitrum settlement | Real Arbitrum Sepolia `PolicyEscrowV2` deployment, verified source, and `VERIFIED` task |
 | Arbitrum evidence check | Read-only RPC verification of contract, task state, hashes, and settlement receipt |
 | YieldScout live proof | DeFiLlama snapshot → evidence hash → Arbitrum Sepolia Task `4` `VERIFIED` |
-| Independent verifier | EIP-712 task/policy/evidence attestation and fail-closed replay checks; V3 is reference-only |
+| Independent verifier | Real Arbitrum Sepolia V3 deployment with a separate verifier address, VERIFIED release, FROZEN decision, and refund proof |
 | Impact benchmark | 20 builder-controlled scenarios with explicit VERIFIED/BLOCKED/FROZEN/EXPIRED labels |
 | Marketplace | Public GitHub Pages deployment |
 | Judge lifecycle | Deterministic, offline-safe reference scenarios |
@@ -273,6 +279,26 @@ was independently verified by the BNB receipt adapter.
 - Public Marketplace: [Open the live demo](https://0xcaptain888.github.io/agent-control-plane/)
 
 ## Latest Arbitrum Sepolia proof
+
+### PolicyEscrowV3 — independent verifier live proof
+
+PolicyEscrowV3 is deployed with a verifier address that is separate from the
+owner. The verifier signs EIP-712 decisions off-chain; the contract binds the
+signature to the task, policy, evidence, chain, contract, issue time, and
+expiry before releasing or freezing funds.
+
+- Contract: [`0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB`](https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- Source: [Sourcify exact creation/runtime match](https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB) · [Blockscout verified source](https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- Owner: `0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77`
+- Independent verifier: `0xB426c5bd7bbAc95892943e95819F7407E989fD34`
+- Deployment: [`0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447`](https://sepolia.arbiscan.io/tx/0xb9440bd5ca7ad0b53f46694d71504c268314c3bcfd152993c3c2a956a4503447)
+- Task `1` — `VERIFIED` and released: [`0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702`](https://sepolia.arbiscan.io/tx/0xa15a9e4d21e57cd49f51febe819c1df2e72bfe0fcaed0b89f1c7e5053a4cf702)
+- Task `2` — `FROZEN`: [`0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584`](https://sepolia.arbiscan.io/tx/0xa3b766a0739753f1298f0372a69e6905ef16ba01501733b46b256c2e2a208584)
+- Task `2` — refunded: [`0xfdb02e85cc4d1e3110d35dfdc64317ef14b4f01daa56ffa62d3ff1e1b3398acc`](https://sepolia.arbiscan.io/tx/0xfdb02e85cc4d1e3110d35dfdc64317ef14b4f01daa56ffa62d3ff1e1b3398acc)
+- Machine-readable proof: [`evidence/judge/arbitrum-v3-live-proof.json`](evidence/judge/arbitrum-v3-live-proof.json)
+- Reproducible verification input: [`artifacts/arbiscan-v3/PolicyEscrowV3-standard-input.json`](artifacts/arbiscan-v3/PolicyEscrowV3-standard-input.json)
+
+### PolicyEscrowV2 — verified source and ERC-20 proof
 
 The AgentGuard PolicyEscrowV2 contract is deployed on Arbitrum Sepolia and has
 completed a real funded VerifyPay task with a deadline, policy decision hash,
@@ -307,6 +333,14 @@ Task `3` completed a real `0.1 USDC` VerifyPay lifecycle on Arbitrum Sepolia:
 - Optimizer: enabled, `200` runs
 - License: MIT; constructor arguments: none
 - Reproducible input: [`artifacts/arbiscan/PolicyEscrowV2-standard-input.json`](artifacts/arbiscan/PolicyEscrowV2-standard-input.json)
+
+## Visual assets
+
+The reusable launch graphics are versioned with the evidence they describe:
+
+- [AgentGuard hero](assets/social/agentguard-hero.svg)
+- [Policy lifecycle](assets/social/agentguard-lifecycle.svg)
+- [BNB Job 614 proof card](assets/social/agentguard-job-614.svg)
 
 ## Safety boundary
 

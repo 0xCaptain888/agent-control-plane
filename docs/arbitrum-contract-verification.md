@@ -1,6 +1,32 @@
 # Arbitrum Contract Verification
 
-## Deployed contract
+## PolicyEscrowV3 independent-verifier contract
+
+[PolicyEscrowV3 on Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+
+Sourcify reports an `exact_match` for both creation and runtime bytecode. The
+same verified source is available through Blockscout:
+
+- [Sourcify exact match](https://repo.sourcify.dev/421614/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- [Blockscout verified source](https://arbitrum-sepolia.blockscout.com/address/0x6Bd989f778bB10389509f453F63bEbb9EC9C19CB)
+- Owner: `0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77`
+- Verifier: `0xB426c5bd7bbAc95892943e95819F7407E989fD34`
+- Compiler: Solidity `v0.8.26+commit.8a97fa7a`
+- Optimizer: enabled, `200` runs
+- Constructor: immutable verifier address
+
+Reproduce the verification package with:
+
+```bash
+npm run demo:arbitrum:v3:verification-artifact
+npm run demo:arbitrum:v3:sourcify
+npm run demo:arbitrum:v3:evidence
+```
+
+The Arbiscan source mirror may be completed separately through its Standard
+JSON upload page. Sourcify and Blockscout are already public exact-match proof.
+
+## PolicyEscrowV2 ERC-20 contract
 
 [PolicyEscrowV2 on Arbiscan](https://sepolia.arbiscan.io/address/0xe2E444a7B742829f9d45B1165b352DbBf9F9d999#code)
 
