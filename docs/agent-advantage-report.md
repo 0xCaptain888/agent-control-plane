@@ -88,6 +88,23 @@ PolicyEscrowV2 contract. This is real testnet evidence, not a simulated hash.
 - Decision reason hash: `0x3333333333333333333333333333333333333333333333333333333333333333`.
 - Final result: `VERIFIED`; native testnet ETH released only after matching evidence.
 
+### Real ERC-20 / USDC VerifyPay task
+
+Task `3` repeats the same lifecycle with the official Arbitrum Sepolia USDC
+contract instead of native ETH. The wallet approved `0.1 USDC`, funded the
+escrow, submitted matching evidence, and released payment only after creator
+verification.
+
+- Token: [USDC](https://sepolia.arbiscan.io/address/0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d)
+- Escrow: [PolicyEscrowV2](https://sepolia.arbiscan.io/address/0xe2e444a7b742829f9d45b1165b352dbbf9f9d999)
+- Task: `3` · `VERIFIED` · amount `0.1 USDC`
+- Policy hash: `0x4444444444444444444444444444444444444444444444444444444444444444`
+- Evidence hash: `0x5555555555555555555555555555555555555555555555555555555555555555`
+- Approve: [transaction](https://sepolia.arbiscan.io/tx/0xaf4e68ed72b107fb8b4c452741ff0527bc9ffd0f4349fe2534549b0c6c8c992a)
+- Create: [transaction](https://sepolia.arbiscan.io/tx/0x5c3a3c637bc464b70fb1c0f04ef5a8292810a8617f50522d81690ae2ab20da2c)
+- Submit: [transaction](https://sepolia.arbiscan.io/tx/0x995a17ba32c83499385e85c3fe3cd909407c7c124aeee99596a03c6429b711f3)
+- Verify and release: [transaction](https://sepolia.arbiscan.io/tx/0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b)
+
 ## Agent-to-Agent VerifyPay evidence
 
 The deterministic Agent runner models a buyer Research Agent hiring a seller
