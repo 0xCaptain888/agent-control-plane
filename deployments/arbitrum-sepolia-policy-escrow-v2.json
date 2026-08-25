@@ -33,5 +33,23 @@
     "freezeTxHash": "0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9",
     "refundTxHash": "0xae2745030f02b1cd9e90f9663ce2dbce0ff249fa9a5b008280ee42b2f69ee796",
     "freezeExplorerUrl": "https://sepolia.arbiscan.io/tx/0xa521a24b092fd8d7c3210e050b868d5e50ec414be217a318699adc7a60a88fa9"
+  },
+  "tokenProof": {
+    "taskId": "3",
+    "status": "VERIFIED",
+    "token": "USDC",
+    "tokenAddress": "0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d",
+    "tokenDecimals": 6,
+    "amount": "100000",
+    "amountFormatted": "0.1 USDC",
+    "executor": "0xc5970Dd1FBD06725464F74FBeDB9745BCe1cdd77",
+    "policyHash": "0x4444444444444444444444444444444444444444444444444444444444444444",
+    "evidenceHash": "0x5555555555555555555555555555555555555555555555555555555555555555",
+    "decisionReason": "0x6666666666666666666666666666666666666666666666666666666666666666",
+    "approveTxHash": "0xaf4e68ed72b107fb8b4c452741ff0527bc9ffd0f4349fe2534549b0c6c8c992a",
+    "createTxHash": "0x5c3a3c637bc464b70fb1c0f04ef5a8292810a8617f50522d81690ae2ab20da2c",
+    "submitTxHash": "0x995a17ba32c83499385e85c3fe3cd909407c7c124aeee99596a03c6429b711f3",
+    "verifyTxHash": "0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b",
+    "verifyExplorerUrl": "https://sepolia.arbiscan.io/tx/0x78ac0e4246058686dddb0590032e9c94b62571991c75f53f4b12c0c8e87c858b"
   }
 }
