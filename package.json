@@ -81,9 +81,9 @@
     "uuid": "11.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "ethers": "^6.15.0",
-    "solc": "^0.8.26",
+    "@types/node": "^26.4.0",
+    "ethers": "^6.17.0",
+    "solc": "^0.8.36",
     "tsx": "^4.19.4",
     "typescript": "^5.4.5"
   },
