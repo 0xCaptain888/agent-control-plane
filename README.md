@@ -6,6 +6,12 @@
 
 ### AgentGuard VerifyPay — policy-controlled commerce for autonomous AI agents.
 
+> **Repository map:** this is the generic AgentGuard foundation. For the
+> ETHOnline 2026 Continuity submission, use
+> [ethonline-agentguard](https://github.com/0xCaptain888/ethonline-agentguard).
+> Chain- and venue-specific implementations are linked from that submission's
+> [repository map](https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/repo-map.md).
+
 **Built for hackathons: make an Agent useful without making it unconstrained.**
 
 One Agent can hire another Agent or API. AgentGuard decides whether the quote and
